@@ -2,58 +2,409 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=1920, height=1080" />
+    <meta name="viewport" content="width=1080, height=1920" />
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
     <style>
-      /* Placeholders: replace all three with the film's own palette and display face. */
+      /* ASO Creative Studio — "THE WORLD IN YOUR HANDS" — DualSense concept spot.
+         1080x1920, 48s. Palette and display face are the film's own. */
       :root {
-        --ground: #6b6b6b;
-        --ink: #ffffff;
-        --font-display: sans-serif;
+        --ink: #04060c;
+        --navy: #07122b;
+        --blue: #0070d1;
+        --deep: #0a3ea8;
+        --cyan: #52d9ff;
+        --white: #f3f7ff;
+        --font-display: "Helvetica Neue", Helvetica, Arial, sans-serif;
       }
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); color: var(--white); font-family: var(--font-display); }
+
+      .scene, .layer { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; }
+      .layer { pointer-events: none; }
+      #s1 { z-index: 1; } #s2 { z-index: 2; } #s3 { z-index: 3; } #s4 { z-index: 4; }
+      #s5 { z-index: 5; } #s6 { z-index: 6; } #s7 { z-index: 7; }
+      .fill { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+      .shade { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+
+      .line {
+        position: absolute; left: 0; width: 1080px; text-align: center; white-space: nowrap;
+        font-weight: 900; text-transform: uppercase; letter-spacing: 0.015em; line-height: 1;
+        text-shadow: 0 6px 40px rgba(0, 0, 0, 0.65); opacity: 0;
       }
-      html,
-      body {
-        margin: 0;
-        width: 1920px;
-        height: 1080px;
-        overflow: hidden;
-        background: var(--ground);
+      .cy { color: var(--cyan); }
+      .kick {
+        position: absolute; left: 0; width: 1080px; text-align: center; white-space: nowrap;
+        font-weight: 700; font-size: 30px; letter-spacing: 0.38em; color: var(--cyan); text-transform: uppercase; opacity: 0;
       }
-      #root {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: var(--font-display);
+      .ring { position: absolute; border-radius: 50%; border: 3px solid var(--cyan); opacity: 0; }
+
+      /* ---------- S1 hook ---------- */
+      #s1 { background: #000; }
+      #s1 .shade { background: radial-gradient(ellipse at 50% 35%, rgba(0,0,0,0.1), rgba(0,0,0,0.85) 80%); }
+      #core { position: absolute; left: 524px; top: 544px; width: 32px; height: 32px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 60px 20px rgba(82,217,255,0.6); opacity: 0; }
+      .r1, .r2, .r3 { left: 490px; top: 510px; width: 100px; height: 100px; }
+      #l1, #l2 { top: 1000px; font-size: 78px; }
+      #l3 { top: 860px; font-size: 78px; }
+      #l4 { top: 990px; font-size: 160px; }
+
+      /* ---------- S2 reality breaks ---------- */
+      #s2img { filter: brightness(0.45); }
+      #s2 .shade { background: linear-gradient(180deg, rgba(4,6,12,0.55), rgba(4,6,12,0.2) 40%, rgba(4,6,12,0.7)); }
+      #crack { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+      #crack path { fill: none; stroke: #fff; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; filter: drop-shadow(0 0 12px #52d9ff); }
+      .cover { position: absolute; top: 0; width: 181px; height: 1920px; background: var(--ink); }
+      #t2a, #t2b, #t2c { font-size: 110px; }
+      #t2a { top: 740px; } #t2b { top: 870px; } #t2c { top: 1000px; }
+      #t2d { top: 880px; font-size: 148px; text-shadow: 0 0 60px rgba(82,217,255,0.7); }
+
+      /* ---------- S3 enter the game ---------- */
+      #sky { position: absolute; left: 0; top: 0; width: 1080px; height: 1100px; background: linear-gradient(180deg, #030a1f 0%, #0a2a6b 45%, #1a6fb8 70%, #f0b27a 97%); }
+      #sun { position: absolute; left: 290px; top: 760px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255,205,150,0.95), rgba(255,140,80,0.3) 40%, rgba(255,140,80,0) 70%); }
+      .mtn { position: absolute; left: 0; width: 1700px; height: 460px; }
+      #m1 { top: 540px; } #m2 { top: 580px; } #m3 { top: 620px; }
+      #ground { position: absolute; left: 0; top: 1000px; width: 1080px; height: 920px; overflow: hidden; background: linear-gradient(#0b1f3a, #02050b); }
+      #grid {
+        position: absolute; left: -1000px; top: 0; width: 3080px; height: 2400px; transform-origin: 50% 0; transform: perspective(600px) rotateX(72deg);
+        background-image: linear-gradient(rgba(82,217,255,0.6) 2px, transparent 2px), linear-gradient(90deg, rgba(82,217,255,0.4) 2px, transparent 2px);
+        background-size: 120px 120px;
       }
-      #title {
-        color: var(--ink);
-        font-size: 72px;
-        font-weight: 600;
-        letter-spacing: -0.03em;
-      }
+      #haze { position: absolute; left: 0; top: 930px; width: 1080px; height: 190px; background: linear-gradient(180deg, rgba(240,170,110,0), rgba(240,170,110,0.35) 50%, rgba(240,170,110,0)); }
+      .streak { position: absolute; left: 0; height: 3px; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.5)); opacity: 0.45; transform: translateX(1300px); }
+      #hud { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; opacity: 0; }
+      .hlabel { position: absolute; font-size: 22px; font-weight: 700; letter-spacing: 0.3em; color: var(--cyan); white-space: nowrap; }
+      #hbar { position: absolute; left: 60px; top: 78px; width: 360px; height: 14px; background: rgba(255,255,255,0.2); border-radius: 7px; overflow: hidden; }
+      #hfill { width: 100%; height: 100%; background: var(--cyan); transform-origin: left center; transform: scaleX(0.25); }
+      #obj { position: absolute; right: 60px; top: 78px; text-align: right; font-size: 30px; font-weight: 800; letter-spacing: 0.08em; white-space: nowrap; }
+      #ret { position: absolute; left: 500px; top: 930px; width: 80px; height: 80px; opacity: 0; }
+      #t3a, #t3b { font-size: 180px; }
+      #t3a { top: 230px; } #t3b { top: 410px; }
+      #chip { position: absolute; left: 465px; top: 1560px; width: 150px; height: 150px; border-radius: 50%; border: 4px solid var(--cyan); display: flex; align-items: center; justify-content: center; font-size: 54px; font-weight: 900; background: rgba(4,6,12,0.55); opacity: 0; }
+      .chipring { left: 465px; top: 1560px; width: 150px; height: 150px; }
+      #t3c { top: 1760px; font-size: 34px; letter-spacing: 0.3em; font-weight: 800; }
+
+      /* ---------- S4 adaptive triggers ---------- */
+      #s4 { background: linear-gradient(180deg, #030a1a, #08215a 120%); }
+      #card { position: absolute; left: 60px; top: 130px; width: 960px; height: 900px; border-radius: 36px; overflow: hidden; border: 2px solid rgba(82,217,255,0.5); box-shadow: 0 0 80px rgba(0,112,209,0.5); opacity: 0; }
+      #s4img { width: 100%; height: 100%; object-fit: cover; }
+      #k4 { top: 70px; }
+      #t4a { top: 1060px; font-size: 130px; }
+      #t4b { top: 1220px; font-size: 76px; }
+      #t4c { top: 1225px; font-size: 60px; }
+      #bow { position: absolute; left: 0; top: 1330px; width: 1080px; height: 360px; opacity: 0; }
+      #string { fill: none; stroke: #fff; stroke-width: 5; stroke-linecap: round; }
+      #mlabel { position: absolute; left: 60px; top: 1736px; font-size: 26px; font-weight: 700; letter-spacing: 0.3em; color: #fff; opacity: 0; }
+      #mval { position: absolute; right: 60px; top: 1722px; font-size: 44px; font-weight: 900; color: var(--cyan); opacity: 0; }
+      #mtrack { position: absolute; left: 60px; top: 1796px; width: 960px; height: 16px; background: rgba(255,255,255,0.15); border-radius: 8px; overflow: hidden; opacity: 0; }
+      #mfill { width: 100%; height: 100%; background: linear-gradient(90deg, #0070d1, #52d9ff); transform-origin: left center; transform: scaleX(0); }
+
+      /* ---------- S5 haptics ---------- */
+      #s5img { transform: scale(1.1); filter: brightness(0.6) saturate(1.2); }
+      #s5 .shade { background: linear-gradient(180deg, rgba(4,6,12,0.8), rgba(4,6,12,0.25) 40%, rgba(4,6,12,0.85)); }
+      .q { left: 440px; top: 940px; width: 200px; height: 200px; }
+      #k5 { top: 150px; }
+      #w0 { top: 280px; font-size: 70px; letter-spacing: 0.3em; color: var(--cyan); font-weight: 800; }
+      #w1, #w2, #w3 { top: 390px; font-size: 130px; }
+      #w4 { top: 400px; font-size: 100px; }
+      #wave { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; opacity: 0; }
+      .bar { position: absolute; top: 1520px; width: 20px; height: 240px; border-radius: 10px; background: linear-gradient(#52d9ff, #0070d1); transform-origin: 50% 50%; }
+
+      /* ---------- S6 payoff ---------- */
+      #s6img { filter: brightness(0.5); }
+      #s6 .shade { background: radial-gradient(ellipse at 50% 45%, rgba(4,6,12,0.1), rgba(4,6,12,0.85) 85%); }
+      #h1, #h2 { font-size: 140px; } #h1 { top: 640px; } #h2 { top: 800px; }
+      #h3 { top: 960px; font-size: 190px; text-shadow: 0 0 70px rgba(82,217,255,0.55); }
+      #sub6 { top: 1250px; font-size: 36px; letter-spacing: 0.08em; font-weight: 700; }
+      #sweep { position: absolute; left: 0; top: -150px; width: 220px; height: 2300px; transform: rotate(18deg) translateX(-900px); background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.45), rgba(255,255,255,0)); opacity: 0; }
+
+      /* ---------- S7 product reveal ---------- */
+      #s7 { background: radial-gradient(ellipse at 50% 30%, #0b2a66 0%, #050c1f 55%, #04060c 100%); }
+      #glow7 { position: absolute; left: 140px; top: 220px; width: 800px; height: 800px; background: radial-gradient(circle, rgba(82,217,255,0.35), rgba(82,217,255,0) 65%); opacity: 0; }
+      #p7 { position: absolute; left: 40px; top: 120px; width: 1000px; height: 1000px; opacity: 0; -webkit-mask-image: radial-gradient(closest-side, #000 62%, transparent 100%); mask-image: radial-gradient(closest-side, #000 62%, transparent 100%); }
+      #p7 img { width: 100%; height: 100%; object-fit: cover; }
+      #g1, #g2 { font-size: 86px; } #g1 { top: 1190px; } #g2 { top: 1300px; }
+      #rule { position: absolute; left: 340px; top: 1450px; width: 400px; height: 3px; background: var(--cyan); transform-origin: center; transform: scaleX(0); }
+      #p1 { top: 1490px; font-size: 34px; letter-spacing: 0.18em; font-weight: 800; }
+      #p2 { top: 1560px; font-size: 28px; letter-spacing: 0.3em; font-weight: 600; color: var(--cyan); }
+      #foot { top: 1800px; font-size: 24px; letter-spacing: 0.12em; font-weight: 500; color: rgba(243,247,255,0.55); text-shadow: none; }
+
+      /* ---------- persistent overlays ---------- */
+      #vig { z-index: 50; background: radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.65) 100%); }
+      #scan { z-index: 51; background: repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 4px); }
+      #flash { z-index: 52; background: #cfeeff; opacity: 0; }
     </style>
   </head>
   <body>
-    <div data-hf-id="hf-199x"
-      id="root"
-      data-composition-id="main"
-      data-start="0"
-      data-duration="10"
-      data-width="1920"
-      data-height="1080"
-    >
-      <h1 data-hf-id="hf-v7pl" id="title" class="clip" data-start="0" data-duration="10" data-track-index="0">Title</h1>
+    <div data-hf-id="hf-199x" id="root" data-composition-id="main" data-start="0" data-duration="48" data-width="1080" data-height="1920">
+
+      <!-- S1: HOOK 0 – 6.4s -->
+      <div id="s1" class="clip scene" data-start="0" data-duration="6.4" data-track-index="1">
+        <img id="s1img" class="fill" src="assets/dualsense-haptic-feedback-image-block-01-en-30aug23.webp" alt="" />
+        <div class="shade"></div>
+        <div id="core"></div>
+        <div class="ring r1" id="r1"></div><div class="ring r2" id="r2"></div><div class="ring r3" id="r3"></div>
+        <div id="l1" class="line">You’ve seen it.</div>
+        <div id="l2" class="line">You’ve heard it.</div>
+        <div id="l3" class="line">But have you</div>
+        <div id="l4" class="line cy">felt it?</div>
+      </div>
+
+      <!-- S2: REALITY BREAKS 5.8 – 12.4s -->
+      <div id="s2" class="clip scene" data-start="5.8" data-duration="6.6" data-track-index="2">
+        <img id="s2img" class="fill" src="assets/603d9c79658b3ec32f000a68e8be58b6.jpg" alt="" />
+        <div class="shade"></div>
+        <svg id="crack" viewBox="0 0 1080 1920">
+          <path id="cr1" pathLength="1" d="M540 0 L500 260 L580 420 L470 640 L560 820 L440 1040 L540 1240 L470 1500 L560 1920" />
+          <path id="cr2" pathLength="1" d="M580 420 L760 520 L840 700" />
+          <path id="cr3" pathLength="1" d="M470 640 L300 740 L220 960" />
+        </svg>
+        <div class="cover" id="bar0" style="left:0px"></div><div class="cover" id="bar1" style="left:180px"></div>
+        <div class="cover" id="bar2" style="left:360px"></div><div class="cover" id="bar3" style="left:540px"></div>
+        <div class="cover" id="bar4" style="left:720px"></div><div class="cover" id="bar5" style="left:900px"></div>
+        <div id="t2a" class="line">The screen</div>
+        <div id="t2b" class="line">was never</div>
+        <div id="t2c" class="line">the limit.</div>
+        <div id="t2d" class="line cy">Break it.</div>
+      </div>
+
+      <!-- S3: ENTER THE GAME 12.0 – 20.2s -->
+      <div id="s3" class="clip scene" data-start="12" data-duration="8.2" data-track-index="3">
+        <div id="sky"></div>
+        <div id="sun"></div>
+        <svg id="m1" class="mtn" viewBox="0 0 1700 460"><polygon fill="#0d2a5e" points="0,460 0,300 140,220 260,280 420,150 560,260 700,200 860,290 1000,170 1180,270 1320,210 1500,300 1700,240 1700,460" /></svg>
+        <svg id="m2" class="mtn" viewBox="0 0 1700 460"><polygon fill="#071a3d" points="0,460 0,340 180,250 330,330 520,220 700,320 900,240 1080,330 1260,230 1440,320 1700,260 1700,460" /></svg>
+        <svg id="m3" class="mtn" viewBox="0 0 1700 460"><polygon fill="#040f26" points="0,460 0,360 200,300 360,350 560,280 760,350 980,290 1180,360 1380,300 1700,350 1700,460" /></svg>
+        <div id="ground"><div id="grid"></div></div>
+        <div id="haze"></div>
+        <div id="streaks"></div>
+        <svg id="ret" viewBox="0 0 80 80"><circle cx="40" cy="40" r="26" fill="none" stroke="#fff" stroke-width="2" opacity="0.85" /><path d="M40 4 V18 M40 62 V76 M4 40 H18 M62 40 H76" stroke="#fff" stroke-width="2" /><circle cx="40" cy="40" r="2.5" fill="#52d9ff" /></svg>
+        <div id="hud">
+          <div class="hlabel" style="left:60px;top:44px">Vitality</div>
+          <div id="hbar"><div id="hfill"></div></div>
+          <div class="hlabel" style="right:60px;top:44px">Objective</div>
+          <div id="obj">Reach the ridge</div>
+        </div>
+        <div id="t3a" class="line">Step</div>
+        <div id="t3b" class="line cy">inside.</div>
+        <div id="chip">R2</div>
+        <div class="ring chipring" id="cr_a"></div><div class="ring chipring" id="cr_b"></div>
+        <div id="t3c" class="line">Hold to sprint</div>
+      </div>
+
+      <!-- S4: ADAPTIVE TRIGGERS 19.8 – 29.2s -->
+      <div id="s4" class="clip scene" data-start="19.8" data-duration="9.4" data-track-index="4">
+        <div id="k4" class="kick">Adaptive triggers</div>
+        <div id="card"><img id="s4img" src="assets/dualsense-adaptive-triggers-image-block-01-en-30aug23.webp" alt="" /></div>
+        <div id="t4a" class="line">Pull.</div>
+        <div id="t4b" class="line cy">Feel the tension.</div>
+        <div id="t4c" class="line">Tuned to every moment.</div>
+        <svg id="bow" viewBox="0 0 1080 360">
+          <path id="string" d="M110 180 Q540 180 970 180" />
+          <circle cx="110" cy="180" r="14" fill="#52d9ff" /><circle cx="970" cy="180" r="14" fill="#52d9ff" />
+          <circle id="knock" cx="540" cy="180" r="12" fill="#52d9ff" />
+        </svg>
+        <div id="mlabel">Tension</div><div id="mval">000%</div>
+        <div id="mtrack"><div id="mfill"></div></div>
+      </div>
+
+      <!-- S5: HAPTIC FEEDBACK 28.8 – 38.2s -->
+      <div id="s5" class="clip scene" data-start="28.8" data-duration="9.4" data-track-index="5">
+        <img id="s5img" class="fill" src="assets/dualsense-haptic-feedback-image-block-01-en-30aug23.webp" alt="" />
+        <div class="shade"></div>
+        <div class="ring q" id="q0"></div><div class="ring q" id="q1"></div><div class="ring q" id="q2"></div><div class="ring q" id="q3"></div>
+        <div id="k5" class="kick">Haptic feedback</div>
+        <div id="w0" class="line">Feel</div>
+        <div id="w1" class="line">Rainfall</div>
+        <div id="w2" class="line">Engines</div>
+        <div id="w3" class="line">Heartbeats</div>
+        <div id="w4" class="line cy">Every detail.</div>
+        <div id="wave"></div>
+      </div>
+
+      <!-- S6: PAYOFF 37.8 – 43.4s -->
+      <div id="s6" class="clip scene" data-start="37.8" data-duration="5.6" data-track-index="6">
+        <img id="s6img" class="fill" src="assets/GTAVI-LE-Black-White-DualSense-image-block-01-en-27aug26.webp" alt="" />
+        <div class="shade"></div>
+        <div id="h1" class="line">The world</div>
+        <div id="h2" class="line">in your</div>
+        <div id="h3" class="line cy">hands.</div>
+        <div id="sub6" class="line">A whole world. One controller.</div>
+        <div id="sweep"></div>
+      </div>
+
+      <!-- S7: PRODUCT REVEAL 43.0 – 48.0s -->
+      <div id="s7" class="clip scene" data-start="43" data-duration="5" data-track-index="7">
+        <div id="glow7"></div>
+        <div id="p7"><img src="assets/603d9c79658b3ec32f000a68e8be58b6.jpg" alt="" /></div>
+        <div id="g1" class="line">Feel more.</div>
+        <div id="g2" class="line cy">Play different.</div>
+        <div id="rule"></div>
+        <div id="p1" class="line">DualSense wireless controller</div>
+        <div id="p2" class="line">For PlayStation 5</div>
+        <div id="foot" class="line">An independent concept spot · ASO Creative Studio</div>
+      </div>
+
+      <!-- Persistent overlays -->
+      <div id="vig" class="clip layer" data-start="0" data-duration="48" data-track-index="20"></div>
+      <div id="scan" class="clip layer" data-start="0" data-duration="48" data-track-index="21"></div>
+      <div id="flash" class="clip layer" data-start="0" data-duration="48" data-track-index="22"></div>
     </div>
+
     <script>
+      window.__timelines = window.__timelines || {};
       const tl = gsap.timeline({ paused: true });
-      // Example: tl.fromTo("#title", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 0);
+      const $ = (s) => document.querySelector(s);
+      // Deterministic pseudo-random: same input always gives the same output (no Math.random).
+      const f = (i) => { const x = Math.sin(i * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
+
+      // ---- Build repeated DOM (pure math, so every render is identical) ----
+      const streaks = $("#streaks");
+      for (let k = 0; k < 14; k++) {
+        const d = document.createElement("div");
+        d.className = "streak"; d.id = "st" + k;
+        d.style.top = 260 + Math.round(f(k + 3) * 1500) + "px";
+        d.style.width = 180 + Math.round(f(k + 40) * 320) + "px";
+        streaks.appendChild(d);
+      }
+      const wave = $("#wave");
+      for (let i = 0; i < 30; i++) {
+        const d = document.createElement("div");
+        d.className = "bar"; d.style.left = 24 + i * 34 + "px";
+        wave.appendChild(d);
+      }
+      gsap.set(".bar", { scaleY: 0.06 });
+
+      // ---- Helpers ----
+      const rise = (sel, t, dur = 0.7) => tl.fromTo(sel, { opacity: 0, y: 50, filter: "blur(12px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: dur, ease: "power3.out" }, t);
+      const fade = (sel, t, dur = 0.35) => tl.to(sel, { opacity: 0, y: -30, duration: dur, ease: "power2.in" }, t);
+      const flash = (t, a = 0.5) => {
+        tl.fromTo("#flash", { opacity: 0 }, { opacity: a, duration: 0.07, ease: "none" }, t);
+        tl.to("#flash", { opacity: 0, duration: 0.4, ease: "power2.out" }, t + 0.07);
+      };
+      const pulse = (sel, t, big = 7, dur = 1.5) => tl.fromTo(sel, { scale: 0.3, opacity: 0.9 }, { scale: big, opacity: 0, duration: dur, ease: "power2.out" }, t);
+
+      // ---- Scene crossfades (0.4s overlap between scenes) ----
+      const scenes = [["#s1", 0, 6.4], ["#s2", 5.8, 6.6], ["#s3", 12, 8.2], ["#s4", 19.8, 9.4], ["#s5", 28.8, 9.4], ["#s6", 37.8, 5.6], ["#s7", 43, 5]];
+      scenes.forEach(([id, s, d], i) => {
+        if (i > 0) tl.fromTo(id, { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "none" }, s);
+        if (i < scenes.length - 1) tl.to(id, { opacity: 0, duration: 0.4, ease: "none" }, s + d - 0.4);
+      });
+
+      // ================= S1 HOOK =================
+      tl.fromTo("#s1img", { opacity: 0, scale: 1.25, filter: "blur(18px)" }, { opacity: 0.55, scale: 1.1, filter: "blur(0px)", duration: 5.6, ease: "power1.inOut" }, 0);
+      tl.fromTo("#core", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "power2.out" }, 0.2);
+      [0.9, 1.9, 2.9, 3.9].forEach((t) => {
+        tl.to("#core", { scale: 2.2, duration: 0.1, ease: "power2.out" }, t);
+        tl.to("#core", { scale: 1, duration: 0.4, ease: "power2.in" }, t + 0.1);
+      });
+      pulse("#r1", 0.9); pulse("#r2", 1.9); pulse("#r3", 2.9); pulse("#r1", 3.9, 9, 1.8);
+      rise("#l1", 0.5); fade("#l1", 1.8);
+      rise("#l2", 2.0); fade("#l2", 3.2);
+      rise("#l3", 3.5);
+      rise("#l4", 4.2, 0.5); flash(4.2, 0.4);
+
+      // ================= S2 REALITY BREAKS =================
+      tl.fromTo("#s2img", { scale: 1.25 }, { scale: 1, duration: 6.6, ease: "none" }, 5.8);
+      for (let i = 0; i < 6; i++) tl.to("#bar" + i, { y: i % 2 ? 1920 : -1920, duration: 0.8, ease: "expo.inOut" }, 6.3 + i * 0.05);
+      rise("#t2a", 7.2); rise("#t2b", 7.8); rise("#t2c", 8.4);
+      tl.to("#cr1", { strokeDashoffset: 0, duration: 0.5, ease: "power2.in" }, 9.0);
+      tl.to("#cr2", { strokeDashoffset: 0, duration: 0.3, ease: "none" }, 9.3);
+      tl.to("#cr3", { strokeDashoffset: 0, duration: 0.3, ease: "none" }, 9.3);
+      flash(9.6, 0.8);
+      ["#t2a", "#t2b", "#t2c"].forEach((s) => tl.to(s, { opacity: 0, duration: 0.12, ease: "none" }, 9.6));
+      tl.to("#crack", { opacity: 0, duration: 0.5, ease: "power1.in" }, 10.4);
+      tl.fromTo("#t2d", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.35, ease: "power4.out" }, 9.6);
+      tl.fromTo("#s2img", { filter: "brightness(0.45)" }, { filter: "brightness(1)", duration: 0.6, ease: "power2.out" }, 9.6);
+      tl.to("#s2img", { keyframes: [{ x: 14, y: -10, duration: 0.04 }, { x: -12, y: 8, duration: 0.04 }, { x: 8, y: -6, duration: 0.04 }, { x: 0, y: 0, duration: 0.06 }] }, 9.6);
+
+      // ================= S3 ENTER THE GAME =================
+      tl.fromTo("#sun", { scale: 1 }, { scale: 1.3, duration: 8.2, ease: "none" }, 12);
+      tl.fromTo("#m1", { x: 0 }, { x: -160, duration: 8.2, ease: "none" }, 12);
+      tl.fromTo("#m2", { x: 0 }, { x: -300, duration: 8.2, ease: "none" }, 12);
+      tl.fromTo("#m3", { x: 0 }, { x: -520, duration: 8.2, ease: "none" }, 12);
+      tl.fromTo("#grid", { backgroundPosition: "0px 0px" }, { backgroundPosition: "0px 1440px", duration: 8.2, ease: "power1.in" }, 12);
+      for (let c = 0; c < 3; c++) {
+        for (let k = 0; k < 14; k++) tl.fromTo("#st" + k, { x: 1300 }, { x: -800, duration: 0.45, ease: "none" }, 14 + c * 1.4 + f(k) * 0.9);
+      }
+      tl.fromTo("#ret", { scale: 1.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "power2.out" }, 13.6);
+      tl.fromTo("#hud", { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 13.4);
+      tl.fromTo("#hfill", { scaleX: 0.25 }, { scaleX: 1, duration: 3, ease: "power1.inOut" }, 13.8);
+      rise("#t3a", 14.0, 0.8); rise("#t3b", 14.6, 0.8); flash(14.6, 0.35);
+      fade("#t3a", 17.6); fade("#t3b", 17.6);
+      tl.fromTo("#chip", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 17.9);
+      rise("#t3c", 18.0, 0.5);
+      pulse("#cr_a", 18.3, 2.4, 0.9); pulse("#cr_b", 19.0, 2.4, 0.9);
+
+      // ================= S4 ADAPTIVE TRIGGERS =================
+      tl.fromTo("#card", { opacity: 0, y: 60, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "power3.out" }, 20.1);
+      tl.fromTo("#s4img", { scale: 1.2 }, { scale: 1.02, duration: 9, ease: "none" }, 19.8);
+      rise("#k4", 20.2, 0.5); rise("#t4a", 20.8); rise("#t4b", 21.6);
+      tl.fromTo("#bow", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 22.2);
+      tl.fromTo(["#mlabel", "#mval", "#mtrack"], { opacity: 0 }, { opacity: 1, duration: 0.5 }, 22.2);
+      // Pull the string back over 2.2s (the trigger "resisting"), then snap it free.
+      tl.fromTo("#string", { attr: { d: "M110 180 Q540 180 970 180" } }, { attr: { d: "M110 180 Q540 360 970 180" }, duration: 2.2, ease: "power2.in" }, 22.8);
+      tl.fromTo("#knock", { attr: { cy: 180 } }, { attr: { cy: 270 }, duration: 2.2, ease: "power2.in" }, 22.8);
+      tl.fromTo("#mfill", { scaleX: 0 }, { scaleX: 1, duration: 2.2, ease: "power2.in" }, 22.8);
+      const cnt = { v: 0 };
+      const setVal = () => { $("#mval").textContent = String(Math.round(cnt.v)).padStart(3, "0") + "%"; };
+      tl.fromTo(cnt, { v: 0 }, { v: 100, duration: 2.2, ease: "power2.in", onUpdate: setVal }, 22.8);
+      tl.to("#card", { x: 3, duration: 0.04, repeat: 15, yoyo: true, ease: "none" }, 24.3);
+      [[190, 0.08], [215, 0.08], [165, 0.08], [188, 0.08], [180, 0.1]].forEach(([c, d], i) => {
+        const at = 25.0 + [0, 0.08, 0.16, 0.24, 0.32][i];
+        tl.to("#string", { attr: { d: "M110 180 Q540 " + c + " 970 180" }, duration: d, ease: "power4.out" }, at);
+        tl.to("#knock", { attr: { cy: 180 + (c - 180) / 2 }, duration: d, ease: "power4.out" }, at);
+      });
+      tl.to("#mfill", { scaleX: 0, duration: 0.5, ease: "power2.out" }, 25.1);
+      tl.to(cnt, { v: 0, duration: 0.5, ease: "power2.out", onUpdate: setVal }, 25.1);
+      flash(25.0, 0.5);
+      fade("#t4b", 24.8); rise("#t4c", 25.6);
+
+      // ================= S5 HAPTIC FEEDBACK =================
+      const jit = (t0, n, step, amp, seed) => {
+        const kf = [];
+        for (let k = 0; k < n; k++) kf.push({ x: (f(seed + k) - 0.5) * 2 * amp, y: (f(seed + k + 99) - 0.5) * 2 * amp, duration: step, ease: "none" });
+        kf.push({ x: 0, y: 0, duration: step });
+        tl.to("#s5img", { keyframes: kf }, t0);
+      };
+      jit(30.0, 30, 0.05, 3, 1);   // rain: light patter
+      jit(32.0, 40, 0.04, 9, 200); // engine: heavy rumble
+      [34.0, 34.8, 35.6].forEach((t) => tl.to("#s5img", { keyframes: [{ scale: 1.17, duration: 0.1, ease: "power2.out" }, { scale: 1.1, duration: 0.18 }, { scale: 1.14, duration: 0.1 }, { scale: 1.1, duration: 0.22 }] }, t));
+      [30.0, 30.9, 32.0, 32.5, 33.0, 34.0, 34.8, 35.6].forEach((t, n) => pulse("#q" + (n % 4), t, 5, 1.2));
+      flash(28.8, 0.35); flash(34.0, 0.2);
+      rise("#k5", 29.2, 0.5); rise("#w0", 29.8, 0.5);
+      rise("#w1", 30.0); fade("#w1", 31.7);
+      rise("#w2", 32.0); fade("#w2", 33.7);
+      rise("#w3", 34.0); fade("#w3", 35.7);
+      fade("#w0", 35.7); rise("#w4", 36.0);
+      tl.fromTo("#wave", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 29.5);
+      document.querySelectorAll(".bar").forEach((b, i) => {
+        const kf = [];
+        for (let k = 0; k < 34; k++) {
+          const t = 29.8 + k * 0.2;
+          let amp = t < 32 ? 0.35 : t < 34 ? 0.95 : t < 35.8 ? 0.6 : 0.45;
+          if (t >= 34 && t < 35.8) amp *= k % 4 < 2 ? 1 : 0.25;
+          kf.push({ scaleY: Math.max(0.06, amp * (0.2 + 0.8 * f(i * 13 + k * 7))), duration: 0.2, ease: "sine.inOut" });
+        }
+        tl.to(b, { keyframes: kf }, 29.8);
+      });
+
+      // ================= S6 PAYOFF =================
+      tl.fromTo("#s6img", { scale: 1.25 }, { scale: 1.08, duration: 5.6, ease: "none" }, 37.8);
+      rise("#h1", 38.3, 0.8); rise("#h2", 38.8, 0.8); rise("#h3", 39.4, 0.8);
+      flash(39.4, 0.5);
+      tl.fromTo("#sweep", { x: 0, opacity: 0 }, { x: 2300, opacity: 0.35, duration: 1.2, ease: "power2.inOut" }, 39.4);
+      tl.to("#sweep", { opacity: 0, duration: 0.3 }, 40.4);
+      rise("#sub6", 40.6, 0.7);
+
+      // ================= S7 PRODUCT REVEAL =================
+      tl.fromTo("#glow7", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 1.2, ease: "power2.out" }, 43.2);
+      tl.fromTo("#p7", { opacity: 0, scale: 1.2 }, { opacity: 1, scale: 1, duration: 1.2, ease: "power3.out" }, 43.3);
+      tl.to("#p7", { scale: 1.05, duration: 3.5, ease: "none" }, 44.5);
+      rise("#g1", 44.4); flash(44.4, 0.4); rise("#g2", 45.0);
+      tl.to("#rule", { scaleX: 1, duration: 0.6, ease: "power3.inOut" }, 45.6);
+      rise("#p1", 45.9, 0.6); rise("#p2", 46.2, 0.6);
+      tl.fromTo("#foot", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 46.6);
+
       window.__timelines["main"] = tl;
       tl.seek(0);
     </script>
