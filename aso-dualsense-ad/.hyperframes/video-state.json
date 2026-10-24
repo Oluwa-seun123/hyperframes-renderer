@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "historyId": "b55c6cb8-56e0-4b70-b109-3510b08ad6ed",
+  "currentRevision": null,
+  "pendingChanges": false,
+  "files": {
+    "AGENTS.md": {
+      "hash": "1b36171117cb7c18f4100a0db6a3782ff2e096115995733200445cc2e80a4060",
+      "content": "/home/codespace/.cache/hyperframes/history/b55c6cb8-56e0-4b70-b109-3510b08ad6ed/blobs/1b/1b36171117cb7c18f4100a0db6a3782ff2e096115995733200445cc2e80a4060"
+    },
+    "CLAUDE.md": {
+      "hash": "1b36171117cb7c18f4100a0db6a3782ff2e096115995733200445cc2e80a4060",
+      "content": "/home/codespace/.cache/hyperframes/history/b55c6cb8-56e0-4b70-b109-3510b08ad6ed/blobs/1b/1b36171117cb7c18f4100a0db6a3782ff2e096115995733200445cc2e80a4060"
+    },
+    "hyperframes.json": {
+      "hash": "53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50",
+      "content": "/home/codespace/.cache/hyperframes/history/b55c6cb8-56e0-4b70-b109-3510b08ad6ed/blobs/53/53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50"
+    },
+    "index.html": {
+      "hash": "4fdad3450a28b91909f790a1e94d86b3a3c598ca79c344206e05100e280b73b9",
+      "content": "/home/codespace/.cache/hyperframes/history/b55c6cb8-56e0-4b70-b109-3510b08ad6ed/blobs/4f/4fdad3450a28b91909f790a1e94d86b3a3c598ca79c344206e05100e280b73b9"
+    },
+    "meta.json": {
+      "hash": "8ee13e42aad3eb99b094a477464c8fbcd5f49cd5a8a2322fb1cdd11740a51741",
+      "content": "/home/codespace/.cache/hyperframes/history/b55c6cb8-56e0-4b70-b109-3510b08ad6ed/blobs/8e/8ee13e42aad3eb99b094a477464c8fbcd5f49cd5a8a2322fb1cdd11740a51741"
+    },
+    "package.json": {
+      "hash": "4a5833edb91421021bb56ea850fb16ce025e9757eab817f291e1e0f2dcff4c0b",
+      "content": "/home/codespace/.cache/hyperframes/history/b55c6cb8-56e0-4b70-b109-3510b08ad6ed/blobs/4a/4a5833edb91421021bb56ea850fb16ce025e9757eab817f291e1e0f2dcff4c0b"
+    }
+  },
+  "revisions": {},
+  "checks": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "snapshots": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  }
+}
