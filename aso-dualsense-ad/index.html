@@ -70,11 +70,11 @@
         background-size: 120px 120px;
       }
       #haze { position: absolute; left: 0; top: 930px; width: 1080px; height: 190px; background: linear-gradient(180deg, rgba(240,170,110,0), rgba(240,170,110,0.35) 50%, rgba(240,170,110,0)); }
-      .streak { position: absolute; left: 0; height: 3px; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.5)); opacity: 0.45; transform: translateX(1300px); }
+      .streak { position: absolute; left: 0; height: 3px; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.5)); opacity: 0.45; }
       #hud { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; opacity: 0; }
       .hlabel { position: absolute; font-size: 22px; font-weight: 700; letter-spacing: 0.3em; color: var(--cyan); white-space: nowrap; }
       #hbar { position: absolute; left: 60px; top: 78px; width: 360px; height: 14px; background: rgba(255,255,255,0.2); border-radius: 7px; overflow: hidden; }
-      #hfill { width: 100%; height: 100%; background: var(--cyan); transform-origin: left center; transform: scaleX(0.25); }
+      #hfill { width: 100%; height: 100%; background: var(--cyan); transform-origin: left center; }
       #obj { position: absolute; right: 60px; top: 78px; text-align: right; font-size: 30px; font-weight: 800; letter-spacing: 0.08em; white-space: nowrap; }
       #ret { position: absolute; left: 500px; top: 930px; width: 80px; height: 80px; opacity: 0; }
       #t3a, #t3b { font-size: 180px; }
@@ -96,10 +96,10 @@
       #mlabel { position: absolute; left: 60px; top: 1736px; font-size: 26px; font-weight: 700; letter-spacing: 0.3em; color: #fff; opacity: 0; }
       #mval { position: absolute; right: 60px; top: 1722px; font-size: 44px; font-weight: 900; color: var(--cyan); opacity: 0; }
       #mtrack { position: absolute; left: 60px; top: 1796px; width: 960px; height: 16px; background: rgba(255,255,255,0.15); border-radius: 8px; overflow: hidden; opacity: 0; }
-      #mfill { width: 100%; height: 100%; background: linear-gradient(90deg, #0070d1, #52d9ff); transform-origin: left center; transform: scaleX(0); }
+      #mfill { width: 100%; height: 100%; background: linear-gradient(90deg, #0070d1, #52d9ff); transform-origin: left center; }
 
       /* ---------- S5 haptics ---------- */
-      #s5img { transform: scale(1.1); filter: brightness(0.6) saturate(1.2); }
+      #s5img { filter: brightness(0.6) saturate(1.2); }
       #s5 .shade { background: linear-gradient(180deg, rgba(4,6,12,0.8), rgba(4,6,12,0.25) 40%, rgba(4,6,12,0.85)); }
       .q { left: 440px; top: 940px; width: 200px; height: 200px; }
       #k5 { top: 150px; }
@@ -115,7 +115,7 @@
       #h1, #h2 { font-size: 140px; } #h1 { top: 640px; } #h2 { top: 800px; }
       #h3 { top: 960px; font-size: 190px; text-shadow: 0 0 70px rgba(82,217,255,0.55); }
       #sub6 { top: 1250px; font-size: 36px; letter-spacing: 0.08em; font-weight: 700; }
-      #sweep { position: absolute; left: 0; top: -150px; width: 220px; height: 2300px; transform: rotate(18deg) translateX(-900px); background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.45), rgba(255,255,255,0)); opacity: 0; }
+      #sweep { position: absolute; left: 0; top: -150px; width: 220px; height: 2300px; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.45), rgba(255,255,255,0)); opacity: 0; }
 
       /* ---------- S7 product reveal ---------- */
       #s7 { background: radial-gradient(ellipse at 50% 30%, #0b2a66 0%, #050c1f 55%, #04060c 100%); }
@@ -123,7 +123,7 @@
       #p7 { position: absolute; left: 40px; top: 120px; width: 1000px; height: 1000px; opacity: 0; -webkit-mask-image: radial-gradient(closest-side, #000 62%, transparent 100%); mask-image: radial-gradient(closest-side, #000 62%, transparent 100%); }
       #p7 img { width: 100%; height: 100%; object-fit: cover; }
       #g1, #g2 { font-size: 86px; } #g1 { top: 1190px; } #g2 { top: 1300px; }
-      #rule { position: absolute; left: 340px; top: 1450px; width: 400px; height: 3px; background: var(--cyan); transform-origin: center; transform: scaleX(0); }
+      #rule { position: absolute; left: 340px; top: 1450px; width: 400px; height: 3px; background: var(--cyan); transform-origin: center; }
       #p1 { top: 1490px; font-size: 34px; letter-spacing: 0.18em; font-weight: 800; }
       #p2 { top: 1560px; font-size: 28px; letter-spacing: 0.3em; font-weight: 600; color: var(--cyan); }
       #foot { top: 1800px; font-size: 24px; letter-spacing: 0.12em; font-weight: 500; color: rgba(243,247,255,0.55); text-shadow: none; }
@@ -151,7 +151,7 @@
 
       <!-- S2: REALITY BREAKS 5.8 – 12.4s -->
       <div id="s2" class="clip scene" data-start="5.8" data-duration="6.6" data-track-index="2">
-        <img id="s2img" class="fill" src="assets/603d9c79658b3ec32f000a68e8be58b6.jpg" alt="" />
+        <img id="s2img" class="fill" src="assets/hero-front.jpg" alt="" />
         <div class="shade"></div>
         <svg id="crack" viewBox="0 0 1080 1920">
           <path id="cr1" pathLength="1" d="M540 0 L500 260 L580 420 L470 640 L560 820 L440 1040 L540 1240 L470 1500 L560 1920" />
@@ -235,7 +235,7 @@
       <!-- S7: PRODUCT REVEAL 43.0 – 48.0s -->
       <div id="s7" class="clip scene" data-start="43" data-duration="5" data-track-index="7">
         <div id="glow7"></div>
-        <div id="p7"><img src="assets/603d9c79658b3ec32f000a68e8be58b6.jpg" alt="" /></div>
+        <div id="p7"><img src="assets/hero-front.jpg" alt="" /></div>
         <div id="g1" class="line">Feel more.</div>
         <div id="g2" class="line cy">Play different.</div>
         <div id="rule"></div>
@@ -273,15 +273,19 @@
         wave.appendChild(d);
       }
       gsap.set(".bar", { scaleY: 0.06 });
+      gsap.set("#s5img", { scale: 1.1 });
+      gsap.set("#sweep", { rotation: 18 });
 
       // ---- Helpers ----
       const rise = (sel, t, dur = 0.7) => tl.fromTo(sel, { opacity: 0, y: 50, filter: "blur(12px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: dur, ease: "power3.out" }, t);
       const fade = (sel, t, dur = 0.35) => tl.to(sel, { opacity: 0, y: -30, duration: dur, ease: "power2.in" }, t);
+      const seen = new Set(); // targets whose earliest fromTo already exists
+      const later = (sel) => { const r = seen.has(sel); seen.add(sel); return r ? { immediateRender: false } : {}; };
       const flash = (t, a = 0.5) => {
-        tl.fromTo("#flash", { opacity: 0 }, { opacity: a, duration: 0.07, ease: "none" }, t);
+        tl.fromTo("#flash", { opacity: 0 }, { opacity: a, duration: 0.07, ease: "none", ...later("#flash") }, t);
         tl.to("#flash", { opacity: 0, duration: 0.4, ease: "power2.out" }, t + 0.07);
       };
-      const pulse = (sel, t, big = 7, dur = 1.5) => tl.fromTo(sel, { scale: 0.3, opacity: 0.9 }, { scale: big, opacity: 0, duration: dur, ease: "power2.out" }, t);
+      const pulse = (sel, t, big = 7, dur = 1.5) => tl.fromTo(sel, { scale: 0.3, opacity: 0.9 }, { scale: big, opacity: 0, duration: dur, ease: "power2.out", ...later(sel) }, t);
 
       // ---- Scene crossfades (0.4s overlap between scenes) ----
       const scenes = [["#s1", 0, 6.4], ["#s2", 5.8, 6.6], ["#s3", 12, 8.2], ["#s4", 19.8, 9.4], ["#s5", 28.8, 9.4], ["#s6", 37.8, 5.6], ["#s7", 43, 5]];
@@ -314,7 +318,7 @@
       ["#t2a", "#t2b", "#t2c"].forEach((s) => tl.to(s, { opacity: 0, duration: 0.12, ease: "none" }, 9.6));
       tl.to("#crack", { opacity: 0, duration: 0.5, ease: "power1.in" }, 10.4);
       tl.fromTo("#t2d", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.35, ease: "power4.out" }, 9.6);
-      tl.fromTo("#s2img", { filter: "brightness(0.45)" }, { filter: "brightness(1)", duration: 0.6, ease: "power2.out" }, 9.6);
+      tl.fromTo("#s2img", { filter: "brightness(0.45)" }, { filter: "brightness(1)", duration: 0.6, ease: "power2.out", immediateRender: false }, 9.6);
       tl.to("#s2img", { keyframes: [{ x: 14, y: -10, duration: 0.04 }, { x: -12, y: 8, duration: 0.04 }, { x: 8, y: -6, duration: 0.04 }, { x: 0, y: 0, duration: 0.06 }] }, 9.6);
 
       // ================= S3 ENTER THE GAME =================
@@ -324,7 +328,7 @@
       tl.fromTo("#m3", { x: 0 }, { x: -520, duration: 8.2, ease: "none" }, 12);
       tl.fromTo("#grid", { backgroundPosition: "0px 0px" }, { backgroundPosition: "0px 1440px", duration: 8.2, ease: "power1.in" }, 12);
       for (let c = 0; c < 3; c++) {
-        for (let k = 0; k < 14; k++) tl.fromTo("#st" + k, { x: 1300 }, { x: -800, duration: 0.45, ease: "none" }, 14 + c * 1.4 + f(k) * 0.9);
+        for (let k = 0; k < 14; k++) tl.fromTo("#st" + k, { x: 1300 }, { x: -800, duration: 0.45, ease: "none", ...(c > 0 ? { immediateRender: false } : {}) }, 14 + c * 1.4 + f(k) * 0.9);
       }
       tl.fromTo("#ret", { scale: 1.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "power2.out" }, 13.6);
       tl.fromTo("#hud", { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 13.4);
@@ -392,7 +396,7 @@
       tl.fromTo("#s6img", { scale: 1.25 }, { scale: 1.08, duration: 5.6, ease: "none" }, 37.8);
       rise("#h1", 38.3, 0.8); rise("#h2", 38.8, 0.8); rise("#h3", 39.4, 0.8);
       flash(39.4, 0.5);
-      tl.fromTo("#sweep", { x: 0, opacity: 0 }, { x: 2300, opacity: 0.35, duration: 1.2, ease: "power2.inOut" }, 39.4);
+      tl.fromTo("#sweep", { x: -300, opacity: 0 }, { x: 2300, opacity: 0.35, duration: 1.2, ease: "power2.inOut" }, 39.4);
       tl.to("#sweep", { opacity: 0, duration: 0.3 }, 40.4);
       rise("#sub6", 40.6, 0.7);
 
@@ -401,7 +405,7 @@
       tl.fromTo("#p7", { opacity: 0, scale: 1.2 }, { opacity: 1, scale: 1, duration: 1.2, ease: "power3.out" }, 43.3);
       tl.to("#p7", { scale: 1.05, duration: 3.5, ease: "none" }, 44.5);
       rise("#g1", 44.4); flash(44.4, 0.4); rise("#g2", 45.0);
-      tl.to("#rule", { scaleX: 1, duration: 0.6, ease: "power3.inOut" }, 45.6);
+      tl.fromTo("#rule", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.inOut" }, 45.6);
       rise("#p1", 45.9, 0.6); rise("#p2", 46.2, 0.6);
       tl.fromTo("#foot", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 46.6);
 
