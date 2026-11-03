@@ -1,0 +1,11 @@
+{
+  "name": "megamix-yoghurt-advert",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.8.189 preview",
+    "check": "npx --yes hyperframes@0.8.189 check",
+    "snapshot": "npx --yes hyperframes@0.8.189 snapshot --at 1,8,16,24,32,40,48,56,59",
+    "render": "npx --yes hyperframes@0.8.189 render"
+  }
+}
