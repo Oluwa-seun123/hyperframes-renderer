@@ -1,0 +1,70 @@
+name: Megamix zero-cost advert render
+
+on:
+  push:
+    branches: [megamix-handsfree-build]
+    paths:
+      - "megamix-ad/**"
+      - ".github/workflows/megamix-render.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout production project
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: megamix-ad/package.json
+      - name: Install free media tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg python3-pip
+          python -m pip install --break-system-packages requests beautifulsoup4
+      - name: Acquire commercial-use stock footage
+        run: python megamix-ad/scripts/fetch_stock.py
+      - name: Verify owner product assets are present
+        run: |
+          required="megamix-ad/assets/megamix-range.jpg megamix-ad/assets/megamix-greek.jpg megamix-ad/assets/megamix-logo.jpg"
+          for f in $required; do
+            test -s "$f" || { echo "::error::Missing private brand asset: $f"; exit 1; }
+          done
+      - name: HyperFrames project check
+        working-directory: megamix-ad
+        run: npm run check
+      - name: Capture visual snapshots
+        working-directory: megamix-ad
+        run: npm run snapshot
+      - name: Render vertical MP4 with HyperFrames
+        working-directory: megamix-ad
+        run: npm run render
+      - name: Validate render
+        run: |
+          set -euo pipefail
+          VIDEO="megamix-ad/renders/megamix-yoghurt-60s.mp4"
+          test -s "$VIDEO"
+          ffprobe -v error -show_entries stream=codec_name,width,height,r_frame_rate -show_entries format=duration -of json "$VIDEO" | tee megamix-ad/renders/ffprobe.json
+          python megamix-ad/scripts/validate_render.py "$VIDEO"
+      - name: Package delivery ZIP
+        run: |
+          cd megamix-ad
+          zip -r ../Megamix-Advert-Delivery.zip renders assets/licence-manifest.csv production-notes.md
+      - name: Upload MP4, snapshots and ZIP
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: megamix-advert-delivery
+          path: |
+            Megamix-Advert-Delivery.zip
+            megamix-ad/renders/**
+            megamix-ad/.hyperframes/**
+          if-no-files-found: warn
+          retention-days: 14
