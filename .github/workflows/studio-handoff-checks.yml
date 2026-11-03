@@ -16,6 +16,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: python -m py_compile studio/integrations/import_production.py
+      - name: Compile importer and tests
+        run: python -m py_compile studio/integrations/import_production.py studio/integrations/test_import_production.py
+      - name: Run importer tests
+        run: python -m unittest discover -s studio/integrations -p 'test_*.py' -v
       - name: Check importer help
         run: python studio/integrations/import_production.py --help
