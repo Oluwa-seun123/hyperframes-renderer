@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080,height=1920">
+<title>MÁADÁN — A Ritual of Your Own | ASO Creative Studio Spec Ad</title>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+:root{--ink:#17100e;--cocoa:#38221d;--clay:#8c5540;--amber:#d49b61;--cream:#f3e6d3;--sage:#777a5b;--gold:#c7a26a;--sans:Arial,Helvetica,sans-serif;--serif:Georgia,'Times New Roman',serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--ink)}
+body{font-family:var(--sans);color:var(--cream)}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--ink)}
+.scene{position:absolute;inset:0;width:1080px;height:1920px;overflow:hidden;opacity:0;visibility:hidden}
+.bg{position:absolute;inset:-5%;width:110%;height:110%;background:radial-gradient(ellipse at 52% 36%,#704634 0%,#38241d 34%,#17100e 76%)}
+.noise{position:absolute;inset:0;opacity:.13;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");mix-blend-mode:soft-light;pointer-events:none}
+.kicker{font-size:19px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);font-weight:600}
+.headline{font-family:var(--serif);font-weight:400;letter-spacing:-2px;line-height:1.02;font-size:86px}
+.subline{font-size:24px;line-height:1.55;letter-spacing:.4px;color:#e5d1bb;max-width:760px}
+.center{position:absolute;left:80px;right:80px;text-align:center}
+.rule{width:72px;height:2px;background:var(--gold);margin:34px auto}
+.orb{position:absolute;border-radius:50%;filter:blur(2px);background:radial-gradient(circle at 34% 28%,#e6c18d,#9a6346 42%,#39221b 75%);box-shadow:0 35px 90px #09060580}
+.leaf{position:absolute;width:220px;height:460px;border:2px solid #a5a77b55;border-radius:100% 0 100% 0;transform-origin:bottom center;background:linear-gradient(135deg,#a3a57c22,#242b1d05)}
+.leaf:after{content:"";position:absolute;width:2px;height:90%;background:#b7b28a55;left:50%;top:4%;transform:rotate(-15deg)}
+.jar{position:absolute;width:390px;height:530px;left:345px;top:670px;filter:drop-shadow(0 45px 40px #0806058c)}
+.jar .lid{position:absolute;left:45px;top:0;width:300px;height:86px;border-radius:16px 16px 9px 9px;background:linear-gradient(110deg,#d4b889,#f0dfbd 22%,#9d805b 65%,#ddc69e);box-shadow:inset 0 5px 4px #fff5d2aa}
+.jar .neck{position:absolute;left:61px;top:74px;width:268px;height:28px;background:linear-gradient(90deg,#68452f,#d3b48b,#755036)}
+.jar .body{position:absolute;left:15px;top:95px;width:360px;height:380px;border-radius:35px 35px 54px 54px;background:linear-gradient(100deg,#6e4836,#c3a078 18%,#eedbb8 42%,#9e7555 78%,#4d3025);border:1px solid #e5cba177;box-shadow:inset 12px 0 20px #f7e8c533,inset -20px 0 25px #25130f66}
+.jar .label{position:absolute;left:42px;top:200px;width:306px;height:180px;background:linear-gradient(145deg,#efe2c8,#d8c09a);color:#3c2920;text-align:center;padding-top:24px;border:1px solid #7d5a3c66}
+.brand{font-family:var(--serif);font-size:39px;letter-spacing:4px;font-weight:500}
+.product-name{font-size:15px;letter-spacing:4px;margin-top:15px}
+.product-sub{font-size:10px;letter-spacing:2px;margin-top:12px}
+.petal{position:absolute;width:160px;height:310px;border-radius:100% 0 100% 0;background:linear-gradient(145deg,#b8a777aa,#5c694655 60%,transparent);border:1px solid #d0c69a33;transform-origin:bottom center}
+.copy-small{font-size:16px;letter-spacing:3px;text-transform:uppercase;color:#d4b98f}
+.bottom-mark{position:absolute;bottom:90px;left:80px;right:80px;display:flex;justify-content:space-between;align-items:center;font-size:14px;letter-spacing:3px;color:#d4c1a6aa}
+.scene-number{font-size:13px;letter-spacing:3px}
+#s1 .headline{font-size:100px}
+#s1 .glow{position:absolute;width:800px;height:800px;left:140px;top:440px;border-radius:50%;background:radial-gradient(circle,#c58c5b55,transparent 68%);filter:blur(20px)}
+#s2 .cityline{position:absolute;left:0;right:0;bottom:0;height:740px;background:linear-gradient(0deg,#100b0a 0%,#251713 42%,transparent 100%)}
+.building{position:absolute;bottom:0;background:#100c0b;border:1px solid #bb90652b}
+#s3 .ingredient{position:absolute;width:380px;height:520px;border-radius:50%;background:radial-gradient(ellipse at 30% 30%,#e4c795,#9e704b 45%,#40291f 76%);box-shadow:0 50px 120px #0006}
+#s4 .swash{position:absolute;width:900px;height:340px;border-radius:50%;background:linear-gradient(100deg,#d5b78a,#f3e3c8 35%,#9e7555 70%,#f0d8ae);filter:blur(1px);opacity:.85;transform:rotate(-18deg)}
+#s5 .jar{transform:scale(.93)}
+#s6 .lightband{position:absolute;left:-200px;top:300px;width:1500px;height:280px;background:linear-gradient(90deg,transparent,#d9b47b44,transparent);transform:rotate(-24deg)}
+#s7 .halo{position:absolute;width:900px;height:900px;left:90px;top:410px;border-radius:50%;border:1px solid #d8b7832a;box-shadow:0 0 0 40px #d8b78308,0 0 0 90px #d8b78305}
+#s8 .jar{top:590px;transform:scale(1.04)}
+#s9 .jar{top:600px;transform:scale(.84)}
+#s10 .brand-large{font-family:var(--serif);font-size:82px;letter-spacing:10px}
+#s10 .end-url{font-size:24px;letter-spacing:3px;margin-top:28px}
+</style>
+</head>
+<body>
+<div id="root">
+  <section class="scene" id="s1">
+    <div class="bg"></div><div class="glow"></div><div class="noise"></div>
+    <div class="center" style="top:420px"><div class="kicker">A moment to return</div><div class="rule"></div><h1 class="headline">THE DAY<br>ASKS A LOT.</h1><p class="subline" style="margin:42px auto 0">Give yourself a little room to breathe.</p></div>
+    <div class="orb" style="width:260px;height:260px;left:410px;top:1120px"></div>
+    <div class="bottom-mark"><span>ASO CREATIVE STUDIO</span><span>01 / 10</span></div>
+  </section>
+  <section class="scene" id="s2">
+    <div class="bg" style="background:radial-gradient(ellipse at 50% 40%,#a36a47 0%,#4c2b21 38%,#140e0c 82%)"></div><div class="noise"></div>
+    <div class="cityline"></div>
+    <div class="building" style="left:0;width:150px;height:490px"></div><div class="building" style="left:145px;width:200px;height:650px"></div><div class="building" style="left:340px;width:140px;height:410px"></div><div class="building" style="left:480px;width:260px;height:570px"></div><div class="building" style="left:735px;width:180px;height:700px"></div><div class="building" style="left:910px;width:170px;height:460px"></div>
+    <div class="center" style="top:380px"><div class="kicker">Pause the noise</div><h2 class="headline" style="margin-top:38px">MAKE A LITTLE<br>SPACE.</h2><div class="rule"></div><p class="subline" style="margin:auto">Even in a city that never seems to slow down.</p></div>
+    <div class="leaf" style="left:50px;top:980px;transform:rotate(25deg)"></div><div class="leaf" style="right:40px;top:920px;transform:rotate(-28deg) scale(.8)"></div>
+    <div class="bottom-mark"><span>A RITUAL OF YOUR OWN</span><span>02 / 10</span></div>
+  </section>
+  <section class="scene" id="s3">
+    <div class="bg" style="background:radial-gradient(ellipse at 50% 44%,#6d6744 0%,#3a3826 35%,#17140f 78%)"></div><div class="noise"></div>
+    <div class="ingredient" style="left:-80px;top:750px;transform:rotate(-22deg)"></div><div class="ingredient" style="right:-130px;top:930px;transform:scale(.7) rotate(32deg);opacity:.7"></div>
+    <div class="leaf" style="left:270px;top:740px;transform:rotate(-20deg) scale(1.1)"></div><div class="leaf" style="left:570px;top:790px;transform:rotate(18deg) scale(.8)"></div>
+    <div class="center" style="top:280px"><div class="kicker">Inspired by African botanicals</div><h2 class="headline" style="margin-top:42px">ROOTED IN<br>THE RITUAL.</h2><p class="subline" style="margin:36px auto 0">A quiet connection to the things that ground us.</p></div>
+    <div class="bottom-mark"><span>MÁADÁN · CONCEPT FILM</span><span>03 / 10</span></div>
+  </section>
+  <section class="scene" id="s4">
+    <div class="bg" style="background:radial-gradient(ellipse at 48% 45%,#8d6249 0%,#4a2e22 44%,#170f0d 80%)"></div><div class="noise"></div>
+    <div class="swash" style="left:100px;top:780px"></div><div class="swash" style="left:210px;top:1020px;transform:rotate(22deg) scale(.72);opacity:.45"></div>
+    <div class="center" style="top:300px"><div class="kicker">A sensory kind of care</div><h2 class="headline" style="margin-top:42px">TEXTURE.<br>TOUCH.<br>TIME.</h2><p class="subline" style="margin:34px auto 0">Slow down enough to notice the little things.</p></div>
+    <div class="bottom-mark"><span>FEEL THE MOMENT</span><span>04 / 10</span></div>
+  </section>
+  <section class="scene" id="s5">
+    <div class="bg" style="background:radial-gradient(ellipse at 50% 40%,#9c6c49 0%,#553426 38%,#1a100d 80%)"></div><div class="noise"></div>
+    <div class="orb" style="width:620px;height:620px;left:230px;top:650px;opacity:.36"></div>
+    <div class="jar"><div class="lid"></div><div class="neck"></div><div class="body"></div><div class="label"><div class="brand">MÁADÁN</div><div class="product-name">BODY BUTTER</div><div class="product-sub">AFRICAN BOTANICAL SKINCARE</div></div></div>
+    <div class="center" style="top:245px"><div class="kicker">Meet your moment</div><h2 class="headline" style="font-size:72px;margin-top:34px">CARE, WITH<br>INTENTION.</h2></div>
+    <div class="center" style="top:1370px"><p class="subline" style="margin:auto">A considered step in the ritual you make your own.</p></div>
+    <div class="bottom-mark"><span>ILLUSTRATIVE PACK SHOT</span><span>05 / 10</span></div>
+  </section>
+  <section class="scene" id="s6">
+    <div class="bg" style="background:radial-gradient(ellipse at 55% 45%,#625f3e 0%,#332c1f 45%,#17100d 82%)"></div><div class="noise"></div>
+    <div class="lightband"></div><div class="leaf" style="left:90px;top:760px;transform:rotate(18deg) scale(1.15)"></div><div class="leaf" style="right:0;top:730px;transform:rotate(-24deg)"></div>
+    <div class="center" style="top:310px"><div class="kicker">Made with a sense of place</div><h2 class="headline" style="margin-top:42px">MADE IN<br>LAGOS.</h2><div class="rule"></div><p class="subline" style="margin:auto">Rooted here. Made for the moments that matter.</p></div>
+    <div class="jar" style="top:1050px;transform:scale(.62);opacity:.85"><div class="lid"></div><div class="neck"></div><div class="body"></div><div class="label"><div class="brand">MÁADÁN</div><div class="product-name">BODY BUTTER</div><div class="product-sub">AFRICAN BOTANICAL SKINCARE</div></div></div>
+    <div class="bottom-mark"><span>MADE SLOWLY · MADE WITH INTENTION</span><span>06 / 10</span></div>
+  </section>
+  <section class="scene" id="s7">
+    <div class="bg" style="background:radial-gradient(ellipse at 50% 42%,#81503c 0%,#40251d 42%,#150e0c 82%)"></div><div class="noise"></div>
+    <div class="orb" style="width:420px;height:420px;left:-100px;top:1000px;opacity:.35"></div><div class="orb" style="width:360px;height:360px;right:-80px;top:760px;opacity:.3"></div>
+    <div class="center" style="top:350px"><div class="kicker">No rush. No noise.</div><h2 class="headline" style="margin-top:44px">CARE WITHOUT<br>THE NOISE.</h2><div class="rule"></div><p class="subline" style="margin:auto">Not another thing to get right. Just a moment to come back to yourself.</p></div>
+    <div class="petal" style="left:170px;top:1000px;transform:rotate(-35deg)"></div><div class="petal" style="right:130px;top:1050px;transform:rotate(35deg) scale(.8)"></div>
+    <div class="bottom-mark"><span>YOUR SKIN · YOUR PACE</span><span>07 / 10</span></div>
+  </section>
+  <section class="scene" id="s8">
+    <div class="bg" style="background:radial-gradient(ellipse at 50% 44%,#a47752 0%,#533426 38%,#170f0c 80%)"></div><div class="noise"></div><div class="halo"></div>
+    <div class="jar"><div class="lid"></div><div class="neck"></div><div class="body"></div><div class="label"><div class="brand">MÁADÁN</div><div class="product-name">BODY BUTTER</div><div class="product-sub">AFRICAN BOTANICAL SKINCARE</div></div></div>
+    <div class="center" style="top:260px"><div class="kicker">Your daily moment</div><h2 class="headline" style="font-size:75px;margin-top:36px">YOUR SKIN.<br>YOUR PACE.</h2></div>
+    <div class="center" style="top:1370px"><p class="subline" style="margin:auto">A ritual that fits into your life — not the other way around.</p></div>
+    <div class="bottom-mark"><span>MÁADÁN</span><span>08 / 10</span></div>
+  </section>
+  <section class="scene" id="s9">
+    <div class="bg" style="background:radial-gradient(ellipse at 50% 40%,#b18861 0%,#684431 34%,#1a100d 80%)"></div><div class="noise"></div>
+    <div class="halo"></div><div class="jar"><div class="lid"></div><div class="neck"></div><div class="body"></div><div class="label"><div class="brand">MÁADÁN</div><div class="product-name">BODY BUTTER</div><div class="product-sub">AFRICAN BOTANICAL SKINCARE</div></div></div>
+    <div class="center" style="top:250px"><div class="kicker">African botanicals · Made in Lagos</div><h2 class="headline" style="font-size:73px;margin-top:38px">A RITUAL<br>OF YOUR OWN.</h2></div>
+    <div class="center" style="top:1370px"><p class="copy-small">Come back to yourself.</p></div>
+    <div class="bottom-mark"><span>ASO CREATIVE STUDIO · SPEC AD</span><span>09 / 10</span></div>
+  </section>
+  <section class="scene" id="s10">
+    <div class="bg" style="background:radial-gradient(ellipse at 50% 36%,#7a4a36 0%,#35211a 44%,#130d0b 82%)"></div><div class="noise"></div>
+    <div class="orb" style="width:240px;height:240px;left:420px;top:350px;opacity:.65"></div>
+    <div class="center" style="top:600px"><div class="kicker">African botanical skincare</div><div class="brand-large" style="margin-top:38px">MÁADÁN</div><div class="rule"></div><h2 class="headline" style="font-size:62px">A RITUAL OF<br>YOUR OWN.</h2><div class="end-url">MAADANOFFICIAL.COM</div><p class="copy-small" style="margin-top:80px">KEEP SHINING.</p></div>
+    <div class="bottom-mark"><span>ASO CREATIVE STUDIO</span><span>90 SECONDS · SILENT MASTER</span></div>
+  </section>
+  <div class="noise"></div>
+</div>
+<script>
+(() => {
+  if (!window.gsap) { console.error("GSAP failed to load; the timeline cannot animate."); return; }
+  const tl = gsap.timeline({ paused: true });
+  const ids = ["#s1","#s2","#s3","#s4","#s5","#s6","#s7","#s8","#s9","#s10"];
+  ids.forEach((id, i) => {
+    const start = i * 9;
+    const scene = document.querySelector(id);
+    const children = scene.querySelectorAll(".headline,.kicker,.subline,.jar,.orb,.ingredient,.leaf,.swash,.petal,.halo,.brand-large,.end-url,.copy-small,.rule");
+    tl.set(scene, {autoAlpha:1}, start);
+    if (children.length) {
+      tl.fromTo(children, {y:26, autoAlpha:0}, {y:0,autoAlpha:1,duration:0.75,stagger:0.045,ease:"power2.out"}, start + 0.25);
+    }
+    if (i > 0) tl.fromTo(scene.querySelector(".bg"), {scale:1.07}, {scale:1,duration:9,ease:"none"}, start);
+    tl.to(scene, {autoAlpha:0,duration:0.7,ease:"power1.inOut"}, start + 8.3);
+    if (i === 4 || i === 7 || i === 8) {
+      const jar = scene.querySelector(".jar");
+      if (jar) tl.to(jar, {y:-18,scale:"+=0.025",duration:4,ease:"sine.inOut",yoyo:true,repeat:1}, start + 2);
+    }
+  });
+  tl.set("#s10",{autoAlpha:1},89.3);
+  tl.to("#s10",{autoAlpha:1,duration:0.7},89.3);
+  window.__timelines = window.__timelines || {};
+  window.__timelines["main"] = tl;
+  tl.seek(0);
+})();
+</script>
+</body>
+</html>
