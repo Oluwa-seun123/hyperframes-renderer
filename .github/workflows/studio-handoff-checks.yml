@@ -1,0 +1,21 @@
+name: Studio handoff checks
+on:
+  push:
+    branches: [studio-toolchain-integration]
+    paths:
+      - "studio/integrations/**"
+      - ".github/workflows/studio-handoff-checks.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  importer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m py_compile studio/integrations/import_production.py
+      - name: Check importer help
+        run: python studio/integrations/import_production.py --help
