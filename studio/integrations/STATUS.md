@@ -1,0 +1,1 @@
+OpenMontage and VoiceStudio are external tools. Their exports will be imported into HyperFrames through a local manifest-based handoff. Automated hosted inference is not enabled.
