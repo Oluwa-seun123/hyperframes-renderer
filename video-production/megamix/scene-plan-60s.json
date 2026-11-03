@@ -1,0 +1,123 @@
+{
+  "project": {
+    "brand": "Megamix",
+    "product": "Yoghurt range",
+    "concept": "A little goodness in every moment",
+    "duration_seconds": 60,
+    "aspect_ratio": "9:16",
+    "resolution": "1080x1920",
+    "frame_rate": 30,
+    "audio": "silent_master",
+    "budget_usd": 0
+  },
+  "truth_rules": {
+    "use_supplied_packaging_as_final_overlay": true,
+    "preserve_logo_and_label_exactly": true,
+    "no_unverified_product_claims": true,
+    "no_implied_ingredient_claims": true,
+    "log_external_asset_licenses": true
+  },
+  "scenes": [
+    {
+      "id": "01-hook",
+      "start": 0,
+      "duration_seconds": 5,
+      "footage": "real_live_action",
+      "visual": "Extreme close-up of thick yoghurt folding slowly from a spoon into a clean ceramic bowl; soft natural light and shallow depth of field.",
+      "camera": "slow macro push-in",
+      "on_screen_copy": "A little goodness...",
+      "product_overlay": null,
+      "audio": "silent"
+    },
+    {
+      "id": "02-fresh-moments",
+      "start": 5,
+      "duration_seconds": 7,
+      "footage": "real_live_action",
+      "visual": "Fresh strawberries and berries being rinsed and arranged on a bright kitchen counter. Treat fruit as a serving suggestion only.",
+      "camera": "gentle overhead-to-close detail movement",
+      "on_screen_copy": "Made for moments worth enjoying",
+      "product_overlay": null,
+      "audio": "silent"
+    },
+    {
+      "id": "03-creamy-texture",
+      "start": 12,
+      "duration_seconds": 7,
+      "footage": "real_live_action",
+      "visual": "Yoghurt being spooned into a bowl, with a slow close-up of its creamy texture. No visible competing brand packaging.",
+      "camera": "macro lateral slide",
+      "on_screen_copy": "",
+      "product_overlay": null,
+      "audio": "silent"
+    },
+    {
+      "id": "04-range-reveal",
+      "start": 19,
+      "duration_seconds": 7,
+      "footage": "original_owner_asset",
+      "visual": "Reveal the actual Megamix bottle range from the supplied product photograph; use a carefully masked crop or original image, no AI recreation.",
+      "camera": "subtle 2.5D parallax / controlled push",
+      "on_screen_copy": "Meet Megamix Yoghurt",
+      "product_overlay": "owner-supplied bottle range photo",
+      "audio": "silent"
+    },
+    {
+      "id": "05-serving",
+      "start": 26,
+      "duration_seconds": 8,
+      "footage": "real_live_action",
+      "visual": "A hand serves yoghurt into a breakfast bowl; fruit is placed beside or on top as an optional serving idea. Avoid showing a fake Megamix bottle.",
+      "camera": "natural close-up with gentle handheld movement",
+      "on_screen_copy": "Bring a little joy to your day",
+      "product_overlay": null,
+      "audio": "silent"
+    },
+    {
+      "id": "06-greek-yoghurt",
+      "start": 34,
+      "duration_seconds": 7,
+      "footage": "original_owner_asset",
+      "visual": "Show the actual Megamix Greek yoghurt tub using the supplied photo. Do not add 'high protein', 'healthy', 'low fat' or similar claims.",
+      "camera": "subtle push-in and clean crop",
+      "on_screen_copy": "Discover Megamix Greek Yoghurt",
+      "product_overlay": "owner-supplied Greek yoghurt tub photo",
+      "audio": "silent"
+    },
+    {
+      "id": "07-everyday-moment",
+      "start": 41,
+      "duration_seconds": 7,
+      "footage": "real_live_action",
+      "visual": "Bright, calm breakfast-table scene with a bowl of yoghurt and fruit; no identifiable brand packaging in the stock shot.",
+      "camera": "slow slider move",
+      "on_screen_copy": "A moment to savour",
+      "product_overlay": null,
+      "audio": "silent"
+    },
+    {
+      "id": "08-final-packshot",
+      "start": 48,
+      "duration_seconds": 12,
+      "footage": "original_owner_asset",
+      "visual": "Hero composition of the real Megamix product range and logo, using supplied images. Clean premium background, exact packaging, generous space for end-card copy.",
+      "camera": "gentle push-in; finish with a steady final frame",
+      "on_screen_copy": "Megamix Yoghurt\nMake every moment delicious.",
+      "product_overlay": "owner-supplied bottle range photo, Greek yoghurt tub photo and logo",
+      "audio": "silent"
+    }
+  ],
+  "delivery": {
+    "container": "mp4",
+    "video_codec": "h264",
+    "audio": "none",
+    "target_duration_seconds": 60,
+    "target_resolution": "1080x1920",
+    "target_frame_rate": 30,
+    "zip_delivery": true,
+    "validate_duration": true,
+    "validate_resolution": true,
+    "validate_nonzero_size": true,
+    "inspect_playback": true
+  }
+}
