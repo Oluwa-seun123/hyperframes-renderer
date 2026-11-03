@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101114">
+<title>ASO Production Studio</title>
+<style>
+:root{color-scheme:dark;--bg:#101114;--panel:#191b20;--line:#30333b;--muted:#a8adba;--text:#f5f6fa;--accent:#c7f36b;--blue:#9bb8ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top right,#20281a 0,transparent 38%),var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:980px;margin:auto;padding:24px 16px 60px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:28px}.brand{font-weight:800;letter-spacing:.04em}.pill{border:1px solid var(--line);border-radius:999px;padding:5px 10px;color:var(--muted);font-size:12px}
+h1{font-size:clamp(30px,7vw,48px);line-height:1.08;letter-spacing:-.04em;margin:12px 0}h2{font-size:19px;margin:0 0 12px}.muted{color:var(--muted)}.hero{margin-bottom:24px}.hero p{max-width:650px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px}.panel{background:rgba(25,27,32,.94);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:14px}.module{min-height:145px}.module .tag{color:var(--accent);font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:700}.module p{color:var(--muted);margin-bottom:0}
+label{display:block;font-weight:650;margin:14px 0 6px}input,textarea,select{width:100%;padding:12px 13px;border-radius:10px;border:1px solid #414550;background:#101216;color:var(--text);font:inherit}textarea{min-height:110px;resize:vertical}button{border:0;border-radius:10px;padding:12px 16px;background:var(--accent);color:#15180f;font-weight:800;font:inherit;cursor:pointer}button.secondary{background:#292d35;color:var(--text);border:1px solid var(--line)}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}.notice{border-left:3px solid var(--accent);padding:10px 13px;background:#22271b;border-radius:0 10px 10px 0;color:#e5efcf;font-size:14px}.output{white-space:pre-wrap;overflow-wrap:anywhere;background:#101216;border:1px dashed #414550;border-radius:10px;padding:12px;min-height:56px}.small{font-size:13px;color:var(--muted)}a{color:var(--blue)}footer{padding-top:14px;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<main>
+  <div class="top"><div class="brand">ASO <span style="color:var(--accent)">STUDIO</span></div><span class="pill">FOUNDATION · v0.1</span></div>
+  <section class="hero">
+    <div class="pill">SCRIPT → MEDIA → VOICE → VIDEO</div>
+    <h1>Your production room.<br>One project at a time.</h1>
+    <p>A mobile-first home for original creative assets, voiceover and HyperFrames rendering. This first slice prepares a production brief; generation and render dispatch will be connected in the next integration steps.</p>
+  </section>
+  <section class="grid" aria-label="Studio modules">
+    <article class="panel module"><div class="tag">01 · Create</div><h2>Original media</h2><p>Plan original product shots, cinematic scenes and image-to-video shots instead of relying only on stock footage.</p></article>
+    <article class="panel module"><div class="tag">02 · Voice</div><h2>Voice studio</h2><p>Designed for a local/open-source voice engine first, with clear provider and model-license details.</p></article>
+    <article class="panel module"><div class="tag">03 · Assemble</div><h2>HyperFrames</h2><p>Use the existing renderer for vertical adverts, captions, scene timing and final MP4 packaging.</p></article>
+  </section>
+  <section class="panel">
+    <h2>Start a production brief</h2>
+    <p class="muted">Fill this on your phone. Build a structured brief that can later feed the asset generator and renderer.</p>
+    <form id="brief">
+      <label for="project">Project / brand</label><input id="project" placeholder="e.g. Megamix yoghurt advert" required>
+      <label for="format">Delivery format</label><select id="format"><option value="vertical 9:16, 1080×1920">Vertical social advert (9:16)</option><option value="landscape 16:9, 1920×1080">Landscape video (16:9)</option><option value="square 1:1, 1080×1080">Square social video (1:1)</option></select>
+      <label for="look">Visual direction</label><select id="look"><option>Photorealistic commercial, cinematic lighting</option><option>Clean studio product photography</option><option>Lifestyle footage with natural people and locations</option><option>Stylized animation</option></select>
+      <label for="briefText">What should happen in the advert?</label><textarea id="briefText" placeholder="Describe the product, target audience, key scenes, mood, and call to action." required></textarea>
+      <label for="media">Preferred media source</label><select id="media"><option>Original generated images/video first; licensed stock as fallback</option><option>Use my uploaded assets first; fill gaps with original media</option><option>Licensed stock only for now</option></select>
+      <div class="actions"><button type="submit">Build production brief</button><button type="button" class="secondary" id="copy">Copy brief</button></div>
+    </form>
+    <h2 style="margin-top:22px">Structured brief</h2><div id="output" class="output" aria-live="polite">Your production brief will appear here.</div>
+    <p class="small">This page does not call Gemini or start a render yet. It keeps API credentials out of the browser; secure provider and GitHub Actions connections are the next slice.</p>
+  </section>
+  <section class="panel">
+    <h2>Provider plan</h2>
+    <div class="notice"><strong>Keep the core workflow at $0.</strong> Gemini's current API pricing lists image-generation APIs without free-tier access and video generation as paid-tier only. We'll make those optional, never a hidden requirement.</div>
+    <p class="small">For details, see <a href="https://ai.google.dev/gemini-api/docs/pricing" target="_blank" rel="noreferrer">Google's official Gemini API pricing</a>. Never paste API keys into this page or a public GitHub file.</p>
+  </section>
+  <footer>ASO Production Studio · Built around open formats, explicit provider costs, and verifiable render outputs.</footer>
+</main>
+<script>
+const form=document.querySelector('#brief'),output=document.querySelector('#output');
+function makeBrief(){const data={project:document.querySelector('#project').value.trim(),delivery:document.querySelector('#format').value,visual_direction:document.querySelector('#look').value,creative_brief:document.querySelector('#briefText').value.trim(),media_strategy:document.querySelector('#media').value,workflow:['script and storyboard','generate or import assets','voiceover and captions','HyperFrames render','validate and package'],provider_policy:'Gemini is optional; do not call paid APIs unless explicitly enabled. Never expose API keys in the browser.'};return JSON.stringify(data,null,2)}
+form.addEventListener('submit',e=>{e.preventDefault();output.textContent=makeBrief()});
+document.querySelector('#copy').addEventListener('click',async()=>{if(output.textContent==='Your production brief will appear here.'){output.textContent=makeBrief()}try{await navigator.clipboard.writeText(output.textContent);document.querySelector('#copy').textContent='Copied'}catch{document.querySelector('#copy').textContent='Select and copy text'}});
+</script>
+</body>
+</html>
