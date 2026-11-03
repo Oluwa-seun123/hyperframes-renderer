@@ -2,7 +2,7 @@ name: Megamix zero-cost advert render
 
 on:
   push:
-    branches: [megamix-handsfree-build, production-studio-foundation]
+    branches: [megamix-handsfree-build, production-studio-foundation, studio-toolchain-integration]
     paths:
       - "megamix-ad/**"
       - ".github/workflows/megamix-render.yml"
@@ -50,6 +50,8 @@ jobs:
             ffmpeg -y -i "$input" -an -c:v libx264 -preset veryfast -crf 20 -pix_fmt yuv420p -r 30 -g 30 -keyint_min 30 -sc_threshold 0 -movflags +faststart "$output"
             mv "$output" "$input"
           done
+      - name: Reject repeated footage and missing brand references
+        run: python megamix-ad/scripts/creative_qa.py
       - name: HyperFrames project check
         working-directory: megamix-ad
         run: npm run check
