@@ -18,6 +18,16 @@ jobs:
     steps:
       - name: Checkout production project
         uses: actions/checkout@v4
+      - name: Map uploaded brand photos to production asset names
+        run: |
+          set -euo pipefail
+          mkdir -p megamix-ad/assets
+          cp megamix-ad/assets/IMG-20261029-WA0016.jpg megamix-ad/assets/megamix-range.jpg
+          cp megamix-ad/assets/IMG-20261029-WA0017.jpg megamix-ad/assets/megamix-greek.jpg
+          cp megamix-ad/assets/IMG-20261030-WA0007.jpg megamix-ad/assets/megamix-logo.jpg
+          test -s megamix-ad/assets/megamix-range.jpg
+          test -s megamix-ad/assets/megamix-greek.jpg
+          test -s megamix-ad/assets/megamix-logo.jpg
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
@@ -31,12 +41,6 @@ jobs:
           python -m pip install --break-system-packages requests beautifulsoup4
       - name: Acquire commercial-use stock footage
         run: python megamix-ad/scripts/fetch_stock.py
-      - name: Verify owner product assets are present
-        run: |
-          required="megamix-ad/assets/megamix-range.jpg megamix-ad/assets/megamix-greek.jpg megamix-ad/assets/megamix-logo.jpg"
-          for f in $required; do
-            test -s "$f" || { echo "::error::Missing private brand asset: $f"; exit 1; }
-          done
       - name: HyperFrames project check
         working-directory: megamix-ad
         run: npm run check
@@ -54,6 +58,7 @@ jobs:
           ffprobe -v error -show_entries stream=codec_name,width,height,r_frame_rate -show_entries format=duration -of json "$VIDEO" | tee megamix-ad/renders/ffprobe.json
           python megamix-ad/scripts/validate_render.py "$VIDEO"
       - name: Package delivery ZIP
+        if: success()
         run: |
           cd megamix-ad
           zip -r ../Megamix-Advert-Delivery.zip renders assets/licence-manifest.csv production-notes.md
