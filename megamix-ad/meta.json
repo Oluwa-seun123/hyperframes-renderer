@@ -1,0 +1,7 @@
+{
+  "id": "megamix-yoghurt-60s",
+  "title": "Megamix — A Little Goodness in Every Moment",
+  "description": "60-second vertical live-action yoghurt commercial; silent master for owner voiceover/music.",
+  "format": { "width": 1080, "height": 1920, "fps": 30, "duration": 60 },
+  "status": "production-scaffold-awaiting-brand-assets"
+}
