@@ -1,0 +1,46 @@
+{
+  "project": {
+    "brand": "REPLACE_WITH_BRAND",
+    "product": "REPLACE_WITH_PRODUCT",
+    "duration_seconds": 90,
+    "aspect_ratio": "9:16",
+    "resolution": "1080x1920",
+    "frame_rate": 30,
+    "audio": "silent_master"
+  },
+  "truth_rules": {
+    "use_supplied_packaging_as_final_overlay": true,
+    "preserve_logo_and_label_exactly": true,
+    "no_unverified_product_claims": true
+  },
+  "scenes": [
+    {
+      "id": "scene-01",
+      "duration_seconds": 6,
+      "type": "generated_lifestyle_video",
+      "purpose": "Opening hook",
+      "prompt": "Describe a premium, photorealistic scene. Do not include logos, labels, readable text, or fabricated packaging.",
+      "negative_prompt": "distorted hands, warped objects, gibberish text, watermarks, logos, fake product labels",
+      "product_packshot_overlay": null,
+      "on_screen_copy": ""
+    },
+    {
+      "id": "scene-02",
+      "duration_seconds": 6,
+      "type": "original_product_packshot",
+      "purpose": "Introduce the real product",
+      "prompt": null,
+      "negative_prompt": null,
+      "product_packshot_overlay": "assets/product-packshot.png",
+      "on_screen_copy": ""
+    }
+  ],
+  "delivery": {
+    "container": "mp4",
+    "video_codec": "h264",
+    "audio": "none",
+    "validate_duration": true,
+    "validate_resolution": true,
+    "validate_nonzero_size": true
+  }
+}
