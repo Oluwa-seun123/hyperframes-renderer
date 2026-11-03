@@ -1,0 +1,40 @@
+name: OpenMontage free-mode contract checks
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - openmontage-free-integration
+    paths:
+      - "video-production/openmontage-free-mode.md"
+      - ".github/workflows/openmontage-free-check.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  upstream-contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out this renderer
+        uses: actions/checkout@v4
+      - name: Check out OpenMontage (upstream)
+        uses: actions/checkout@v4
+        with:
+          repository: calesthio/OpenMontage
+          ref: main
+          path: .openmontage-upstream
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install OpenMontage test dependencies
+        working-directory: .openmontage-upstream
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          python -m pip install pytest
+      - name: Run upstream contract tests (no provider API keys)
+        working-directory: .openmontage-upstream
+        run: python -m pytest tests/contracts/ -q
