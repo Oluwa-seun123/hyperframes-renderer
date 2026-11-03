@@ -23,6 +23,7 @@ jobs:
           set -euo pipefail
           mkdir -p megamix-ad/assets
           cp megamix-ad/assets/IMG-20261029-WA0016.jpg megamix-ad/assets/megamix-range.jpg
+          cp megamix-ad/assets/IMG-20261029-WA0016.jpg megamix-ad/assets/megamix-range-endcard.jpg
           cp megamix-ad/assets/IMG-20261029-WA0017.jpg megamix-ad/assets/megamix-greek.jpg
           cp megamix-ad/assets/IMG-20261030-WA0007.jpg megamix-ad/assets/megamix-logo.jpg
           test -s megamix-ad/assets/megamix-range.jpg
