@@ -1,0 +1,51 @@
+name: MÁADÁN 90-second render test
+
+on:
+  push:
+    branches:
+      - test/maadan-90s-spec-ad
+    paths:
+      - "aso-maadan-90s/**"
+      - ".github/workflows/maadan-render-test.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: aso-maadan-90s
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: aso-maadan-90s/package.json
+      - name: Check project
+        run: npm run check
+      - name: Capture scene snapshots
+        run: npm run snapshot
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+      - name: Render MP4
+        run: npm run render
+      - name: Upload render and snapshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: maadan-90s-render-test
+          path: |
+            aso-maadan-90s/renders/**
+            aso-maadan-90s/.hyperframes/artifacts/**
+            aso-maadan-90s/.hyperframes/**
+          if-no-files-found: warn
+          retention-days: 7
