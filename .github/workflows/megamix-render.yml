@@ -42,6 +42,14 @@ jobs:
           python -m pip install --break-system-packages requests beautifulsoup4
       - name: Acquire commercial-use stock footage
         run: python megamix-ad/scripts/fetch_stock.py
+      - name: Normalize stock footage for frame-accurate rendering
+        run: |
+          set -euo pipefail
+          for input in megamix-ad/assets/yoghurt-preparation.mp4 megamix-ad/assets/yoghurt-fruit-bowl.mp4; do
+            output="${input%.mp4}.normalized.mp4"
+            ffmpeg -y -i "$input" -an -c:v libx264 -preset veryfast -crf 20 -pix_fmt yuv420p -r 30 -g 30 -keyint_min 30 -sc_threshold 0 -movflags +faststart "$output"
+            mv "$output" "$input"
+          done
       - name: HyperFrames project check
         working-directory: megamix-ad
         run: npm run check
@@ -54,10 +62,11 @@ jobs:
       - name: Validate render
         run: |
           set -euo pipefail
-          VIDEO="megamix-ad/renders/megamix-yoghurt-60s.mp4"
-          test -s "$VIDEO"
+          VIDEO="$(find megamix-ad/renders -maxdepth 1 -type f -name '*.mp4' -printf '%T@ %p\\n' | sort -nr | head -n1 | cut -d' ' -f2-)"
+          test -n "$VIDEO" && test -s "$VIDEO"
           ffprobe -v error -show_entries stream=codec_name,width,height,r_frame_rate -show_entries format=duration -of json "$VIDEO" | tee megamix-ad/renders/ffprobe.json
           python megamix-ad/scripts/validate_render.py "$VIDEO"
+          cp "$VIDEO" megamix-ad/renders/Megamix-Advert-1080x1920.mp4
       - name: Package delivery ZIP
         if: success()
         run: |
