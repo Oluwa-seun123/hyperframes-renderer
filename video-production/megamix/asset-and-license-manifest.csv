@@ -1,0 +1,10 @@
+asset_id,scene_id,asset_type,source_url,filename,license,commercial_use_checked,attribution_required,notes
+owner-logo,08-final-packshot,owner_supplied,,1001056362.jpg,owner-supplied,yes,no,Use exact original logo artwork
+owner-bottle-range,04-range-reveal;08-final-packshot,owner_supplied,,1001054871.jpg,owner-supplied,yes,no,Use exact original product photo and packaging
+owner-greek-yoghurt,06-greek-yoghurt;08-final-packshot,owner_supplied,,1001054865.jpg,owner-supplied,yes,no,Use exact original tub photo
+owner-bottle-pair,08-final-packshot,owner_supplied,,1001054868.jpg,owner-supplied,yes,no,Use exact original product photo
+stock-placeholder-01,01-hook,stock_footage,,,,no,,Must be replaced with a verified asset before final export
+stock-placeholder-02,02-fresh-moments,stock_footage,,,,no,,Must be replaced with a verified asset before final export
+stock-placeholder-03,03-creamy-texture,stock_footage,,,,no,,Must be replaced with a verified asset before final export
+stock-placeholder-04,05-serving,stock_footage,,,,no,,Must be replaced with a verified asset before final export
+stock-placeholder-05,07-everyday-moment,stock_footage,,,,no,,Must be replaced with a verified asset before final export
