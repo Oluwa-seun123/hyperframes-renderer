@@ -28,7 +28,7 @@ class H(BaseHTTPRequestHandler):
   if path=="/api/status":
    ups=[{"name":p.name,"bytes":p.stat().st_size,"modified":datetime.fromtimestamp(p.stat().st_mtime,timezone.utc).isoformat()} for p in sorted(INBOX.iterdir(),key=lambda x:x.stat().st_mtime,reverse=True) if p.is_file()][:50]
    return self.reply(200,json.dumps({"ok":True,"host":os.environ.get("COMPUTERNAME","production-pc"),"inbox":str(INBOX),"uploads":ups,"max_upload_bytes":LIMIT,"rendering":"not connected yet"}).encode())
-  if path in ("/","/index.html"): path="/pc.html"
+  if path=="/": path="/pc.html"
   f=(STUDIO/unquote(path.lstrip("/"))).resolve()
   if STUDIO not in f.parents or not f.is_file(): return self.reply(404,b'{"error":"not found"}')
   return self.reply(200,f.read_bytes(),mimetypes.guess_type(f.name)[0] or "application/octet-stream")
