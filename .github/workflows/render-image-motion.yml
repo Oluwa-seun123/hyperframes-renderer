@@ -12,6 +12,8 @@ on:
       - "image-motion-studio/hfx-hyperframes-exporter.html"
       - "image-motion-studio/production-intelligence.html"
       - "image-motion-studio/audio-studio.html"
+      - "image-motion-studio/studio-dashboard.html"
+      - "image-motion-studio/PHASE12_PRODUCTION_DESK.md"
       - "image-motion-studio/PHASE10_AUDIO_STUDIO.md"
       - "image-motion-studio/PHASE9_PRODUCTION_INTELLIGENCE.md"
       - "image-motion-studio/README.md"
