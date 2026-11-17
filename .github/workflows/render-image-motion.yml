@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - "image-motion-studio/project/**"
+      - "tools/package-render.mjs"
       - "image-motion-studio/editor/**"
       - "image-motion-studio/3d-engine.html"
       - "image-motion-studio/render-pipeline.html"
@@ -49,6 +50,8 @@ jobs:
         run: npm run check
       - name: Render MP4
         run: npm run render
+      - name: Package MP4 and run media quality checks
+        run: node ../../tools/package-render.mjs
       - name: Upload rendered video
         if: always()
         uses: actions/upload-artifact@v4
@@ -57,5 +60,6 @@ jobs:
           path: |
             image-motion-studio/project/**/*.mp4
             image-motion-studio/project/output/**
+            image-motion-studio/project/output/delivery/**
           if-no-files-found: warn
           retention-days: 7
