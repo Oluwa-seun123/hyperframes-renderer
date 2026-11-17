@@ -1,6 +1,7 @@
 import { readFile, mkdtemp, writeFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 
 const files = [
@@ -8,11 +9,12 @@ const files = [
   { path: 'image-motion-studio/render-pipeline.html', mode: 'module' },
   { path: 'image-motion-studio/hfx-hyperframes-exporter.html', mode: 'classic' },
 ];
+const root = fileURLToPath(new URL('..', import.meta.url));
 const dir = await mkdtemp(join(tmpdir(),'hfx-browser-check-'));
 let failed = false;
 try {
   for (const file of files) {
-    const html = await readFile(file.path,'utf8');
+    const html = await readFile(resolve(root,file.path),'utf8');
     const pattern = file.mode === 'module'
       ? /<script\s+type=["']module["'][^>]*>([\s\S]*?)<\/script>/gi
       : /<script>([\s\S]*?)<\/script>/i;
