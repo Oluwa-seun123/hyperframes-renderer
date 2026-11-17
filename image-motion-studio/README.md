@@ -194,3 +194,12 @@ To include audio, place the Phase 10 WAV master at `project/audio/audio-master.w
 See [Phase 11 Render & QC documentation](PHASE11_RENDER_QC.md).
 
 This is technical file validation, not automated visual judgement. Human review of realism, continuity, product accuracy and image quality remains necessary. GitHub Actions execution and a real downloadable artifact must be confirmed before calling a production render verified.
+
+
+## Phase 12 — HFX Production Desk
+
+The phone-first `studio-dashboard.html` is a lightweight project register and delivery hub. It saves project names, format, campaign objective and production stage locally in the current browser; exports a JSON backup; links the production studios and GitHub Actions render workflow; and provides a pre-render checklist.
+
+See [Phase 12 Production Desk documentation](PHASE12_PRODUCTION_DESK.md).
+
+**Android use:** open the dashboard in a browser or publish the `image-motion-studio` folder as a static site. The Run workflow link opens GitHub Actions; sign in and use GitHub's own Run workflow control. Download the ZIP from the completed run's Artifacts section. Project notes remain local to that browser and are not synced. No GitHub token is embedded in the dashboard.
