@@ -28,6 +28,9 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y ffmpeg zip
+      - name: Validate photoreal asset manifest
+        working-directory: galaxy-s26-night-limits
+        run: npm run validate:assets
       - name: Check HyperFrames composition
         working-directory: galaxy-s26-night-limits
         run: npm run check
@@ -49,7 +52,7 @@ jobs:
       - name: Package preview ZIP
         if: success()
         working-directory: galaxy-s26-night-limits
-        run: zip -r ../The-Night-Has-No-Limits-Preview.zip renders .hyperframes production-bible.md README.md assets/ASSET-REGISTER.md
+        run: zip -r ../The-Night-Has-No-Limits-Preview.zip renders .hyperframes production-bible.md README.md assets/ASSET-REGISTER.md assets/PHOTOREAL-PRODUCTION-BRIEF.md assets/photoreal-assets.json
       - name: Upload MP4, snapshots and ZIP
         if: always()
         uses: actions/upload-artifact@v4
