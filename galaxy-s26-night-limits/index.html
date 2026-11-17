@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080,height=1920">
+<title>THE NIGHT HAS NO LIMITS — Galaxy S26 Ultra Spec Ad</title>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+:root{--black:#02040a;--navy:#061126;--blue:#10264b;--cyan:#6ce8ff;--silver:#c8d4e5;--violet:#7664ad;--white:#f4f8ff;font-family:Arial,Helvetica,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body,#root{width:1080px;height:1920px;overflow:hidden;background:var(--black)}
+#root{position:relative;color:var(--white);isolation:isolate}
+.scene{position:absolute;inset:0;width:1080px;height:1920px;overflow:hidden;visibility:hidden;opacity:0;background:radial-gradient(ellipse at 50% 42%,#10274b 0%,#071327 43%,#02040a 82%)}
+.noise{position:absolute;inset:0;pointer-events:none;opacity:.09;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");mix-blend-mode:soft-light}
+.kicker{position:absolute;left:80px;right:80px;text-align:center;top:235px;font-size:22px;letter-spacing:8px;text-transform:uppercase;color:#9ddff1;font-weight:600}
+.copy{position:absolute;left:80px;right:80px;text-align:center;font-weight:800;letter-spacing:1px;line-height:.96;text-transform:uppercase;text-shadow:0 8px 38px #000a}
+.copy.large{font-size:116px}.copy.medium{font-size:86px}
+.sub{position:absolute;left:130px;right:130px;text-align:center;font-size:26px;line-height:1.5;letter-spacing:2px;color:#c3d1e4}
+.footer{position:absolute;left:80px;right:80px;bottom:82px;display:flex;justify-content:space-between;font-size:15px;letter-spacing:4px;color:#a9bbd2}
+.cyan{color:var(--cyan)}
+/* Scene 01: abstract macro lens, not a depiction of internal phone hardware */
+#s1{background:radial-gradient(ellipse at 50% 37%,#112b4b 0%,#06101e 43%,#010205 82%)}
+.lens{position:absolute;left:150px;top:410px;width:780px;height:780px;border-radius:50%;background:radial-gradient(circle at 48% 47%,#d5faff 0%,#6ce8ff 1.1%,#153e60 3%,#07111e 17%,#152a43 30%,#03060c 47%,#0e233b 57%,#010206 70%);box-shadow:0 0 80px #39c9ff33,inset 0 0 90px #000}
+.ring{position:absolute;border-radius:50%;border:2px solid #91eaff44;left:50%;top:50%;transform:translate(-50%,-50%);box-shadow:0 0 20px #4edcff22}
+.ring.r2{width:92%;height:92%;border-color:#b3edff33}.ring.r3{width:75%;height:75%;border-color:#5ac9ff66}.ring.r4{width:58%;height:58%;border-color:#d5f8ff55}.ring.r5{width:39%;height:39%;border-color:#54d8ff88}
+.lens-core{position:absolute;left:calc(50% - 13px);top:calc(50% - 13px);width:26px;height:26px;border-radius:50%;background:#e8fdff;box-shadow:0 0 24px 12px #66e7ff,0 0 100px 45px #1bbdff66}
+.beam{position:absolute;left:-120px;top:790px;width:1320px;height:5px;background:linear-gradient(90deg,transparent,#c6faff,#62e7ff,white,#54d9ff,transparent);filter:drop-shadow(0 0 18px #4edcff);transform:rotate(-12deg);opacity:0}
+#s1 .copy{top:1330px}
+/* Scene 02: layered city portal */
+.portal{position:absolute;left:100px;top:290px;width:880px;height:880px;border-radius:50%;border:8px solid #8feaff88;box-shadow:0 0 55px #4bd8ff66,inset 0 0 60px #4bd8ff44;overflow:hidden;background:radial-gradient(ellipse at 50% 75%,#163b5d,#06101d 72%)}
+.city{position:absolute;left:0;right:0;bottom:0;height:58%;background:linear-gradient(0deg,#02050b,#0b1d33 75%,transparent)}
+.tower{position:absolute;bottom:0;background:linear-gradient(90deg,#07101e,#132945 48%,#050a12);border:1px solid #4a87a833}
+.tower:after{content:"";position:absolute;inset:18px 10px;background:repeating-linear-gradient(0deg,transparent 0 34px,#8cecff55 35px 38px),repeating-linear-gradient(90deg,transparent 0 28px,#8cecff22 29px 31px);opacity:.55}
+.water{position:absolute;left:0;right:0;bottom:0;height:20%;background:linear-gradient(180deg,#0b2944,#02060d);opacity:.95}
+.water:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(180deg,transparent 0 13px,#73dcff55 14px 16px,transparent 17px 27px);transform:scaleY(.7);filter:blur(2px)}
+#s2 .copy{top:1320px}
+/* Scene 03: refraction droplet */
+#s3{background:radial-gradient(ellipse at 50% 56%,#142c4a,#040914 70%,#010206)}
+.surface{position:absolute;left:0;right:0;bottom:0;height:560px;background:linear-gradient(180deg,#0b1c31,#02050a);transform:perspective(700px) rotateX(8deg);box-shadow:0 -30px 100px #3db8e522}
+.droplet{position:absolute;left:300px;top:510px;width:480px;height:610px;border-radius:48% 52% 48% 52% / 42% 42% 58% 58%;background:radial-gradient(ellipse at 32% 23%,#ffffffcc 0%,#b5edff77 5%,#7bdcff33 18%,#153f6466 48%,#020812dd 72%,#061b2c 100%);border:2px solid #c8f4ff99;box-shadow:inset 24px 12px 55px #c6f7ff33,inset -35px -28px 65px #000b,0 30px 100px #49cfff44;overflow:hidden}
+.drop-city{position:absolute;left:35px;right:35px;top:235px;height:210px;transform:scaleY(-1);filter:blur(1px);opacity:.9;background:linear-gradient(0deg,#07182a,#1e5273 75%,transparent)}
+.drop-city:before{content:"";position:absolute;left:0;right:0;bottom:0;height:160px;background:linear-gradient(90deg,transparent 0 8%,#102c47 8% 18%,transparent 18% 24%,#163d5d 24% 40%,transparent 40% 45%,#0d2c49 45% 66%,transparent 66% 73%,#16415f 73% 90%,transparent 90%)}
+.drop-glint{position:absolute;left:370px;top:570px;width:70px;height:220px;border-radius:50%;background:#e9fcff99;filter:blur(15px);transform:rotate(28deg)}
+#s3 .copy{top:1340px}
+/* Scene 04: conceptual exploded glass elements */
+#s4{background:radial-gradient(ellipse at 50% 48%,#0d2440,#02050b 72%)}
+.optic-axis{position:absolute;left:90px;right:90px;top:900px;height:3px;background:linear-gradient(90deg,transparent,#65e7ff,#e6fbff,#65e7ff,transparent);box-shadow:0 0 28px #5adfff}
+.glass{position:absolute;top:670px;width:125px;height:500px;border-radius:50%;border:4px solid #c8f6ff99;background:linear-gradient(90deg,#79dfff18,#d7f9ff55,#2aa6dc18);box-shadow:inset 0 0 28px #b8f5ff44,0 0 35px #40cfff22;transform:skewY(-8deg)}
+.glass:after{content:"";position:absolute;inset:18px 22px;border-radius:50%;border:1px solid #e5fbff88}
+.ray{position:absolute;left:90px;top:890px;width:900px;height:5px;background:linear-gradient(90deg,#6ce8ff,white,#6ce8ff);filter:drop-shadow(0 0 16px #62e5ff);transform-origin:left center}
+#s4 .copy{top:1320px}
+/* Scene 05: wide night-world reveal */
+#s5{background:linear-gradient(180deg,#030817,#071b34 55%,#02050b)}
+.sky-glow{position:absolute;left:160px;top:280px;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle,#1c6690aa,transparent 68%);filter:blur(22px)}
+.horizon{position:absolute;left:0;right:0;bottom:350px;height:620px;background:linear-gradient(0deg,#02050a,#0a1a2b 65%,transparent)}
+.foreground{position:absolute;left:0;right:0;bottom:0;height:420px;background:linear-gradient(0deg,#010205,#071324)}
+#s5 .copy{top:290px}
+#s5 .sub{top:535px}
+/* Scene 06: generic composition placeholder; must be replaced by verified product asset */
+#s6{background:radial-gradient(ellipse at 50% 45%,#132b49,#050b16 58%,#010205 88%)}
+.hero-halo{position:absolute;left:180px;top:370px;width:720px;height:1050px;border-radius:50%;border:2px solid #6ce8ff22;box-shadow:0 0 0 34px #6ce8ff08,0 0 0 82px #6ce8ff05}
+.phone-placeholder{position:absolute;left:330px;top:490px;width:420px;height:900px;border-radius:58px;background:linear-gradient(100deg,#596477,#d6e0ed 18%,#73839b 40%,#e3eaf2 55%,#35445a 88%);box-shadow:0 35px 90px #000c,0 0 80px #4bdcff33;transform:rotate(-7deg);border:3px solid #e7f1ff88}
+.phone-back{position:absolute;inset:10px;border-radius:48px;background:linear-gradient(135deg,#1a2a42,#78869a 48%,#18253a);overflow:hidden}
+.camera-island{position:absolute;left:42px;top:60px;width:165px;height:350px;border-radius:55px;background:linear-gradient(135deg,#26384f,#0a1321);border:2px solid #c2d4e888}
+.camera{position:absolute;width:92px;height:92px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#c6f8ff,#18324b 22%,#01040a 62%,#9bb7d2 67%,#101c2c 76%);border:5px solid #a9bbcf;box-shadow:0 0 20px #6ce8ff33}
+.camera.c1{left:34px;top:30px}.camera.c2{left:34px;top:135px}.camera.c3{left:34px;top:240px}
+.placeholder-label{position:absolute;left:35px;right:35px;bottom:55px;text-align:center;font-size:14px;letter-spacing:3px;color:#d9e8f8aa}
+#s6 .copy{top:1470px;font-size:70px}
+.endline{position:absolute;top:1680px;left:80px;right:80px;text-align:center;font-size:24px;letter-spacing:6px;color:#dcecff}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-width="1080" data-height="1920">
+<section class="scene" id="s1">
+  <div class="lens"><i class="ring r2"></i><i class="ring r3"></i><i class="ring r4"></i><i class="ring r5"></i><i class="lens-core"></i></div><div class="beam"></div>
+  <div class="copy large">THE <span class="cyan">NIGHT</span></div><div class="footer"><span>ASO CREATIVE STUDIO · SPEC AD</span><span>01 / 06</span></div><div class="noise"></div>
+</section>
+<section class="scene" id="s2">
+  <div class="portal"><div class="city">
+    <i class="tower" style="left:0;width:110px;height:330px"></i><i class="tower" style="left:105px;width:130px;height:440px"></i><i class="tower" style="left:230px;width:90px;height:290px"></i><i class="tower" style="left:315px;width:160px;height:520px"></i><i class="tower" style="left:470px;width:105px;height:360px"></i><i class="tower" style="left:570px;width:150px;height:470px"></i><i class="tower" style="left:715px;width:165px;height:320px"></i><div class="water"></div>
+  </div></div>
+  <div class="copy large"><span>HAS NO</span><br><span class="cyan">LIMITS</span></div><div class="footer"><span>ENTER THE NIGHT</span><span>02 / 06</span></div><div class="noise"></div>
+</section>
+<section class="scene" id="s3">
+  <div class="surface"></div><div class="droplet"><div class="drop-city"></div></div><div class="drop-glint"></div>
+  <div class="copy medium"><span>WHAT OTHERS</span><br><span class="cyan">MISS.</span></div><div class="footer"><span>DETAIL IN THE DARK</span><span>03 / 06</span></div><div class="noise"></div>
+</section>
+<section class="scene" id="s4">
+  <div class="kicker">A study in optical precision</div><div class="optic-axis"></div>
+  <i class="glass" style="left:130px"></i><i class="glass" style="left:350px;transform:skewY(8deg) scaleY(.88)"></i><i class="glass" style="left:570px;transform:skewY(-5deg) scaleY(1.05)"></i><i class="glass" style="left:790px;transform:skewY(7deg) scaleY(.9)"></i>
+  <div class="ray"></div><div class="copy medium"><span class="cyan">PRECISION</span><br>IN EVERY DETAIL</div><div class="footer"><span>CONCEPTUAL OPTICAL STUDY</span><span>04 / 06</span></div><div class="noise"></div>
+</section>
+<section class="scene" id="s5">
+  <div class="sky-glow"></div><div class="horizon">
+    <i class="tower" style="left:0;width:150px;height:290px"></i><i class="tower" style="left:145px;width:190px;height:420px"></i><i class="tower" style="left:330px;width:130px;height:350px"></i><i class="tower" style="left:455px;width:190px;height:550px"></i><i class="tower" style="left:640px;width:150px;height:400px"></i><i class="tower" style="left:785px;width:160px;height:310px"></i><i class="tower" style="left:940px;width:140px;height:450px"></i>
+  </div><div class="foreground"></div><div class="copy medium">SEE THE <span class="cyan">UNSEEN.</span></div><div class="sub">A world of detail, waiting after dark.</div><div class="footer"><span>WORLD REVEALED</span><span>05 / 06</span></div><div class="noise"></div>
+</section>
+<section class="scene" id="s6">
+  <div class="hero-halo"></div><div class="phone-placeholder"><div class="phone-back"><div class="camera-island"><i class="camera c1"></i><i class="camera c2"></i><i class="camera c3"></i></div><div class="placeholder-label">PRODUCT ARTWORK PLACEHOLDER</div></div></div>
+  <div class="copy">THE NIGHT HAS<br><span class="cyan">NO LIMITS.</span></div><div class="endline">SAMSUNG GALAXY S26 ULTRA</div><div class="footer"><span>INDEPENDENT SPEC AD</span><span>06 / 06</span></div><div class="noise"></div>
+</section>
+</div>
+<script>
+(() => {
+  if (!window.gsap) { console.error("GSAP did not load; HyperFrames timeline cannot run."); return; }
+  const tl = gsap.timeline({paused:true});
+  const scenes = ["#s1","#s2","#s3","#s4","#s5","#s6"];
+  scenes.forEach((id,i) => {
+    const start = i * 5;
+    const scene = document.querySelector(id);
+    const copy = scene.querySelectorAll(".copy,.kicker,.sub,.footer,.endline");
+    tl.set(scene,{autoAlpha:1},start);
+    if (copy.length) tl.fromTo(copy,{y:24,autoAlpha:0},{y:0,autoAlpha:1,duration:.55,stagger:.08,ease:"power2.out"},start+.25);
+    if (id === "#s1") {
+      tl.fromTo("#s1 .ring",{scale:.72,autoAlpha:0},{scale:1,autoAlpha:1,duration:1.3,stagger:.12,ease:"power2.out"},start+.25);
+      tl.fromTo("#s1 .beam",{x:-240,autoAlpha:0},{x:240,autoAlpha:1,duration:1.4,ease:"power2.inOut"},start+1.0);
+      tl.to("#s1 .lens-core",{scale:1.65,duration:.7,repeat:1,yoyo:true,ease:"sine.inOut"},start+2.6);
+    }
+    if (id === "#s2") {
+      tl.fromTo("#s2 .portal",{scale:.68,rotation:-8},{scale:1,rotation:0,duration:2.2,ease:"power3.out"},start+.15);
+      tl.fromTo("#s2 .tower",{y:100,autoAlpha:0},{y:0,autoAlpha:1,duration:1.1,stagger:.09,ease:"power2.out"},start+.6);
+    }
+    if (id === "#s3") {
+      tl.fromTo("#s3 .droplet",{y:90,scale:.78,autoAlpha:0},{y:0,scale:1,autoAlpha:1,duration:1.15,ease:"power3.out"},start+.3);
+      tl.to("#s3 .droplet",{x:16,duration:1.4,repeat:1,yoyo:true,ease:"sine.inOut"},start+2.0);
+      tl.fromTo("#s3 .drop-glint",{scale:.4,autoAlpha:0},{scale:1,autoAlpha:.9,duration:.7},start+3.1);
+    }
+    if (id === "#s4") {
+      tl.fromTo("#s4 .glass",{x:-100,autoAlpha:0},{x:0,autoAlpha:1,duration:1.2,stagger:.18,ease:"power2.out"},start+.3);
+      tl.fromTo("#s4 .ray",{scaleX:0,transformOrigin:"left center"},{scaleX:1,duration:1.25,ease:"power2.inOut"},start+2.1);
+      tl.to("#s4 .glass",{x:12,duration:.5,stagger:.06,ease:"sine.inOut"},start+4.0);
+    }
+    if (id === "#s5") {
+      tl.fromTo("#s5 .horizon",{y:240,autoAlpha:0},{y:0,autoAlpha:1,duration:1.6,ease:"power2.out"},start+.3);
+      tl.fromTo("#s5 .tower",{y:120,autoAlpha:0},{y:0,autoAlpha:1,duration:1.25,stagger:.08,ease:"power2.out"},start+.7);
+      tl.fromTo("#s5 .sky-glow",{scale:.65,autoAlpha:0},{scale:1,autoAlpha:1,duration:2.1,ease:"sine.out"},start+.25);
+    }
+    if (id === "#s6") {
+      tl.fromTo("#s6 .hero-halo",{scale:.8,autoAlpha:0},{scale:1,autoAlpha:1,duration:1.0},start+.2);
+      tl.fromTo("#s6 .phone-placeholder",{y:100,rotation:0,autoAlpha:0},{y:0,rotation:-7,autoAlpha:1,duration:1.4,ease:"power3.out"},start+.45);
+      tl.to("#s6 .phone-placeholder",{y:-12,duration:1.6,ease:"sine.inOut"},start+2.2);
+    }
+    tl.set(scene,{autoAlpha:0},start+5);
+  });
+  window.__timelines = window.__timelines || {};
+  window.__timelines["main"] = tl;
+  tl.seek(0);
+})();
+</script>
+</body>
+</html>
