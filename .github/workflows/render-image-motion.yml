@@ -1,0 +1,43 @@
+name: Render image-motion scene
+
+on:
+  push:
+    paths:
+      - "image-motion-studio/project/**"
+      - ".github/workflows/render-image-motion.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: image-motion-render-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: image-motion-studio/project
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Check HyperFrames composition
+        run: npm run check
+      - name: Render MP4
+        run: npm run render
+      - name: Upload rendered video
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: image-motion-render-${{ github.run_number }}
+          path: |
+            image-motion-studio/project/**/*.mp4
+            image-motion-studio/project/output/**
+          if-no-files-found: warn
+          retention-days: 7
