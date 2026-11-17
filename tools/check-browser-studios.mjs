@@ -8,6 +8,7 @@ const files = [
   { path: 'image-motion-studio/3d-engine.html', mode: 'module' },
   { path: 'image-motion-studio/render-pipeline.html', mode: 'module' },
   { path: 'image-motion-studio/hfx-hyperframes-exporter.html', mode: 'classic' },
+  { path: 'image-motion-studio/production-intelligence.html', mode: 'classic' },
 ];
 const root = fileURLToPath(new URL('..', import.meta.url));
 const dir = await mkdtemp(join(tmpdir(),'hfx-browser-check-'));
@@ -30,6 +31,9 @@ try {
     }
     if(file.path.endsWith('render-pipeline.html')){
       for(const token of ['hfx-shot-plan','orbit360','captureStream','Export shot plan JSON']) if(!html.includes(token)){console.error('FAIL '+file.path+': missing '+token);failed=true}
+    }
+    if(file.path.endsWith('production-intelligence.html')){
+      for(const token of [\"format:'hfx-shot-plan'\",'function evaluate','hfx-production-brief.md']) if(!html.includes(token)){console.error('FAIL '+file.path+': missing '+token);failed=true}
     }
     if(file.path.endsWith('hfx-hyperframes-exporter.html')){
       for(const token of ['data-composition-id="main"','window.__timelines.main','GLTFLoader','hfx-shot-plan']) if(!html.includes(token)){console.error('FAIL '+file.path+': missing '+token);failed=true}
