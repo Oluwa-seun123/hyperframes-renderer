@@ -5,6 +5,7 @@ on:
     paths:
       - "image-motion-studio/project/**"
       - "tools/package-render.mjs"
+      - "image-motion-studio/PHASE11_RENDER_QC.md"
       - "image-motion-studio/editor/**"
       - "image-motion-studio/3d-engine.html"
       - "image-motion-studio/render-pipeline.html"
