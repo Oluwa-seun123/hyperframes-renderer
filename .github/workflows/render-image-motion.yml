@@ -8,6 +8,8 @@ on:
       - "image-motion-studio/3d-engine.html"
       - "image-motion-studio/render-pipeline.html"
       - "image-motion-studio/hfx-hyperframes-exporter.html"
+      - "image-motion-studio/production-intelligence.html"
+      - "image-motion-studio/PHASE9_PRODUCTION_INTELLIGENCE.md"
       - "image-motion-studio/README.md"
       - "image-motion-studio/PHASE7_RENDER_PIPELINE.md"
       - "image-motion-studio/PHASE8_HYPERFRAMES_EXPORTER.md"
