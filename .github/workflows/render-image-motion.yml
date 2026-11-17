@@ -5,7 +5,11 @@ on:
     paths:
       - "image-motion-studio/project/**"
       - "image-motion-studio/editor/**"
+      - "image-motion-studio/3d-engine.html"
+      - "image-motion-studio/render-pipeline.html"
       - "image-motion-studio/README.md"
+      - "image-motion-studio/PHASE7_RENDER_PIPELINE.md"
+      - "tools/check-browser-studios.mjs"
       - ".github/workflows/render-image-motion.yml"
   workflow_dispatch:
 
@@ -29,6 +33,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Check browser studio modules
+        run: node ../../tools/check-browser-studios.mjs
       - name: Install FFmpeg
         run: |
           sudo apt-get update
