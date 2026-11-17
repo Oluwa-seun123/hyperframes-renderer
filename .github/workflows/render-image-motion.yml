@@ -10,6 +10,7 @@ on:
       - "image-motion-studio/hfx-hyperframes-exporter.html"
       - "image-motion-studio/README.md"
       - "image-motion-studio/PHASE7_RENDER_PIPELINE.md"
+      - "image-motion-studio/PHASE8_HYPERFRAMES_EXPORTER.md"
       - "tools/check-browser-studios.mjs"
       - ".github/workflows/render-image-motion.yml"
   workflow_dispatch:
