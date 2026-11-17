@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=1080,height=1920">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#050817}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:radial-gradient(ellipse at 50% 36%,#37306f 0%,#11152f 42%,#030711 100%);color:#fff;font-family:Arial,Helvetica,sans-serif}
+.clip{position:absolute;inset:0;overflow:hidden}.orb{position:absolute;width:720px;height:720px;left:180px;top:340px;border-radius:50%;background:radial-gradient(circle,#8b7cff66,transparent 68%);filter:blur(22px)}
+.device{position:absolute;left:365px;top:350px;width:350px;height:850px;border-radius:58px;border:3px solid #b7b9d5;background:linear-gradient(115deg,#211d3b,#8b79bd 32%,#342d59 62%,#0c1023);box-shadow:inset 8px 0 18px #ffffff22,0 35px 100px #000b;transform:rotate(-12deg)}
+.device:before{content:"";position:absolute;inset:12px;border-radius:46px;border:1px solid #ffffff30;background:linear-gradient(145deg,#ffffff15,transparent 45%)}
+.camera{position:absolute;top:28px;left:30px;width:112px;height:210px;border-radius:30px;background:#17192a;border:2px solid #9b9cb7;display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px}
+.lens{border-radius:50%;background:radial-gradient(circle at 35% 30%,#c3d6ed 0 8%,#4e7196 14%,#080d1c 56%,#000 72%);border:4px solid #59647d;box-shadow:0 0 14px #000}
+.flash{position:absolute;right:14px;top:18px;width:13px;height:13px;border-radius:50%;background:#d9d7c4;box-shadow:0 0 12px #fff}
+.brand{position:absolute;top:480px;width:100%;text-align:center;color:#d5c9ff;font-size:28px;letter-spacing:.4em;font-weight:800}
+.kicker{position:absolute;top:1390px;left:0;right:0;text-align:center;color:#a8a1ff;font-size:25px;letter-spacing:.35em;font-weight:700}
+.head{position:absolute;top:1460px;left:60px;right:60px;text-align:center;font-size:78px;line-height:1.04;font-weight:900;letter-spacing:.05em;text-transform:uppercase;text-shadow:0 8px 35px #000;opacity:0}
+.sub{position:absolute;top:1650px;left:80px;right:80px;text-align:center;font-size:27px;letter-spacing:.18em;color:#d5d9ef;opacity:0}
+</style></head><body>
+<div id="root" data-hf-id="hf-motion-demo" data-composition-id="main" data-start="0" data-duration="10" data-width="1080" data-height="1920">
+<div class="clip" data-start="0" data-duration="10" data-track-index="1"><div class="orb" id="orb"></div><div class="device" id="device"><div class="camera"><i class="lens"></i><i class="lens"></i><i class="lens"></i><i class="flash"></i></div><div class="brand">SAMSUNG</div></div><div class="kicker">A NEW PERSPECTIVE</div><div class="head" id="head">DESIGNED TO<br>BE DIFFERENT</div><div class="sub" id="sub">CINEMATIC IMAGE MOTION · HYPERFRAMES</div></div>
+</div>
+<script>
+window.__timelines=window.__timelines||{};const tl=gsap.timeline({paused:true});
+tl.fromTo("#device",{y:150,scale:.82,rotation:-22,opacity:0},{y:0,scale:1,rotation:-12,opacity:1,duration:2.2,ease:"power3.out"},.3);
+tl.to("#device",{rotation:-4,x:18,scale:1.04,duration:4.8,ease:"sine.inOut"},2.5);
+tl.fromTo("#orb",{scale:.65,opacity:.3},{scale:1.25,opacity:.9,duration:6,ease:"sine.inOut"},1);
+tl.fromTo("#head",{y:40,opacity:0},{y:0,opacity:1,duration:1,ease:"power3.out"},6.2);
+tl.fromTo("#sub",{y:20,opacity:0},{y:0,opacity:1,duration:.8,ease:"power2.out"},7.2);
+window.__timelines.main=tl;tl.seek(0);
+</script></body></html>
