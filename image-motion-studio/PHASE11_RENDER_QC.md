@@ -3,7 +3,7 @@
 ## What it does
 The existing GitHub Actions workflow still runs the pinned HyperFrames CLI check and render. Phase 11 adds a post-render packaging step using FFmpeg and ffprobe.
 
-1. Find the newest MP4 generated inside `image-motion-studio/project/` (excluding the output directory).
+1. Render to the deterministic path `image-motion-studio/project/output/rendered-source.mp4`, then validate that exact file.
 2. Validate that it contains a video stream and a positive duration.
 3. Compare rendered duration with the HTML composition's `data-duration` metadata when present.
 4. If a WAV master exists, mux it into the video as AAC at 320 kb/s, preserving the rendered video stream and padding a short audio track to the video duration.
