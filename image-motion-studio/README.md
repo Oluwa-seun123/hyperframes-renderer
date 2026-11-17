@@ -117,3 +117,20 @@ See [3D Engine documentation](3D_ENGINE.md).
 - No HDRI environment lighting, ray tracing, path tracing, physically calibrated camera/lens simulation or AI image-to-3D reconstruction is included.
 - Large models may exceed Android memory/GPU limits. Optimize geometry and textures before loading.
 - JavaScript syntax passed a static check; Android device testing and a completed model capture remain unverified.
+
+
+## Phase 7 — HFX Production Pipeline
+
+The experimental `render-pipeline.html` connects real GLB/GLTF geometry to a deterministic shot timeline. Load a product model, create and reorder shots, select camera orbit (180°/360°), object turntable, push/pull, rise or hero hold, choose duration/elevation/transition/caption, preview the sequence, and record a WebM viewport preview.
+
+The pipeline exports/imports a versioned `hfx-shot-plan.json` document with ordered shot cues and output aspect/FPS metadata. This is the hand-off contract for the next HyperFrames render adapter.
+
+See [Phase 7 documentation](PHASE7_RENDER_PIPELINE.md).
+
+### Phase 7 boundaries
+
+- The 3D camera and object movements operate on actual loaded model geometry.
+- The browser preview is responsive; the selected aspect ratio and frame rate are recorded in the shot plan. Exact fixed-dimension output is for the render adapter.
+- WebM recording is a browser preview/master, not the final MP4.
+- There is no voice, music, sound-effects, true cross-dissolve, or server-side Three.js-to-HyperFrames renderer in this phase.
+- The browser studio module syntax is checked in GitHub Actions. A successful syntax check does not prove Android compatibility or a completed render with a real phone model.
