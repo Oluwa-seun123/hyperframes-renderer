@@ -89,3 +89,14 @@ The compiler validates syntax, declared assets and uploaded image availability b
 See [HFX Scene Language reference](SCENE_LANGUAGE.md) for grammar and examples.
 
 This phase is a real compiler and multi-view 2D scene pipeline, not a 3D renderer. Real product orbit, physically based materials, lighting rigs and GLB/GLTF import are future compiler/runtime targets. It does not invent unseen product surfaces. No paid generative-video API is used.
+
+
+## Phase 5 — Cinematic Director
+
+The experimental `cinematic-director.html` converts cinematography choices into structured shot plans and HFX Scene Language shot skeletons. It captures framing, named camera technique, lens/focal length, focus behaviour, key-light placement, composition, duration, transition, story purpose and continuity guardrails.
+
+The shot recipes are adapted from the ASO Creative Studio's Cinematic Techniques Reference. The director distinguishes 2D-safe moves from techniques that require genuine multi-view footage or GLB/GLTF geometry. It does not fake a 360 orbit or product rotation from a single still.
+
+The Master Idea Library's creative sequence — real object/task, specific tension, visible choice, satisfying reveal, honest invitation — is used as a planning check, not as a copied idea or performance promise.
+
+See [Cinematic Director documentation](CINEMATIC_DIRECTOR.md).
