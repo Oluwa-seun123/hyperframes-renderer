@@ -16,13 +16,13 @@ The photoreal upgrade is now specified in:
 - `assets/ASSET-REGISTER.md` — provenance and usage-rights register.
 
 ## Official product accuracy
-Use Samsung's official Galaxy S26 Ultra Cobalt Violet imagery as the source of truth for the product. Do not generate the phone or Samsung logo with an image model. Composite official product imagery or a verified 3D model into the final hero scene. Preserve the exact silhouette, camera island, lenses, frame, colour and proportions. The optical assembly in Scene 04 is conceptual, not a teardown or verified internal diagram. Do not add unapproved performance claims.
+Use Samsung's official Galaxy S26 Ultra Cobalt Violet imagery as a visual reference for accuracy. Important rights gate: Samsung Mobile Press's published Terms of Use restrict its materials to personal, informational and non-commercial use and prohibit modification, derivative works and other exploitation without authorization. Do not composite, alter or publish those press assets or logo artwork in the advert unless Samsung grants written permission for that specific use. Until then, keep them reference-only and hold the final branded hero shot or obtain a separately licensed product asset. Do not generate the phone or Samsung logo with an image model. Preserve the exact silhouette, camera island, lenses, frame, colour and proportions. The optical assembly in Scene 04 is conceptual, not a teardown or verified internal diagram. Do not add unapproved performance claims.
 
 Reference sources:
 - Samsung Mobile Press media library: https://www.samsungmobilepress.com/media-assets/galaxy-s26-ultra?category=Product
 - Samsung product page: https://www.samsung.com/us/smartphones/galaxy-s26-ultra/
 
-Review each asset's published usage terms before using it in a public or commercial advert. This is an independent speculative concept, not affiliated with, sponsored by or endorsed by Samsung.
+Written permission is required before use of Samsung Mobile Press assets in the advert; the site terms do not grant advertising/compositing rights. This is an independent speculative concept, not affiliated with, sponsored by or endorsed by Samsung.
 
 ## Asset workflow
 1. Obtain the official Cobalt Violet product views and logo artwork; record provenance and usage permissions.
