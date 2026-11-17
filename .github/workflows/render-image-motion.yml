@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - "image-motion-studio/project/**"
+      - "image-motion-studio/editor/**"
+      - "image-motion-studio/README.md"
       - ".github/workflows/render-image-motion.yml"
   workflow_dispatch:
 
