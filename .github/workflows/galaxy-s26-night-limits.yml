@@ -8,6 +8,10 @@ on:
       - ".github/workflows/galaxy-s26-night-limits.yml"
   workflow_dispatch:
 
+concurrency:
+  group: galaxy-s26-night-limits-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
