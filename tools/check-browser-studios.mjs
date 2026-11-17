@@ -19,7 +19,7 @@ try {
     const html = await readFile(resolve(root,file.path),'utf8');
     const pattern = file.mode === 'module'
       ? /<script\s+type=["']module["'][^>]*>([\s\S]*?)<\/script>/gi
-      : /<script>([\s\S]*?)<\/script>/i;
+      : /<script>([\s\S]*?)<\/script>/gi;
     const scripts = [...html.matchAll(pattern)];
     if (!scripts.length) { console.error('FAIL '+file.path+': no target script found'); failed = true; continue; }
     for (let i=0;i<scripts.length;i++) {
