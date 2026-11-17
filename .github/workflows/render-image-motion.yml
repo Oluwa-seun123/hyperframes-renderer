@@ -9,6 +9,8 @@ on:
       - "image-motion-studio/render-pipeline.html"
       - "image-motion-studio/hfx-hyperframes-exporter.html"
       - "image-motion-studio/production-intelligence.html"
+      - "image-motion-studio/audio-studio.html"
+      - "image-motion-studio/PHASE10_AUDIO_STUDIO.md"
       - "image-motion-studio/PHASE9_PRODUCTION_INTELLIGENCE.md"
       - "image-motion-studio/README.md"
       - "image-motion-studio/PHASE7_RENDER_PIPELINE.md"
