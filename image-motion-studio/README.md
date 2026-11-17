@@ -151,3 +151,21 @@ See [Phase 8 exporter documentation](PHASE8_HYPERFRAMES_EXPORTER.md).
 - Three.js and GSAP load from jsDelivr at render time.
 - The composition must still pass the HyperFrames check and a real CI render before it is considered production-verified.
 - Voice, music and sound effects are not yet included.
+
+
+## Phase 9 — HFX Production Intelligence
+
+The experimental `production-intelligence.html` is a phone-first, rule-based creative producer. It turns a product and campaign brief into a story arc, timed cinematic shot list, continuity rules, asset inventory and render-readiness checklist. It exports the exact version 1 `hfx-shot-plan.json` schema consumed by Phase 7 and a standalone Markdown production brief.
+
+The director adapts its story beats to campaign objective and duration, and applies physical-truth guardrails: actual orbit/turntable recommendations require a supplied GLB; a photo-only sequence uses safe framing moves and treats each real view as a separate shot. The preflight highlights missing imagery, insufficient view coverage, missing logo/end card, oversized GLB input, missing CTA and claims requiring official verification.
+
+See [Phase 9 documentation](PHASE9_PRODUCTION_INTELLIGENCE.md).
+
+### Phase 9 boundaries
+
+- This is a deterministic planning assistant, not an LLM or image/video generator.
+- Selected assets are inventoried in-browser but not embedded into the shot plan or uploaded.
+- It does not independently inspect image contents, confirm the correct product angle or verify product specifications.
+- Its readiness score is a simple checklist indicator, not a guarantee of advert quality or approval.
+- Export the HFX JSON to Phase 7, then use Phase 8 with the same GLB to prepare the HyperFrames HTML composition.
+- It does not create the final MP4 and does not yet add voiceover, music or sound effects.
