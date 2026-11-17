@@ -62,3 +62,19 @@ Official model references:
 - [Depth Anything V2 Small ONNX (Apache-2.0)](https://huggingface.co/onnx-community/depth-anything-v2-small)
 
 No paid video-generation API is used.
+
+
+## Phase 3 — Multi-view Product Sequence
+
+A new phone-friendly editor is available at `multiview.html`. It accepts several separate product-view images, lets the user label each view, reorder shots, set seconds per view and output aspect ratio, preview the sequence, and export a self-contained HyperFrames HTML composition.
+
+This is designed for products supplied as multiple official/reference views when a true 3D asset is not available. Each angle remains a separate shot with its own subtle push-in and crossfade. The sequence can reveal rear, side, bottom/ports, front display and camera details before a final hero title.
+
+### Important accuracy boundary
+
+- This is a multi-angle editorial sequence, not a 3D model and not a continuous 360-degree orbit.
+- It does not synthesize unseen surfaces or interpolate physically correct rotation between photographs.
+- Use matching, clean, high-resolution views of the same product and remove any captions or sheet borders before upload.
+- The exported HTML embeds the selected images. HyperFrames still performs the final render.
+
+Open `multiview.html` in a mobile browser, select multiple cleaned views, reorder them, preview, then export.
