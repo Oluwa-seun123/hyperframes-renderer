@@ -100,3 +100,20 @@ The shot recipes are adapted from the ASO Creative Studio's Cinematic Techniques
 The Master Idea Library's creative sequence — real object/task, specific tension, visible choice, satisfying reveal, honest invitation — is used as a planning check, not as a copied idea or performance promise.
 
 See [Cinematic Director documentation](CINEMATIC_DIRECTOR.md).
+
+
+## Phase 6 — HFX 3D Product Engine
+
+The experimental `3d-engine.html` is a phone-responsive browser studio for loading real GLB/GLTF product models. It uses Three.js GLTFLoader and OrbitControls, normalizes the model into the camera view, and provides manual camera orbit/zoom, animated camera orbit, vertical-axis product turntable, camera height/distance, studio key/rim/fill lights, background, material metalness/roughness offsets, PNG still capture and browser WebM viewport recording.
+
+Prefer a self-contained GLB on mobile. The tool loads the selected model locally in the browser and does not upload it to our server. Three.js modules load from jsDelivr, so an internet connection is required.
+
+See [3D Engine documentation](3D_ENGINE.md).
+
+### Phase 6 limits
+
+- This is a real-time GLB/GLTF viewer and capture stage, not yet a full production renderer or integrated HyperFrames 3D timeline.
+- PNG and WebM captures are browser outputs. WebM is not the final HyperFrames MP4.
+- No HDRI environment lighting, ray tracing, path tracing, physically calibrated camera/lens simulation or AI image-to-3D reconstruction is included.
+- Large models may exceed Android memory/GPU limits. Optimize geometry and textures before loading.
+- JavaScript syntax passed a static check; Android device testing and a completed model capture remain unverified.
