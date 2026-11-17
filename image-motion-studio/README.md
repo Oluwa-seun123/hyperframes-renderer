@@ -38,4 +38,27 @@ Run those commands from this `project/` directory.
 - A single photo cannot reveal accurate unseen sides of a product. For a faithful 360-degree orbit, supply an official 3D model or several accurate views.
 - The editor's preview is a quick browser approximation; the HyperFrames render is the final output.
 
+
+## Phase 2 — Image Intelligence and Photo-to-Scene
+
+The editor now includes two optional, browser-run AI tools:
+
+- **AI isolate subject** uses `Xenova/modnet` through Transformers.js to produce a transparent product cutout. The model card declares Apache-2.0. MODNet was designed for portrait matting, so results on phones, reflective products, thin camera rings and complex edges must be checked visually.
+- **Generate depth map** uses `onnx-community/depth-anything-v2-small` through Transformers.js. The model card declares Apache-2.0. Its relative depth estimate is converted into four overlapping transparent depth bands. The exported HyperFrames composition moves those bands at different rates for a stronger parallax effect.
+
+Both models run on the user's device (WebGPU when available, WASM CPU fallback). The first use downloads model weights from Hugging Face and requires an internet connection. The depth model download is roughly 300 MB; this may be slow or memory-intensive on some Android phones. Keep the browser tab open while it loads and processes. No image is uploaded to our own server by these two tools.
+
+### What this phase does not do yet
+
+- The four bands are approximate slices of a monocular depth map, not separate object meshes.
+- There is no generative inpainting yet, so the system cannot convincingly fill the background behind a removed object.
+- MODNet is a portrait-matting model; product cutout quality varies and must be inspected.
+- There is no image-to-3D reconstruction or true 360-degree orbit yet. For accurate hidden sides, use a genuine product GLB/GLTF or multiple official views.
+- Model weights are fetched from their publishers at runtime; commercial use should follow each model's published licence and attribution terms.
+
+Official model references:
+- [Transformers.js browser inference](https://huggingface.co/docs/transformers.js)
+- [Xenova MODNet (Apache-2.0)](https://huggingface.co/Xenova/modnet)
+- [Depth Anything V2 Small ONNX (Apache-2.0)](https://huggingface.co/onnx-community/depth-anything-v2-small)
+
 No paid video-generation API is used.
