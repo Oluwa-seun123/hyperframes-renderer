@@ -1,0 +1,63 @@
+name: Galaxy S26 Ultra — The Night Has No Limits render
+
+on:
+  push:
+    branches: [galaxy-s26-night-limits]
+    paths:
+      - "galaxy-s26-night-limits/**"
+      - ".github/workflows/galaxy-s26-night-limits.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Check out project
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: galaxy-s26-night-limits/package.json
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg zip
+      - name: Check HyperFrames composition
+        working-directory: galaxy-s26-night-limits
+        run: npm run check
+      - name: Capture key-frame snapshots
+        working-directory: galaxy-s26-night-limits
+        run: npm run snapshot
+      - name: Render 30-second vertical MP4
+        working-directory: galaxy-s26-night-limits
+        run: npm run render
+      - name: Validate MP4 properties
+        working-directory: galaxy-s26-night-limits
+        shell: bash
+        run: |
+          set -euo pipefail
+          VIDEO="$(find renders -maxdepth 1 -type f -name '*.mp4' -printf '%T@ %p\n' | sort -nr | head -n1 | cut -d' ' -f2-)"
+          test -n "$VIDEO"
+          python3 scripts/validate_render.py "$VIDEO"
+          cp "$VIDEO" renders/The-Night-Has-No-Limits-Preview.mp4
+      - name: Package preview ZIP
+        if: success()
+        working-directory: galaxy-s26-night-limits
+        run: zip -r ../The-Night-Has-No-Limits-Preview.zip renders .hyperframes production-bible.md README.md assets/ASSET-REGISTER.md
+      - name: Upload MP4, snapshots and ZIP
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: galaxy-s26-night-limits-preview
+          path: |
+            The-Night-Has-No-Limits-Preview.zip
+            galaxy-s26-night-limits/renders/**
+            galaxy-s26-night-limits/.hyperframes/**
+          if-no-files-found: warn
+          retention-days: 14
