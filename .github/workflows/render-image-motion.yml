@@ -7,6 +7,7 @@ on:
       - "image-motion-studio/editor/**"
       - "image-motion-studio/3d-engine.html"
       - "image-motion-studio/render-pipeline.html"
+      - "image-motion-studio/hfx-hyperframes-exporter.html"
       - "image-motion-studio/README.md"
       - "image-motion-studio/PHASE7_RENDER_PIPELINE.md"
       - "tools/check-browser-studios.mjs"
