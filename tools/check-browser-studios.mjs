@@ -9,13 +9,13 @@ let failed = false;
 try {
   for (const file of files) {
     const html = await readFile(file,'utf8');
-    const scripts = [...html.matchAll(/<script\\s+type=["']module["'][^>]*>([\\s\\S]*?)<\\/script>/gi)];
+    const scripts = [...html.matchAll(/<script\s+type=["']module["'][^>]*>([\s\S]*?)<\/script>/gi)];
     if (!scripts.length) { console.error('FAIL '+file+': no module script found'); failed = true; continue; }
     for (let i=0;i<scripts.length;i++) {
       const path=join(dir, file.replaceAll('/','_')+'-'+i+'.mjs');
       await writeFile(path,scripts[i][1]);
       const result=spawnSync(process.execPath,['--check',path],{encoding:'utf8'});
-      if(result.status!==0){console.error('FAIL '+file+' module '+i+'\\n'+result.stderr);failed=true}
+      if(result.status!==0){console.error('FAIL '+file+' module '+i+'\n'+result.stderr);failed=true}
       else console.log('PASS '+file+' module '+i);
     }
     if(file.endsWith('render-pipeline.html')){
