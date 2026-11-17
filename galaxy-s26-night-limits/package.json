@@ -7,6 +7,7 @@
     "check": "npx --yes hyperframes@0.8.189 check",
     "snapshot": "npx --yes hyperframes@0.8.189 snapshot --at 0,4,5,9,10,14,15,19,20,24,25,29",
     "render": "npx --yes hyperframes@0.8.189 render",
-    "validate": "python3 scripts/validate_render.py"
+    "validate": "python3 scripts/validate_render.py",
+    "validate:assets": "python3 scripts/validate_assets.py"
   }
 }
