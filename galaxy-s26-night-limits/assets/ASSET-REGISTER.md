@@ -1,12 +1,25 @@
-# Asset register
+# Asset register — photoreal upgrade
 
-No external stock or unverified product artwork is embedded in the initial motion-design pass.
+The initial render contains no external photographic plates or official product artwork. The photoreal production brief and machine-readable manifest are in this folder.
 
-| Asset | Status | Required action |
+## Required assets
+
+| Asset | Status | Scene / action |
 |---|---|---|
-| Galaxy S26 Ultra product model / packshot | Required, not yet added | Add a verified official product reference or approved 3D model for Scene 06 |
-| Official Samsung logo artwork | Required, not yet added | Add approved artwork; do not redraw or distort |
-| Photorealistic scene plates | Optional upgrade | Add approved original/generated/licensed images or footage with provenance |
-| Original score and sound effects | Not included | Add as a separate approved audio pass; no voiceover |
+| Official Galaxy S26 Ultra Cobalt Violet product references | Awaiting download and usage review | Scene 06; rear three-quarter, rear, front, side, camera close-up and isolated packshot |
+| Official Samsung logo artwork | Awaiting approved source and usage review | Scene 06 end card; do not redraw |
+| Scene 01 optical macro plate | Awaiting asset | Distinct still and 5–7 second motion plate |
+| Scene 02 night city portal plate | Awaiting asset | Distinct still and 5–7 second motion plate |
+| Scene 03 raindrop/refraction plate | Awaiting asset | Distinct still and 5–7 second motion plate |
+| Scene 04 conceptual optical glass plate | Awaiting asset | Distinct still and 5–7 second motion plate |
+| Scene 05 night city panorama plate | Awaiting asset | Distinct still and 5–7 second motion plate |
+| Scene 06 product hero plate | Awaiting official product asset | Composite official phone source into midnight studio |
+| Original score and sound effects | Not included | Add as separate approved audio pass; no voiceover |
 
-For every imported asset, record its source, creator/provider, licence/permission, date obtained, and intended scene. Do not commit API keys, private credentials, or unlicensed media.
+## Official reference sources
+- Samsung Mobile Press product media: https://www.samsungmobilepress.com/media-assets/galaxy-s26-ultra?category=Product
+- Samsung product page: https://www.samsung.com/us/smartphones/galaxy-s26-ultra/
+
+The media library is a source for reference assets, not automatic permission for every advertising use. Review the terms/permissions associated with each downloaded asset before public or commercial publication.
+
+For every imported asset, record source URL, creator/provider, licence or permission, date obtained, local filename, intended scene and any restrictions. Keep original source files. Do not commit API keys, private credentials, unlicensed media or assets with unclear rights.
