@@ -9,6 +9,7 @@ const files = [
   { path: 'image-motion-studio/render-pipeline.html', mode: 'module' },
   { path: 'image-motion-studio/hfx-hyperframes-exporter.html', mode: 'classic' },
   { path: 'image-motion-studio/production-intelligence.html', mode: 'classic' },
+  { path: 'image-motion-studio/audio-studio.html', mode: 'classic' },
 ];
 const root = fileURLToPath(new URL('..', import.meta.url));
 const dir = await mkdtemp(join(tmpdir(),'hfx-browser-check-'));
@@ -34,6 +35,9 @@ try {
     }
     if(file.path.endsWith('production-intelligence.html')){
       for(const token of ['hfx-shot-plan','function evaluate','hfx-production-brief.md']) if(!html.includes(token)){console.error('FAIL '+file.path+': missing '+token);failed=true}
+    }
+    if(file.path.endsWith('audio-studio.html')){
+      for(const token of ['hfx-audio-cues','OfflineAudioContext','function wavBlob','music']) if(!html.includes(token)){console.error('FAIL '+file.path+': missing '+token);failed=true}
     }
     if(file.path.endsWith('hfx-hyperframes-exporter.html')){
       for(const token of ['data-composition-id="main"','window.__timelines.main','GLTFLoader','hfx-shot-plan']) if(!html.includes(token)){console.error('FAIL '+file.path+': missing '+token);failed=true}
