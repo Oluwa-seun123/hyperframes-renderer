@@ -8,10 +8,10 @@
 - Existing HyperFrames project remains the timing, typography, transitions and assembly layer.
 
 ## Product truth and reference policy
-Use Samsung's official Galaxy S26 Ultra Cobalt Violet product imagery as the visual truth source. Reference page: https://www.samsungmobilepress.com/media-assets/galaxy-s26-ultra?category=Product
+Use Samsung's official Galaxy S26 Ultra Cobalt Violet product imagery as a visual reference only until written permission for advertising use and compositing is obtained. Samsung Mobile Press's Terms of Use state that materials may be downloaded for personal, informational and non-commercial use only, and prohibit modification, derivative works and other exploitation without authorization. Therefore do not place downloaded press images or logo artwork into the rendered advert, modify them, or publish them as advertising assets unless Samsung grants the necessary written permission. Reference page: https://www.samsungmobilepress.com/media-assets/galaxy-s26-ultra?category=Product
 Official product page: https://www.samsung.com/us/smartphones/galaxy-s26-ultra/
 
-Required reference views: rear three-quarter, straight rear, front, left/right side, camera-island close-up, and a clean isolated packshot if available. Prefer the highest-resolution official files. Keep a copy of the original, source page, date obtained, and any published usage terms with the asset record.
+After permission is confirmed, the required reference views: rear three-quarter, straight rear, front, left/right side, camera-island close-up, and a clean isolated packshot if available. Prefer the highest-resolution official files. Keep a copy of the permission/licence, source page, date obtained, and any restrictions with the asset record. If permission is not granted, use official imagery only for private visual reference and keep the final product hero on hold or seek a separately licensed product asset.
 
 Do not ask an image model to invent the phone, camera array, Samsung wordmark, S Pen, UI, or product specifications. AI may create environments and abstract optical plates, but the final product must be composited from official imagery or a verified 3D asset. Never redraw or distort the Samsung logo. Do not imply Samsung sponsorship or endorsement.
 
