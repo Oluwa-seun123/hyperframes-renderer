@@ -16,7 +16,7 @@ checks.push({name:'MP4 container and video stream',status:'PASS',detail:(videoSt
 checks.push({name:'Declared composition duration',status:declared?(Math.abs(declared-videoDuration)<=Math.max(1,declared*.03)?'PASS':'WARN'):'SKIP',detail:declared?'Composition '+declared+'s; rendered '+videoDuration.toFixed(2)+'s':'No data-duration metadata found.'});
 await mkdir(outDir,{recursive:true});
 const base='hfx-final-delivery',videoOnly=join(outDir,base+'-video-only.mp4'),finalVideo=join(outDir,base+'.mp4');let audioUsed=false;
-try{const aProbe=probe(audioPath);if(!aProbe.streams?.some(s=>s.codec_type==='audio'))throw new Error('WAV has no audio stream');run('ffmpeg',['-y','-i',source,'-i',audioPath,'-map','0:v:0','-map','1:a:0','-c:v','copy','-c:a','aac','-b:a','320k','-af','apad','-t',String(videoDuration),'-movflags','+faststart',finalVideo]);audioUsed=true}catch(e){if(e.code!=='ENOENT')throw e}
+let audioExists=true;try{await stat(audioPath)}catch(e){if(e.code==='ENOENT')audioExists=false;else throw e}if(audioExists){const aProbe=probe(audioPath);if(!aProbe.streams?.some(s=>s.codec_type==='audio'))throw new Error('WAV has no audio stream');run('ffmpeg',['-y','-i',source,'-i',audioPath,'-map','0:v:0','-map','1:a:0','-c:v','copy','-c:a','aac','-b:a','320k','-af','apad','-t',String(videoDuration),'-movflags','+faststart',finalVideo]);audioUsed=true}
 if(!audioUsed)await copyFile(source,videoOnly);
 const delivered=audioUsed?finalVideo:videoOnly,finalInfo=probe(delivered),finalAudio=finalInfo.streams?.some(s=>s.codec_type==='audio')||false;
 if(audioUsed&&!finalAudio)throw new Error('Mux result has no audio stream.');
