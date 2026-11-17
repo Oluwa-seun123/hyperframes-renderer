@@ -78,3 +78,14 @@ This is designed for products supplied as multiple official/reference views when
 - The exported HTML embeds the selected images. HyperFrames still performs the final render.
 
 Open `multiview.html` in a mobile browser, select multiple cleaned views, reorder them, preview, then export.
+
+
+## Phase 4 — HFX Scene Language
+
+The experimental `scene-studio.html` adds a small declarative language for directing product-ad scenes. It parses project settings, aspect ratio, frame rate, background/light mood, title/subtitle, asset declarations and shot commands. Each shot specifies an uploaded asset, duration, camera-move preset, movement strength, transition and label.
+
+The compiler validates syntax, declared assets and uploaded image availability before exporting a self-contained HTML composition with a deterministic GSAP timeline. The exported scene exposes `window.__timelines.main` for seeking.
+
+See [HFX Scene Language reference](SCENE_LANGUAGE.md) for grammar and examples.
+
+This phase is a real compiler and multi-view 2D scene pipeline, not a 3D renderer. Real product orbit, physically based materials, lighting rigs and GLB/GLTF import are future compiler/runtime targets. It does not invent unseen product surfaces. No paid generative-video API is used.
