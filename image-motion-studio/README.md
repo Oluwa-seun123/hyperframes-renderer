@@ -183,3 +183,14 @@ See [Phase 10 Audio Studio documentation](PHASE10_AUDIO_STUDIO.md).
 - The cue sheet does not contain the audio bytes. Keep the original files; re-import them when rebuilding a project.
 - The current Phase 8 HTML composition remains visual-only. Phase 10 produces the audio master separately; a later render/mux phase must combine the WAV with the rendered video into MP4.
 - Browser codec support and mobile memory limits vary. Android device testing and a completed audiovisual MP4 render remain outstanding.
+
+
+## Phase 11 — Automated Render & Quality Control
+
+The GitHub Actions render workflow now runs a post-render delivery step through `tools/package-render.mjs`. It validates the rendered MP4, optionally muxes a supplied Phase 10 WAV master as AAC, checks the final media streams and duration, writes JSON/Markdown QC reports, and creates a ZIP package.
+
+To include audio, place the Phase 10 WAV master at `project/audio/audio-master.wav` before triggering the workflow. Without it, the pipeline explicitly packages a video-only file and reports that audio is missing.
+
+See [Phase 11 Render & QC documentation](PHASE11_RENDER_QC.md).
+
+This is technical file validation, not automated visual judgement. Human review of realism, continuity, product accuracy and image quality remains necessary. GitHub Actions execution and a real downloadable artifact must be confirmed before calling a production render verified.
