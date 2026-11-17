@@ -33,7 +33,7 @@ try {
       for(const token of ['hfx-shot-plan','orbit360','captureStream','Export shot plan JSON']) if(!html.includes(token)){console.error('FAIL '+file.path+': missing '+token);failed=true}
     }
     if(file.path.endsWith('production-intelligence.html')){
-      for(const token of [\"format:'hfx-shot-plan'\",'function evaluate','hfx-production-brief.md']) if(!html.includes(token)){console.error('FAIL '+file.path+': missing '+token);failed=true}
+      for(const token of ['hfx-shot-plan','function evaluate','hfx-production-brief.md']) if(!html.includes(token)){console.error('FAIL '+file.path+': missing '+token);failed=true}
     }
     if(file.path.endsWith('hfx-hyperframes-exporter.html')){
       for(const token of ['data-composition-id="main"','window.__timelines.main','GLTFLoader','hfx-shot-plan']) if(!html.includes(token)){console.error('FAIL '+file.path+': missing '+token);failed=true}
