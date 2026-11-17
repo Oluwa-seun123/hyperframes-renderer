@@ -50,7 +50,7 @@ jobs:
       - name: Check HyperFrames composition
         run: npm run check
       - name: Render MP4
-        run: npm run render
+        run: npm run render -- --output output/rendered-source.mp4
       - name: Package MP4 and run media quality checks
         run: node ../../tools/package-render.mjs
       - name: Upload rendered video
