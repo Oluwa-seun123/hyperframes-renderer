@@ -44,5 +44,9 @@ try {
     }
   }
 } finally { await rm(dir,{recursive:true,force:true}); }
+const pipelinePath = resolve(root,'tools/package-render.mjs');
+  const pipelineCheck = spawnSync(process.execPath,['--check',pipelinePath],{encoding:'utf8'});
+  if(pipelineCheck.status!==0){console.error('FAIL tools/package-render.mjs\n'+pipelineCheck.stderr);failed=true}
+  else console.log('PASS tools/package-render.mjs');
 if(failed) process.exit(1);
 console.log('HFX browser studio checks passed.');
