@@ -13,7 +13,7 @@
   "productReferences": {
     "sourcePage": "https://www.samsungmobilepress.com/media-assets/galaxy-s26-ultra?category=Product",
     "officialProductPage": "https://www.samsung.com/us/smartphones/galaxy-s26-ultra/",
-    "status": "awaiting_download_and_usage_review",
+    "status": "reference_only_permission_required",
     "requiredViews": [
       "rear-three-quarter",
       "rear-straight",
@@ -21,7 +21,9 @@
       "side-profile",
       "camera-island-closeup",
       "isolated-packshot"
-    ]
+    ],
+    "usageTermsUrl": "https://www.samsungmobilepress.com/terms",
+    "usageGate": "Do not embed, modify, composite, publish, or commercially exploit Samsung Mobile Press imagery/logo unless written permission covering the intended use is obtained."
   },
   "scenes": [
     {
