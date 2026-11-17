@@ -169,3 +169,17 @@ See [Phase 9 documentation](PHASE9_PRODUCTION_INTELLIGENCE.md).
 - Its readiness score is a simple checklist indicator, not a guarantee of advert quality or approval.
 - Export the HFX JSON to Phase 7, then use Phase 8 with the same GLB to prepare the HyperFrames HTML composition.
 - It does not create the final MP4 and does not yet add voiceover, music or sound effects.
+
+
+## Phase 10 — HFX Audio Production Studio
+
+The experimental `audio-studio.html` adds a phone-first multitrack audio editor for voiceover, music and sound effects. Import local audio files, set timeline offsets and trim points, adjust clip gain and fades, optionally duck music beneath voiceover, preview the full mix, and export a stereo 16-bit PCM WAV master at 44.1 or 48 kHz. It also exports an editable `hfx-audio-cues.json` file with the mix decisions.
+
+See [Phase 10 Audio Studio documentation](PHASE10_AUDIO_STUDIO.md).
+
+### Phase 10 boundaries
+
+- Audio decoding, mixing and WAV export run locally in the browser using Web Audio APIs; no paid service or upload is required.
+- The cue sheet does not contain the audio bytes. Keep the original files; re-import them when rebuilding a project.
+- The current Phase 8 HTML composition remains visual-only. Phase 10 produces the audio master separately; a later render/mux phase must combine the WAV with the rendered video into MP4.
+- Browser codec support and mobile memory limits vary. Android device testing and a completed audiovisual MP4 render remain outstanding.
