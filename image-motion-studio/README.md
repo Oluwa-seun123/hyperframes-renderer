@@ -134,3 +134,20 @@ See [Phase 7 documentation](PHASE7_RENDER_PIPELINE.md).
 - WebM recording is a browser preview/master, not the final MP4.
 - There is no voice, music, sound-effects, true cross-dissolve, or server-side Three.js-to-HyperFrames renderer in this phase.
 - The browser studio module syntax is checked in GitHub Actions. A successful syntax check does not prove Android compatibility or a completed render with a real phone model.
+
+
+## Phase 8 — HFX HyperFrames Exporter
+
+The experimental `hfx-hyperframes-exporter.html` bridges a Phase 7 shot-plan JSON and the existing HyperFrames HTML-to-video renderer. It accepts a self-contained GLB plus the shot-plan JSON, embeds the GLB bytes in one generated HTML composition, and compiles a deterministic Three.js scene controlled by a paused GSAP timeline exposed at `window.__timelines.main`.
+
+The generated composition uses fixed output dimensions (1080×1920 portrait, 1920×1080 landscape, or 1080×1080 square), shot timing, camera orbit/turntable/push/pull/rise/hero moves, captions, transitions and frame-rate metadata. The GLB is loaded before the timeline is exposed, using top-level await so the render page load waits for model parsing.
+
+See [Phase 8 exporter documentation](PHASE8_HYPERFRAMES_EXPORTER.md).
+
+### Phase 8 boundaries
+
+- This creates a HyperFrames-ready HTML composition; it does not itself execute the render or guarantee an MP4.
+- The output is a single HTML file with embedded GLB bytes. Use self-contained GLB files; external-resource GLTF packages are not bundled.
+- Three.js and GSAP load from jsDelivr at render time.
+- The composition must still pass the HyperFrames check and a real CI render before it is considered production-verified.
+- Voice, music and sound effects are not yet included.
