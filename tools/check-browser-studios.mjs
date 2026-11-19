@@ -44,7 +44,7 @@ try {
       for(const token of ['hfx-audio-cues','OfflineAudioContext','function wavBlob','music']) if(!html.includes(token)){console.error('FAIL '+file.path+': missing '+token);failed=true}
     }
     if(file.path.endsWith('cinematic-image-stage.html')){
-      for(const token of ['portable HTML exported','moveTransform','Play sequence','dataUrl']) if(!html.includes(token)){console.error('FAIL '+file.path+': missing '+token);failed=true}
+      for(const token of ['Portable HTML exported','moveTransform','Play sequence','dataUrl']) if(!html.includes(token)){console.error('FAIL '+file.path+': missing '+token);failed=true}
     }
     if(file.path.endsWith('asset-quality-gate.html')){
       for(const token of ['SHA-256','crypto.subtle','QC JSON','aspect ratio']) if(!html.toLowerCase().includes(token.toLowerCase())){console.error('FAIL '+file.path+': missing '+token);failed=true}
