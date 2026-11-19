@@ -11,6 +11,9 @@ const files = [
   { path: 'image-motion-studio/production-intelligence.html', mode: 'classic' },
   { path: 'image-motion-studio/audio-studio.html', mode: 'classic' },
   { path: 'image-motion-studio/studio-dashboard.html', mode: 'classic' },
+  { path: 'image-motion-studio/cinematic-image-stage.html', mode: 'classic' },
+  { path: 'image-motion-studio/asset-quality-gate.html', mode: 'classic' },
+  { path: 'image-motion-studio/campaign-handoff.html', mode: 'classic' },
 ];
 const root = fileURLToPath(new URL('..', import.meta.url));
 const dir = await mkdtemp(join(tmpdir(),'hfx-browser-check-'));
@@ -39,6 +42,15 @@ try {
     }
     if(file.path.endsWith('audio-studio.html')){
       for(const token of ['hfx-audio-cues','OfflineAudioContext','function wavBlob','music']) if(!html.includes(token)){console.error('FAIL '+file.path+': missing '+token);failed=true}
+    }
+    if(file.path.endsWith('cinematic-image-stage.html')){
+      for(const token of ['portable HTML exported','moveTransform','Play sequence','dataUrl']) if(!html.includes(token)){console.error('FAIL '+file.path+': missing '+token);failed=true}
+    }
+    if(file.path.endsWith('asset-quality-gate.html')){
+      for(const token of ['SHA-256','crypto.subtle','QC JSON','aspect ratio']) if(!html.toLowerCase().includes(token.toLowerCase())){console.error('FAIL '+file.path+': missing '+token);failed=true}
+    }
+    if(file.path.endsWith('campaign-handoff.html')){
+      for(const token of ['image_data_url','Move up','Move down','storyboard package']) if(!html.toLowerCase().includes(token.toLowerCase())){console.error('FAIL '+file.path+': missing '+token);failed=true}
     }
     if(file.path.endsWith('studio-dashboard.html')){
       for(const token of ['HFX Production Desk','hfx-production-desk-v1','localStorage','newProject','exportAll','render-image-motion.yml']) if(!html.includes(token)){console.error('FAIL '+file.path+': missing '+token);failed=true}
