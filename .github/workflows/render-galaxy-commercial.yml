@@ -6,6 +6,7 @@ on:
     paths:
       - "image-motion-studio/project/production/galaxy-s26-ultra/assets/galaxy-s26-ultra.glb"
       - "image-motion-studio/project/production/galaxy-s26-ultra/assets/galaxy-s26-ultra.glb.zip"
+      - ".github/workflows/render-galaxy-commercial.yml"
 
 permissions:
   contents: read
