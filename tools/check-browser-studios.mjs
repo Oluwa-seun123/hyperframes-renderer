@@ -37,7 +37,7 @@ try {
       else console.log('PASS '+file.path+' script '+i);
     }
     if(file.path.endsWith('3d-ad-sequencer.html')){
-      for(const token of ['GLTFLoader','OrbitControls','MediaRecorder','hfx-phase17-shot-plan.json','camera.position.lerpVectors']) if(!html.includes(token)){console.error('FAIL '+file.path+': missing '+token);failed=true}
+      for(const token of ['GLTFLoader','OrbitControls','MediaRecorder','hfx-phase17-shot-plan.json','camera.position.lerpVectors','format:\\'hfx-shot-plan\\'','output:{aspect:\\'portrait\\',fps:30}']) if(!html.includes(token)){console.error('FAIL '+file.path+': missing '+token);failed=true}
     }
     if(file.path.endsWith('model-inspector.html')){
       for(const token of ['GLTFLoader','OrbitControls','triangles','texture_maps','hfx-model-inspection.json']) if(!html.includes(token)){console.error('FAIL '+file.path+': missing '+token);failed=true}
