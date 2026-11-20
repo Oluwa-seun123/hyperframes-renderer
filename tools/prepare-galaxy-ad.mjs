@@ -22,7 +22,7 @@ for (const file of [sourceHtml, sourceModel]) {
 const composition = await readFile(sourceHtml, 'utf8');
 const requiredTokens = [
   'GLTFLoader', 'gsap.timeline({paused:true})', 'window.__timelines.main',
-  'product.rotation', 'DirectionalLight', 'id="opening"', 'id="camera-copy"',
+  'product.rotation', 'Math.sin(state.orbit)', 'DirectionalLight', 'id="opening"', 'id="camera-copy"',
   'id="display-copy"', 'id="final-copy"', 'data-duration="30"',
   "./assets/galaxy-s26-ultra.glb"
 ];
