@@ -53,28 +53,28 @@ let product,baseScale=1,center=new THREE.Vector3(),baseRadius=3.3;
 const loader=new GLTFLoader();
 await new Promise((resolve,reject)=>loader.load('./assets/galaxy-s26-ultra.glb',g=>{product=g.scene;scene.add(product);const b=new THREE.Box3().setFromObject(product),size=b.getSize(new THREE.Vector3());center.copy(b.getCenter(new THREE.Vector3()));const max=Math.max(size.x,size.y,size.z)||1;baseScale=2.45/max;product.scale.setScalar(baseScale);product.position.sub(center.multiplyScalar(baseScale));baseRadius=3.35;resolve()},undefined,reject));
 document.getElementById('loading').style.display='none';
-const state={time:0,spin:0,camX:0,camY:0,dist:3.35,modelY:0,modelTilt:0,light:1};
+const state={time:0,spin:0,orbit:-.28,camX:0,camY:0,dist:3.35,modelY:0,modelTilt:0,light:1};
 const tl=gsap.timeline({paused:true});
-function pose(){if(!product)return;product.rotation.set(.04+state.modelTilt, state.spin, .02);const d=state.dist;camera.position.set(state.camX,d*.16+state.camY,d);camera.lookAt(0,0,0);violet.intensity=4.2*state.light;keyLight.intensity=3.2*state.light;renderer.render(scene,camera)}
+function pose(){if(!product)return;product.rotation.set(.04+state.modelTilt, state.spin, .02);const d=state.dist;camera.position.set(Math.sin(state.orbit)*d+state.camX,d*.16+state.camY,Math.cos(state.orbit)*d);camera.lookAt(0,0,0);violet.intensity=4.2*state.light;keyLight.intensity=3.2*state.light;renderer.render(scene,camera)}
 function setCopy(id,opacity,y=0){const el=document.getElementById(id);gsap.set(el,{opacity,y})}
 tl.set(state,{spin:-.25,dist:3.65,camY:.08,modelTilt:-.06},0)
  .to('#opening',{opacity:1,y:0,duration:1.1,ease:'power3.out'},.25)
  .fromTo('#ring',{scale:.72,opacity:0},{scale:1.15,opacity:.9,duration:4,ease:'power2.out'},.3)
- .to(state,{spin:Math.PI*.72,dist:3.15,camX:.12,duration:5.2,ease:'power1.inOut',onUpdate:pose},1.1)
+ .to(state,{spin:Math.PI*.72,orbit:.28,dist:3.15,camX:.12,duration:5.2,ease:'power1.inOut',onUpdate:pose},1.1)
  .to('#beam',{opacity:.9,x:300,duration:1.2,ease:'power2.inOut'},3.8)
  .to('#opening',{opacity:0,y:-55,duration:.6},5.6)
- .to(state,{spin:Math.PI*1.25,dist:2.75,camX:-.16,camY:.05,duration:4.1,ease:'power2.inOut',onUpdate:pose},6)
+ .to(state,{spin:Math.PI*1.25,orbit:.72,dist:2.75,camX:-.16,camY:.05,duration:4.1,ease:'power2.inOut',onUpdate:pose},6)
  .to('#camera-copy',{opacity:1,y:0,duration:.8,ease:'power3.out'},6.5)
  .to('#callout',{opacity:1,y:-20,duration:.7},8.2)
  .to('#rule',{scaleX:1,duration:.9,ease:'power2.out'},8.3)
- .to(state,{spin:Math.PI*1.95,dist:2.45,camX:.2,modelTilt:.12,duration:4.1,ease:'power1.inOut',onUpdate:pose},10)
+ .to(state,{spin:Math.PI*1.95,orbit:1.02,dist:2.45,camX:.2,modelTilt:.12,duration:4.1,ease:'power1.inOut',onUpdate:pose},10)
  .to('#camera-copy,#callout',{opacity:0,y:-45,duration:.5},13.8)
- .to(state,{spin:Math.PI*2.45,dist:3.1,camX:-.12,camY:-.08,modelTilt:-.08,duration:4.5,ease:'power2.inOut',onUpdate:pose},14)
+ .to(state,{spin:Math.PI*2.45,orbit:.52,dist:3.1,camX:-.12,camY:-.08,modelTilt:-.08,duration:4.5,ease:'power2.inOut',onUpdate:pose},14)
  .to('#display-copy',{opacity:1,y:0,duration:.8,ease:'power3.out'},15)
  .to('#ring',{rotation:90,scale:1.28,opacity:.45,duration:4},15)
- .to(state,{spin:Math.PI*3.0,dist:2.7,camX:.08,camY:.06,duration:4,ease:'power1.inOut',onUpdate:pose},19)
+ .to(state,{spin:Math.PI*3.0,orbit:-.08,dist:2.7,camX:.08,camY:.06,duration:4,ease:'power1.inOut',onUpdate:pose},19)
  .to('#display-copy',{opacity:0,y:-40,duration:.55},22.4)
- .to(state,{spin:Math.PI*3.65,dist:3.3,camX:0,camY:0,modelTilt:0,duration:3.1,ease:'power2.inOut',onUpdate:pose},22.5)
+ .to(state,{spin:Math.PI*3.65,orbit:-.28,dist:3.3,camX:0,camY:0,modelTilt:0,duration:3.1,ease:'power2.inOut',onUpdate:pose},22.5)
  .to('#final-copy',{opacity:1,y:0,duration:1,ease:'power3.out'},24.2)
  .to('#footer',{opacity:1,duration:.8},25)
  .to('#beam',{x:620,opacity:0,duration:2},25.5);
