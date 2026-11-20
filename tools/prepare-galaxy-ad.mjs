@@ -1,4 +1,5 @@
-import { access, copyFile, mkdir, readFile } from 'node:fs/promises';
+import { access, copyFile, mkdir, readFile, writeFile } from 'node:fs/promises';
+import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -7,10 +8,11 @@ const project = path.join(root, 'image-motion-studio', 'project');
 const production = path.join(project, 'production', 'galaxy-s26-ultra');
 const sourceHtml = path.join(production, 'index.html');
 const sourceModel = path.join(production, 'assets', 'galaxy-s26-ultra.glb');
+const sourceArchive = path.join(production, 'assets', 'galaxy-s26-ultra.glb.zip');
 const outputModelDir = path.join(project, 'assets');
 const outputModel = path.join(outputModelDir, 'galaxy-s26-ultra.glb');
 
-for (const file of [sourceHtml, sourceModel]) {
+for (const file of [sourceHtml]) {
   try { await access(file); }
   catch {
     console.error('GALAXY BUILD BLOCKED: required production input is missing:');
@@ -31,7 +33,27 @@ if (missingTokens.length) {
   console.error('GALAXY BUILD BLOCKED: composition is missing required 3D/motion-graphics features: ' + missingTokens.join(', '));
   process.exit(2);
 }
-const bytes = await readFile(sourceModel);
+let modelPath = sourceModel;
+try { await access(sourceModel); }
+catch {
+  try {
+    await access(sourceArchive);
+    const entries = execFileSync('unzip', ['-Z1', sourceArchive], { encoding: 'utf8' })
+      .split(/\r?\n/).filter(name => name.toLowerCase().endsWith('.glb'));
+    if (entries.length !== 1) {
+      console.error(`GALAXY BUILD BLOCKED: expected exactly one GLB in uploaded ZIP; found ${entries.length}.`);
+      process.exit(2);
+    }
+    const extracted = execFileSync('unzip', ['-p', sourceArchive, entries[0]], { maxBuffer: 128 * 1024 * 1024 });
+    await writeFile(sourceModel, extracted);
+    console.log(`Extracted GLB from uploaded archive: ${entries[0]}`);
+  } catch (error) {
+    console.error('GALAXY BUILD BLOCKED: upload galaxy-s26-ultra.glb or galaxy-s26-ultra.glb.zip into the production assets folder.');
+    console.error(error.message);
+    process.exit(2);
+  }
+}
+const bytes = await readFile(modelPath);
 if (bytes.length < 20 || bytes.toString('ascii', 0, 4) !== 'glTF') {
   console.error('GALAXY BUILD BLOCKED: the supplied model is not a valid GLB 2.0 file.');
   process.exit(2);
