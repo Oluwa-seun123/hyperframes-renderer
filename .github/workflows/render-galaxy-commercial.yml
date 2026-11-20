@@ -6,6 +6,9 @@ on:
     paths:
       - "image-motion-studio/project/production/galaxy-s26-ultra/assets/galaxy-s26-ultra.glb"
       - "image-motion-studio/project/production/galaxy-s26-ultra/assets/galaxy-s26-ultra.glb.zip"
+      - "image-motion-studio/project/production/galaxy-s26-ultra/index.html"
+      - "tools/prepare-galaxy-ad.mjs"
+      - "tools/package-render.mjs"
       - ".github/workflows/render-galaxy-commercial.yml"
 
 permissions:
