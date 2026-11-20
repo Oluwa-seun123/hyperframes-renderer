@@ -17,8 +17,8 @@ concurrency:
 
 jobs:
   render:
-    runs-on: ubuntu-latest
-    timeout-minutes: 45
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
     defaults:
       run:
         working-directory: image-motion-studio/project
@@ -32,12 +32,12 @@ jobs:
       - name: Validate GLB and prepare 3D motion-graphics composition
         run: node ../../tools/prepare-galaxy-ad.mjs
       - name: Ensure FFmpeg is available
-        timeout-minutes: 8
+        timeout-minutes: 20
         run: |
           if ! command -v ffmpeg >/dev/null 2>&1; then
             echo "FFmpeg is not preinstalled; installing with bounded retries."
-            sudo timeout 300s apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 update
-            sudo timeout 300s apt-get install -y -o Acquire::Retries=3 ffmpeg
+            sudo timeout 600s apt-get -o Acquire::Retries=5 -o Acquire::http::Timeout=60 -o Acquire::https::Timeout=60 update
+            sudo timeout 900s apt-get install -y -o Acquire::Retries=5 -o Acquire::http::Timeout=60 -o Acquire::https::Timeout=60 ffmpeg
           fi
           ffmpeg -version
       - name: Check HyperFrames composition
