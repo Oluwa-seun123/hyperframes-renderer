@@ -16,6 +16,8 @@ on:
       - "image-motion-studio/cinematic-image-stage.html"
       - "image-motion-studio/asset-quality-gate.html"
       - "image-motion-studio/campaign-handoff.html"
+      - "image-motion-studio/model-inspector.html"
+      - "image-motion-studio/PHASE16_MODEL_INSPECTOR.md"
       - "image-motion-studio/PHASE13_CINEMATIC_IMAGE_STAGE.md"
       - "image-motion-studio/PHASE14_ASSET_QC.md"
       - "image-motion-studio/PHASE15_CAMPAIGN_HANDOFF.md"
