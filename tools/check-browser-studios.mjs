@@ -6,6 +6,7 @@ import { spawnSync } from 'node:child_process';
 
 const files = [
   { path: 'image-motion-studio/3d-engine.html', mode: 'module' },
+  { path: 'image-motion-studio/model-inspector.html', mode: 'module' },
   { path: 'image-motion-studio/render-pipeline.html', mode: 'module' },
   { path: 'image-motion-studio/hfx-hyperframes-exporter.html', mode: 'classic' },
   { path: 'image-motion-studio/production-intelligence.html', mode: 'classic' },
@@ -33,6 +34,9 @@ try {
       const result = spawnSync(process.execPath,['--check',path],{encoding:'utf8'});
       if(result.status!==0){console.error('FAIL '+file.path+' script '+i+'\n'+result.stderr);failed=true}
       else console.log('PASS '+file.path+' script '+i);
+    }
+    if(file.path.endsWith('model-inspector.html')){
+      for(const token of ['GLTFLoader','OrbitControls','triangles','texture_maps','hfx-model-inspection.json']) if(!html.includes(token)){console.error('FAIL '+file.path+': missing '+token);failed=true}
     }
     if(file.path.endsWith('render-pipeline.html')){
       for(const token of ['hfx-shot-plan','orbit360','captureStream','Export shot plan JSON']) if(!html.includes(token)){console.error('FAIL '+file.path+': missing '+token);failed=true}
