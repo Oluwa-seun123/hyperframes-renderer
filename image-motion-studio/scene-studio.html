@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HFX Scene Studio — Scene Language</title>
+<style>
+:root{color-scheme:dark;--bg:#070a12;--panel:#111827;--line:#2b3a52;--muted:#9aabc2;--cyan:#56dcff;--violet:#a59aff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 70% 0%,#202653,#070a12 55%);color:#f4f7ff;font:14px/1.5 system-ui,sans-serif}main{max-width:1240px;margin:auto;padding:20px 14px 55px}.top{display:flex;align-items:center;gap:12px;margin-bottom:15px}.mark{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,var(--cyan),var(--violet));display:grid;place-items:center;color:#07101a;font-size:22px;font-weight:950}.eyebrow{color:var(--cyan);font-size:10px;font-weight:900;letter-spacing:.2em;text-transform:uppercase}.top h1{margin:0;font-size:22px}.intro{color:var(--muted);max-width:850px}.layout{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}.panel{background:#111827ed;border:1px solid var(--line);border-radius:16px;padding:15px;min-width:0}.panel h2{font-size:15px;margin:0 0 10px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.toolbar button,button{border:0;border-radius:9px;padding:10px 13px;background:linear-gradient(100deg,var(--cyan),#b4a8ff);color:#07101a;font-weight:850;cursor:pointer}.secondary{background:#26364f!important;color:#edf5ff!important;border:1px solid #405574!important}textarea{width:100%;min-height:430px;resize:vertical;background:#080e1b;color:#d8edff;border:1px solid #34445f;border-radius:11px;padding:13px;font:13px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;tab-size:2}input,select{max-width:100%;background:#080e1b;color:#fff;border:1px solid #34445f;border-radius:8px;padding:9px}.assets{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:10px 0}.asset-list{font-size:12px;color:var(--muted)}.stage{height:440px;position:relative;overflow:hidden;border-radius:12px;background:radial-gradient(ellipse at 50% 42%,#252c60,#03060d 72%);display:grid;place-items:center}.stage img{position:absolute;width:90%;height:83%;object-fit:contain;filter:drop-shadow(0 24px 38px #000c);opacity:0;transform:scale(1.06)}.stage .title{position:absolute;bottom:8%;left:5%;right:5%;font-size:clamp(18px,4vw,32px);font-weight:950;letter-spacing:.12em;text-align:center;text-shadow:0 3px 18px #000}.log{min-height:42px;margin-top:10px;padding:9px;border-radius:9px;background:#090f1c;color:#9bdfff;font-size:12px;white-space:pre-wrap}.log.error{color:#ffb4bd}.timeline{display:flex;gap:5px;overflow:auto;margin-top:12px}.clip{flex:1;min-width:75px;background:#202e48;border:1px solid #435675;border-radius:8px;padding:7px;font-size:10px;color:#dbeaff}.clip b{display:block;color:var(--cyan);font-size:11px}.help{font-size:12px;color:var(--muted);margin-top:12px}.help code{color:#b9eaff}.file{display:none}@media(max-width:800px){.layout{grid-template-columns:1fr}.stage{height:340px}textarea{min-height:360px}}
+</style>
+</head>
+<body><main>
+<div class="top"><div class="mark">H</div><div><div class="eyebrow">HyperFrames · Phase 4</div><h1>HFX Scene Studio</h1></div></div>
+<p class="intro">A small declarative language for directing product adverts. Write the shots, camera moves, lighting mood and title once; the compiler turns the script into a deterministic, seekable GSAP timeline and a portable HTML scene. No paid AI API is involved.</p>
+<div class="layout">
+<section class="panel"><h2>01 · HFX Scene Script</h2>
+<textarea id="script" spellcheck="false"># Galaxy S26 Ultra — cinematic product reveal
+project "Galaxy S26 Ultra"
+format portrait
+fps 30
+background "#050713"
+light violet intensity 0.75
+title "GALAXY S26 ULTRA" at 0.86
+subtitle "PRECISION IN EVERY DETAIL" at 0.92
+
+# Upload images and give them these asset names below.
+asset rear
+asset left
+asset right
+asset bottom
+asset front
+asset camera
+
+shot rear use rear for 5s move push-in strength 0.07 transition crossfade label "SCULPTED FROM EVERY ANGLE"
+shot left use left for 3s move drift-right strength 0.035 transition crossfade label "PRECISION ENGINEERING"
+shot right use right for 3s move drift-left strength 0.035 transition crossfade label "REFINED FROM EDGE TO EDGE"
+shot bottom use bottom for 4s move push-in strength 0.05 transition crossfade label "EVERY DETAIL CONSIDERED"
+shot front use front for 5s move reveal-up strength 0.055 transition crossfade label "AN IMMERSIVE VIEW"
+shot camera use camera for 4s move macro strength 0.08 transition crossfade label "PRO-LEVEL CAMERA DETAIL"
+shot hero use rear for 6s move hero strength 0.025 transition fade label "GALAXY S26 ULTRA"</textarea>
+<div class="assets"><label for="assetFiles">Add images</label><input id="assetFiles" type="file" accept="image/*" multiple><button id="compile" type="button">Compile scene</button><button id="export" type="button" class="secondary">Export HTML</button></div>
+<div class="asset-list" id="assetList">No image assets loaded yet. Upload your cleaned multi-view images, then match their names to the asset declarations.</div>
+<div class="help"><b>Language basics:</b> <code>project</code>, <code>format</code>, <code>fps</code>, <code>background</code>, <code>light</code>, <code>title</code>, <code>subtitle</code>, <code>asset</code>, <code>shot</code>. Each shot names an uploaded asset, duration, camera move, strength and transition. Comments begin with <code>#</code>.</div>
+</section>
+<section class="panel"><h2>02 · Live scene preview</h2>
+<div class="stage" id="stage"><div class="title" id="stageTitle">YOUR PRODUCT REVEAL</div></div>
+<div class="toolbar"><button id="play" type="button">Play</button><button id="stop" type="button" class="secondary">Stop</button><button id="next" type="button" class="secondary">Next shot</button></div>
+<div class="timeline" id="timeline"></div><div class="log" id="log" aria-live="polite">Upload assets and compile the scene script.</div>
+<div class="help">Preview is a browser approximation. Exported HTML embeds the selected images and exposes <code>window.__timelines.main</code> for timeline seeking. The script controls 2D camera motion between real views; it does not claim to create 3D geometry.</div>
+</section></div></main>
+<script>
+const $=s=>document.querySelector(s);
+const assets=new Map();let scene=null,timer=null,current=0,compiledHtml="";
+const moves={ "push-in":{from:1.04,to:1.16,x:0,y:0,r:0},"drift-right":{from:1.06,to:1.1,x:-3,y:0,r:0},"drift-left":{from:1.06,to:1.1,x:3,y:0,r:0},"reveal-up":{from:1.08,to:1.13,x:0,y:3,r:0},"macro":{from:1.02,to:1.2,x:0,y:0,r:0},"hero":{from:1.07,to:1.025,x:0,y:0,r:0},"rotate":{from:1.08,to:1.12,x:0,y:0,r:2.2},"hold":{from:1,to:1,x:0,y:0,r:0}};
+function parseLine(line,n){const t=line.trim();if(!t||t.startsWith("#"))return null;
+let m;
+if((m=t.match(/^project\s+"([^"]+)"$/i)))return{type:"project",name:m[1]};
+if((m=t.match(/^format\s+(portrait|landscape|square)$/i)))return{type:"format",value:m[1].toLowerCase()};
+if((m=t.match(/^fps\s+(\d+)$/i)))return{type:"fps",value:Number(m[1])};
+if((m=t.match(/^background\s+"(#[0-9a-fA-F]{3,8})"$/i)))return{type:"background",value:m[1]};
+if((m=t.match(/^light\s+([a-z-]+)\s+intensity\s+(0(?:\.\d+)?|1(?:\.0+)?)$/i)))return{type:"light",color:m[1],intensity:Number(m[2])};
+if((m=t.match(/^title\s+"([^"]+)"\s+at\s+(0(?:\.\d+)?|1(?:\.0+)?)$/i)))return{type:"title",value:m[1],at:Number(m[2])};
+if((m=t.match(/^subtitle\s+"([^"]+)"\s+at\s+(0(?:\.\d+)?|1(?:\.0+)?)$/i)))return{type:"subtitle",value:m[1],at:Number(m[2])};
+if((m=t.match(/^asset\s+([a-zA-Z0-9_-]+)$/i)))return{type:"asset",name:m[1]};
+if((m=t.match(/^shot\s+([a-zA-Z0-9_-]+)\s+use\s+([a-zA-Z0-9_-]+)\s+for\s+(\d+(?:\.\d+)?)s\s+move\s+([a-z-]+)\s+strength\s+(0(?:\.\d+)?|1(?:\.0+)?)\s+transition\s+(crossfade|fade|cut)\s+label\s+"([^"]+)"$/i))){
+if(!moves[m[4]])throw Error("Line "+n+": unknown move '"+m[4]+"'.");
+return{type:"shot",id:m[1],asset:m[2],seconds:Number(m[3]),move:m[4],strength:Number(m[5]),transition:m[6].toLowerCase(),label:m[7]};
+}
+throw Error("Line "+n+": I don't understand this instruction. Check the language examples below the editor.");
+}
+function compile(){
+try{
+const ast=[];const lines=$("#script").value.split(/\r?\n/);lines.forEach((l,i)=>{const node=parseLine(l,i+1);if(node)ast.push(node)});
+const cfg={project:"Untitled HFX Scene",format:"portrait",fps:30,background:"#050713",light:{color:"violet",intensity:.7},title:"",titleAt:.86,subtitle:"",subtitleAt:.92,declared:new Set(),shots:[]};
+for(const n of ast){if(n.type==="project")cfg.project=n.name;else if(n.type==="format")cfg.format=n.value;else if(n.type==="fps")cfg.fps=Math.max(12,Math.min(60,n.value));else if(n.type==="background")cfg.background=n.value;else if(n.type==="light")cfg.light={color:n.color,intensity:n.intensity};else if(n.type==="title"){cfg.title=n.value;cfg.titleAt=n.at}else if(n.type==="subtitle"){cfg.subtitle=n.value;cfg.subtitleAt=n.at}else if(n.type==="asset")cfg.declared.add(n.name);else if(n.type==="shot")cfg.shots.push(n)}
+if(!cfg.shots.length)throw Error("Add at least one shot command.");
+if(cfg.shots.length>30)throw Error("A scene can contain up to 30 shots in this build.");
+for(const s of cfg.shots){if(!cfg.declared.has(s.asset))throw Error("Shot '"+s.id+"' uses undeclared asset '"+s.asset+"'. Add: asset "+s.asset);if(!assets.has(s.asset))throw Error("Missing image for asset '"+s.asset+"'. Upload an image and assign it this name.");if(s.seconds<.5||s.seconds>30)throw Error("Shot '"+s.id+"' duration must be between 0.5 and 30 seconds.");}
+scene=cfg;current=0;renderTimeline();showShot(0);buildExport();$("#log").className="log";$("#log").textContent="Compiled "+cfg.shots.length+" shots · "+totalSeconds().toFixed(1)+" seconds · "+cfg.fps+" fps. No syntax or asset errors.";
+}catch(e){scene=null;$("#log").className="log error";$("#log").textContent=e.message;throw e}
+}
+function totalSeconds(){return scene?scene.shots.reduce((a,s)=>a+s.seconds,0):0}
+function renderTimeline(){const root=$("#timeline");root.innerHTML="";scene.shots.forEach((s,i)=>{const d=document.createElement("div");d.className="clip";d.innerHTML="<b>"+String(i+1).padStart(2,"0")+" · "+s.seconds+"s</b>"+s.label;root.append(d)})}
+function showShot(i){if(!scene)return;current=(i+scene.shots.length)%scene.shots.length;const s=scene.shots[current],img=$("#stage").querySelector("img")||document.createElement("img");img.src=assets.get(s.asset).url;img.alt=s.label;const mv=moves[s.move],strength=s.strength;img.style.transition="transform 1.2s ease,opacity .55s ease";img.style.opacity="1";img.style.transform="translate("+mv.x*strength/0.035+"px,"+mv.y*strength/0.035+"px) scale("+mv.from+") rotate("+mv.r*strength/0.035+"deg)";if(!img.parentNode)$("#stage").insertBefore(img,$("#stageTitle"));$("#stageTitle").textContent=s.label.toUpperCase();$("#stageTitle").style.color=scene.light.color==="violet"?"#d9d0ff":"#eaf6ff";$("#stage").style.background="radial-gradient(ellipse at 50% 42%,"+(scene.light.color==="violet"?"#342d70":"#27445b")+","+scene.background+" 72%)";$("#timeline").children[current].style.borderColor="#56dcff"}
+function stop(){if(timer)clearTimeout(timer);timer=null;$("#play").textContent="Play"}
+function play(){if(!scene)return;stop();$("#play").textContent="Pause";const tick=()=>{showShot(current);timer=setTimeout(()=>{current++;if(current>=scene.shots.length){stop();return}tick()},scene.shots[current].seconds*1000)};tick()}
+$("#assetFiles").addEventListener("change",e=>{for(const f of [...e.target.files]){if(!f.type.startsWith("image/"))continue;const key=prompt("Asset name for "+f.name+" (e.g. rear, front, camera):",f.name.replace(/\.[^.]+$/,"").toLowerCase().replace(/[^a-z0-9_-]/g,"-"));if(!key)continue;const r=new FileReader();r.onload=()=>{if(assets.has(key)&&assets.get(key).url.startsWith("blob:"))URL.revokeObjectURL(assets.get(key).url);assets.set(key,{name:f.name,url:r.result});$("#assetList").textContent=[...assets.entries()].map(([k,v])=>k+" ← "+v.name).join(" · ")+" ("+assets.size+" loaded)"};r.readAsDataURL(f)}e.target.value=""});
+$("#compile").onclick=()=>{stop();try{compile()}catch{}};
+$("#play").onclick=()=>{if(!scene){try{compile()}catch{return}}if(timer){stop();return}play()};
+$("#stop").onclick=stop;$("#next").onclick=()=>{if(!scene){try{compile()}catch{return}}showShot(current+1)};
+$("#export").onclick=()=>{try{if(!scene)compile();const blob=new Blob([compiledHtml],{type:"text/html"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="hfx-"+scene.project.toLowerCase().replace(/[^a-z0-9]+/g,"-")+".html";a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);$("#log").textContent="Exported compiled scene HTML. Images are embedded in the file."}catch{}};
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function buildExport(){const w=scene.format==="landscape"?1920:1080,h=scene.format==="square"?1080:scene.format==="landscape"?1080:1920;const shots=scene.shots.map(s=>({...s,src:assets.get(s.asset).url}));const d=totalSeconds();const markup=shots.map((s,i)=>'<section class="shot"><img src="'+s.src+'" alt="'+esc(s.label)+'"><div class="label">'+esc(s.label)+'</div></section>').join("");const data=JSON.stringify(shots.map(s=>({seconds:s.seconds,move:s.move,strength:s.strength,transition:s.transition})));compiledHtml='<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width='+w+',height='+h+'"><script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"><\/script><style>*{box-sizing:border-box}html,body{margin:0;width:'+w+'px;height:'+h+'px;overflow:hidden;background:'+scene.background+';color:white;font-family:Arial,sans-serif}#root{position:relative;width:100%;height:100%;overflow:hidden;background:radial-gradient(ellipse at 50% 40%,#292b61,'+scene.background+' 74%)}.shot{position:absolute;inset:0;display:grid;place-items:center;opacity:0}.shot img{width:90%;height:82%;object-fit:contain;filter:drop-shadow(0 30px 42px #000c)}.label{position:absolute;bottom:16%;left:5%;right:5%;text-align:center;letter-spacing:.16em;font-size:'+Math.round(h*.018)+'px;color:#e8eaff;text-shadow:0 3px 18px #000}.title{position:absolute;bottom:7%;left:5%;right:5%;text-align:center;font-size:'+Math.round(h*.045)+'px;font-weight:950;letter-spacing:.12em;opacity:0}.subtitle{position:absolute;bottom:4%;left:5%;right:5%;text-align:center;font-size:'+Math.round(h*.012)+'px;letter-spacing:.28em;opacity:0;color:#a9dfff}</style></head><body><div id="root" data-hf-id="hfx-scene" data-composition-id="main" data-start="0" data-duration="'+d+'" data-width="'+w+'" data-height="'+h+'">'+markup+'<div class="title">'+esc(scene.title)+'</div><div class="subtitle">'+esc(scene.subtitle)+'</div></div><script>window.__timelines=window.__timelines||{};const el=[...document.querySelectorAll(".shot")],cfg='+data+',tl=gsap.timeline({paused:true});let t=0;cfg.forEach((s,i)=>{const m='+JSON.stringify(moves)+ '[s.move];const dur=s.seconds;tl.fromTo(el[i],{autoAlpha:0},{autoAlpha:1,duration:s.transition==="cut"?.01:.55},t);tl.fromTo(el[i].querySelector("img"),{scale:m.from,x:0,y:0,rotation:0},{scale:m.from+(m.to-m.from)*s.strength/.08,x:m.x*s.strength/.035,y:m.y*s.strength/.035,rotation:m.r*s.strength/.035,duration:dur,ease:"power1.inOut"},t);tl.to(el[i],{autoAlpha:0,duration:s.transition==="cut"?.01:.45},t+dur-.45);t+=dur});tl.fromTo(".title",{autoAlpha:0,y:28},{autoAlpha:1,y:0,duration:.8},t*'+scene.titleAt+');tl.fromTo(".subtitle",{autoAlpha:0,y:12},{autoAlpha:1,y:0,duration:.6},t*'+scene.subtitleAt+');window.__timelines.main=tl;tl.seek(0);<\/script></body></html>'}
+</script></body></html>

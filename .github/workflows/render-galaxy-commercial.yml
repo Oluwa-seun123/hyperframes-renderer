@@ -1,0 +1,50 @@
+name: Render Galaxy S26 Ultra 3D commercial
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "image-motion-studio/project/production/galaxy-s26-ultra/assets/galaxy-s26-ultra.glb"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: galaxy-s26-ultra-commercial
+  cancel-in-progress: true
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: image-motion-studio/project
+    steps:
+      - name: Check out production source and model
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate GLB and prepare 3D motion-graphics composition
+        run: node ../../tools/prepare-galaxy-ad.mjs
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+      - name: Check HyperFrames composition
+        run: npm run check
+      - name: Render real 3D Galaxy commercial
+        run: npm run render -- --output output/rendered-source.mp4
+      - name: Package MP4 and run media QC
+        run: node ../../tools/package-render.mjs
+      - name: Upload final MP4 and ZIP delivery
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: galaxy-s26-ultra-commercial-${{ github.run_number }}
+          path: |
+            image-motion-studio/project/output/rendered-source.mp4
+            image-motion-studio/project/output/delivery/**
+          if-no-files-found: warn
+          retention-days: 7
