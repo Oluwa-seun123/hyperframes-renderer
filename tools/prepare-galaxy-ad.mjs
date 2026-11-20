@@ -19,6 +19,18 @@ for (const file of [sourceHtml, sourceModel]) {
     process.exit(2);
   }
 }
+const composition = await readFile(sourceHtml, 'utf8');
+const requiredTokens = [
+  'GLTFLoader', 'gsap.timeline({paused:true})', 'window.__timelines.main',
+  'product.rotation', 'DirectionalLight', 'id="opening"', 'id="camera-copy"',
+  'id="display-copy"', 'id="final-copy"', 'data-duration="30"',
+  "./assets/galaxy-s26-ultra.glb"
+];
+const missingTokens = requiredTokens.filter(token => !composition.includes(token));
+if (missingTokens.length) {
+  console.error('GALAXY BUILD BLOCKED: composition is missing required 3D/motion-graphics features: ' + missingTokens.join(', '));
+  process.exit(2);
+}
 const bytes = await readFile(sourceModel);
 if (bytes.length < 20 || bytes.toString('ascii', 0, 4) !== 'glTF') {
   console.error('GALAXY BUILD BLOCKED: the supplied model is not a valid GLB 2.0 file.');
