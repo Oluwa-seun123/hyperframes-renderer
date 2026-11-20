@@ -17,6 +17,8 @@ on:
       - "image-motion-studio/asset-quality-gate.html"
       - "image-motion-studio/campaign-handoff.html"
       - "image-motion-studio/model-inspector.html"
+      - "image-motion-studio/3d-ad-sequencer.html"
+      - "image-motion-studio/PHASE17_3D_AD_SEQUENCER.md"
       - "image-motion-studio/PHASE16_MODEL_INSPECTOR.md"
       - "image-motion-studio/PHASE13_CINEMATIC_IMAGE_STAGE.md"
       - "image-motion-studio/PHASE14_ASSET_QC.md"
