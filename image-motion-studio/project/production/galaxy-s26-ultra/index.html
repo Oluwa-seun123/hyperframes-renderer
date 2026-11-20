@@ -44,7 +44,6 @@ const camera=new THREE.PerspectiveCamera(34,W/H,.01,1000);
 const renderer=new THREE.WebGLRenderer({canvas:document.getElementById('stage'),antialias:true,alpha:false,preserveDrawingBuffer:true});
 renderer.setSize(W,H,false);renderer.setPixelRatio(1);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.18;
 scene.add(new THREE.HemisphereLight(0xd9dcff,0x130d20,1.5));
-const key=new THREE.AreaLight?null:null;
 const keyLight=new THREE.DirectionalLight(0xfff1dc,3.2);keyLight.position.set(-4,6,5);scene.add(keyLight);
 const violet=new THREE.DirectionalLight(0x9a7aff,4.2);violet.position.set(5,2,-4);scene.add(violet);
 const cyan=new THREE.DirectionalLight(0x78dfff,1.6);cyan.position.set(-2,-3,4);scene.add(cyan);
