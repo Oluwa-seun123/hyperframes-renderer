@@ -1,29 +1,26 @@
-name: MÁADÁN 90-second render test
-
+name: MÁADÁN and ChatGPT advert renders
 on:
   push:
     branches:
       - test/maadan-90s-spec-ad
+      - test/chatgpt-55s-ad
     paths:
       - "aso-maadan-90s/**"
+      - "aso-chatgpt-55/**"
       - ".github/workflows/maadan-render-test.yml"
-  workflow_dispatch:
-
 permissions:
   contents: read
-
 jobs:
-  render:
+  maadan-render:
+    if: startsWith(github.ref, 'refs/heads/test/maadan-90s-spec-ad')
     runs-on: ubuntu-latest
     timeout-minutes: 30
     defaults:
       run:
         working-directory: aso-maadan-90s
     steps:
-      - name: Check out source
-        uses: actions/checkout@v4
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
@@ -33,9 +30,7 @@ jobs:
       - name: Capture scene snapshots
         run: npm run snapshot
       - name: Install FFmpeg
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
       - name: Render MP4
         run: npm run render
       - name: Upload render and snapshots
@@ -46,6 +41,35 @@ jobs:
           path: |
             aso-maadan-90s/renders/**
             aso-maadan-90s/.hyperframes/artifacts/**
-            aso-maadan-90s/.hyperframes/**
+          if-no-files-found: warn
+          retention-days: 7
+  chatgpt-render:
+    if: startsWith(github.ref, 'refs/heads/test/chatgpt-55s-ad')
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    defaults:
+      run:
+        working-directory: aso-chatgpt-55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install FFmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Check composition
+        run: npm run check
+      - name: Capture review frames
+        run: npx hyperframes@0.8.189 snapshot --at 2,8,13,17,23,32,41,49
+      - name: Render MP4
+        run: npm run render
+      - name: Upload MP4 and review frames
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chatgpt-more-than-conversation-1080x1920
+          path: |
+            aso-chatgpt-55/renders/**
+            aso-chatgpt-55/.hyperframes/artifacts/**
           if-no-files-found: warn
           retention-days: 7
