@@ -88,8 +88,8 @@
  <div class="bg"></div><div class="gridglow"></div>
  <div style="position:absolute;left:90px;top:570px;font-size:37px;color:#a5bcb6">Working through the details <span style="color:var(--cyan)">›</span></div>
  <div id="processing" style="position:absolute;left:90px;top:720px;font-size:76px;font-weight:750">Thinking deeper<span style="color:var(--cyan)">...</span></div>
- <div class="orbit" style="position:absolute;left:390px;top:980px;width:300px;height:300px;border:2px solid rgba(0,231,194,.3);border-radius:50%;box-shadow:0 0 70px rgba(0,231,194,.12)"></div>
- <div class="orbit" style="position:absolute;left:455px;top:1045px;width:170px;height:170px;border:3px solid var(--cyan);border-radius:50%;border-left-color:transparent"></div>
+ <div id="orbitOuter" class="orbit" style="position:absolute;left:390px;top:980px;width:300px;height:300px;border:2px solid rgba(0,231,194,.3);border-radius:50%;box-shadow:0 0 70px rgba(0,231,194,.12)"></div>
+ <div id="orbitInner" class="orbit" style="position:absolute;left:455px;top:1045px;width:170px;height:170px;border:3px solid var(--cyan);border-radius:50%;border-left-color:transparent"></div>
  <div style="position:absolute;left:518px;top:1105px;width:44px;height:44px;border-radius:50%;background:var(--cyan);box-shadow:0 0 55px var(--cyan)"></div>
 </section>
 <section id="s5" class="scene clip" data-start="19" data-duration="9">
@@ -128,7 +128,7 @@
  <div class="brand" id="brand">ChatGPT</div><div class="tagline" id="tagline">More than a conversation.</div>
  <div class="kicker" style="position:absolute;top:1640px;width:100%;text-align:center">ASK MORE. MAKE MORE. MOVE FORWARD.</div>
 </section>
-<div class="fade" id="fade"></div>
+
 </div>
 <script>
 window.__timelines=window.__timelines||{};
@@ -144,7 +144,7 @@ rise("#s2 .sidecopy",6.2,.8);rise("#s2 .kicker",5.5,.5);
 enter("#s3",11);rise("#s3 .kicker",11.25,.45);tl.fromTo("#bubble",{x:150,scale:.9,autoAlpha:0},{x:0,scale:1,autoAlpha:1,duration:.85,ease:"power3.out"},11.55);
 rise("#thinking",13.4,.55);tl.to("#s3 .dot",{y:-14,repeat:9,yoyo:true,stagger:.12,duration:.28,ease:"sine.inOut"},13.6);
 enter("#s4",16);rise("#s4>div:nth-of-type(1)",16.25,.4);rise("#processing",16.7,.55);
-tl.to(".orbit:nth-of-type(3)",{rotation:360,duration:2.5,ease:"none"},16.1);tl.to(".orbit:nth-of-type(4)",{rotation:-360,duration:2.1,ease:"none"},16.1);
+tl.to("#orbitOuter",{rotation:360,duration:2.5,ease:"none"},16.1);tl.to("#orbitInner",{rotation:-360,duration:2.1,ease:"none"},16.1);
 enter("#s5",19);tl.fromTo("#response",{y:80,scale:.97,autoAlpha:0},{y:0,scale:1,autoAlpha:1,duration:.8,ease:"power3.out"},19.15);
 tl.from("#response li",{x:-28,autoAlpha:0,stagger:.22,duration:.4,ease:"power2.out"},20.5);
 enter("#s6",28);tl.fromTo("#s6 .visual",{y:90,scale:.88,autoAlpha:0},{y:0,scale:1,autoAlpha:1,stagger:.22,duration:.85,ease:"power3.out"},28.3);
@@ -157,7 +157,5 @@ for(let i=0;i<14;i++){const el=document.createElement("i");el.className="beam";e
 tl.fromTo("#logo",{scale:.72,autoAlpha:0,rotation:-8},{scale:1,autoAlpha:1,rotation:0,duration:1.6,ease:"back.out(1.4)"},44.4);
 rise("#brand",46.2,.85);rise("#tagline",47.1,.75);
 tl.fromTo(".platform",{scale:.72,autoAlpha:0},{scale:1,autoAlpha:1,duration:1.5,ease:"power3.out"},45.1);
-tl.to("#fade",{autoAlpha:1,duration:.8,ease:"power2.in"},54.2);
-tl.to("#fade",{autoAlpha:0,duration:.45,ease:"power2.out"},54.75);
 window.__timelines["main"]=tl;tl.seek(0);
 </script></body></html>
