@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=1080,height=1920"><script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+:root{--cyan:#00e7c2;--aqua:#61fff0;--ink:#020706;--white:#f5fffd;--muted:#9eb8b3;--green:#0b6e5c}
+*{box-sizing:border-box}html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000;font-family:Inter,"Helvetica Neue",Arial,sans-serif;color:var(--white)}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:#020706}
+.scene{position:absolute;inset:0;width:1080px;height:1920px;overflow:hidden;opacity:0}
+.bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 35%,#092b29 0,#041412 35%,#010403 75%)}
+.gridglow{position:absolute;inset:-30%;background:repeating-linear-gradient(115deg,transparent 0 160px,rgba(0,231,194,.08) 162px,transparent 165px);transform:rotate(-10deg)}
+.kicker{font-size:24px;letter-spacing:.38em;text-transform:uppercase;color:var(--cyan);font-weight:700}
+.head{font-size:78px;line-height:1.04;letter-spacing:-.045em;font-weight:750}
+.copy{font-size:36px;line-height:1.34;color:#d5e8e3}
+.glow{ text-shadow:0 0 24px rgba(0,231,194,.45)}
+.earth{position:absolute;left:-260px;top:1040px;width:1600px;height:1100px;border-radius:50%;background:radial-gradient(ellipse at 50% 0%,#4ad9ff 0,#126f9b 7%,#082d4a 22%,#03111f 52%,#010306 75%);box-shadow:0 -18px 90px rgba(0,225,255,.5)}
+.earth:before{content:"";position:absolute;left:0;top:0;width:100%;height:100%;border-radius:50%;background:repeating-linear-gradient(170deg,transparent 0 26px,rgba(90,196,231,.08) 27px 29px,transparent 30px 60px)}
+.sunrise{position:absolute;left:390px;top:1010px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,#fff 0,#ffe8c8 5%,rgba(255,177,114,.65) 22%,transparent 70%);filter:blur(12px)}
+.question{position:absolute;left:60px;right:60px;top:420px;text-align:center;font-size:88px;line-height:1.12;font-weight:800;letter-spacing:-.045em}
+.phone{position:absolute;left:105px;top:250px;width:570px;height:1190px;border:5px solid #344c55;border-radius:78px;background:linear-gradient(135deg,#17282c,#020707 32%,#071416);box-shadow:30px 35px 90px #000,0 0 70px rgba(0,231,194,.18);transform:rotate(-8deg)}
+.phone:before{content:"";position:absolute;inset:15px;border:2px solid #52666a;border-radius:62px}
+.screen{position:absolute;inset:34px 28px;border-radius:50px;background:linear-gradient(180deg,#010605,#071513);padding:72px 38px}
+.phone-top{font-size:23px;color:#e7f4f1;display:flex;justify-content:space-between;margin-bottom:65px}
+.appname{font-size:42px;font-weight:650;margin-bottom:62px}
+.menu{display:flex;align-items:center;gap:24px;padding:22px 0;font-size:31px;color:#c9d7d3;border-bottom:1px solid rgba(255,255,255,.08)}
+.menu i{display:block;width:34px;height:34px;border:2px solid var(--cyan);border-radius:9px;box-shadow:0 0 20px rgba(0,231,194,.25)}
+.sidecopy{position:absolute;left:700px;top:690px;width:320px;font-size:58px;line-height:1.12;font-weight:700}
+.chatbubble{position:absolute;right:70px;top:350px;width:760px;padding:38px 44px;border-radius:36px 36px 8px 36px;background:linear-gradient(135deg,#154c86,#0a2f5e);font-size:39px;line-height:1.28;box-shadow:0 18px 55px rgba(0,80,180,.25)}
+.avatar{position:absolute;left:65px;top:325px;width:86px;height:86px;border-radius:50%;background:linear-gradient(145deg,#1c806d,#052d2a);display:grid;place-items:center;font-size:35px}
+.thinking{position:absolute;left:82px;top:760px;font-size:40px;color:#e8f4f1}
+.dot{display:inline-block;width:13px;height:13px;border-radius:50%;background:var(--cyan);margin:0 8px;box-shadow:0 0 20px var(--cyan)}
+.response{position:absolute;left:58px;top:190px;width:964px;height:1500px;padding:56px 60px;border:1px solid rgba(0,231,194,.28);border-radius:34px;background:linear-gradient(145deg,rgba(4,22,20,.98),rgba(1,5,5,.98));box-shadow:0 0 65px rgba(0,231,194,.1)}
+.response h2{font-family:Georgia,serif;font-size:60px;line-height:1.08;margin:0 0 38px}
+.response p{font-size:31px;line-height:1.35;color:#d5e4df}
+.response li{font-size:30px;line-height:1.42;padding-left:12px}
+.toolbar{position:absolute;bottom:50px;left:60px;right:60px;display:flex;justify-content:space-around;color:#a7c4bc;font-size:31px}
+.visualgrid{position:absolute;left:55px;top:245px;width:970px;height:1030px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:22px}
+.visual{position:relative;overflow:hidden;border-radius:28px;background:#152a23;border:1px solid rgba(255,255,255,.12);box-shadow:0 18px 45px #000}
+.fabric{background:radial-gradient(ellipse at 35% 20%,#8a9c78,#263c2b 48%,#0c1710)}
+.fabric:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(125deg,transparent 0 7px,rgba(255,255,255,.06) 8px,transparent 9px 16px)}
+.rack{position:absolute;left:14%;right:14%;top:22%;height:10px;background:#d8c8a8;box-shadow:0 0 15px #000}
+.hanger{position:absolute;top:25%;width:24%;height:57%;border-top:6px solid #e8dcc9;border-left:4px solid #e8dcc9;border-right:4px solid #e8dcc9;clip-path:polygon(50% 0,100% 18%,90% 100%,10% 100%,0 18%)}
+.hanger:nth-child(2){left:9%;background:#17241e}.hanger:nth-child(3){left:29%;background:#5a473a}.hanger:nth-child(4){left:49%;background:#c3aa8c}.hanger:nth-child(5){left:69%;background:#243d31}
+.tag{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-12deg);padding:25px 28px;background:#10271c;border:1px solid #a7c8a0;color:#f4f5e8;font-family:Georgia,serif;font-size:31px;text-align:center;box-shadow:0 20px 50px #000}
+.model{background:radial-gradient(ellipse at 50% 20%,#b1a98a,#526c55 50%,#101c17)}
+.model:before{content:"";position:absolute;width:190px;height:190px;left:calc(50% - 95px);top:90px;border-radius:50%;background:linear-gradient(130deg,#9c6a4d,#37271e)}
+.model:after{content:"";position:absolute;left:calc(50% - 130px);top:265px;width:260px;height:300px;border-radius:45% 45% 8% 8%;background:linear-gradient(110deg,#273d2e,#73815b 45%,#14251b)}
+.store{background:linear-gradient(180deg,#d9cbb4,#27372d)}
+.store:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 95px,rgba(255,255,255,.16) 96px 100px)}
+.store:after{content:"";position:absolute;left:8%;right:8%;bottom:0;height:45%;background:linear-gradient(90deg,#23362a 0 14%,transparent 14% 20%,#16281f 20% 35%,transparent 35% 43%,#334335 43% 59%,transparent 59% 68%,#14251c 68% 84%,transparent 84%)}
+.caption{position:absolute;left:70px;right:70px;top:1350px;text-align:center;font-size:58px;line-height:1.12;font-weight:750}
+.worktabs{position:absolute;top:180px;left:160px;width:760px;height:100px;border-radius:55px;background:#101817;border:2px solid #3b4c49;display:flex;align-items:center;justify-content:space-around;font-size:35px}
+.tab{padding:18px 65px;border-radius:44px}.tab.active{background:linear-gradient(135deg,#53615d,#18221f);box-shadow:0 0 25px rgba(0,231,194,.2)}
+.prompt{position:absolute;right:70px;top:340px;width:760px;padding:32px 38px;border-radius:32px;background:#123c70;font-size:34px;line-height:1.3}
+.docs{position:absolute;left:55px;right:55px;top:850px;height:730px;display:flex;gap:28px;align-items:stretch}
+.doc{flex:1;background:#f1f1ed;color:#17221f;border-radius:12px;padding:28px 22px;box-shadow:0 30px 55px #000;transform:perspective(900px) rotateY(5deg)}
+.doc h3{font-family:Georgia,serif;font-size:30px;line-height:1.12;margin:20px 0}
+.doc p{font-size:18px;color:#56615b;line-height:1.5}
+.chart{height:190px;margin-top:35px;display:flex;align-items:end;gap:10px;border-bottom:2px solid #73827b}
+.chart b{flex:1;background:linear-gradient(#1b9e80,#176a5a);border-radius:5px 5px 0 0}
+.finalstage{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 42%,#0c4a43 0,#04221e 28%,#010706 67%)}
+.platform{position:absolute;left:-120px;top:1320px;width:1320px;height:260px;border-radius:50%;border:5px solid rgba(0,231,194,.7);box-shadow:0 0 60px rgba(0,231,194,.55),inset 0 0 60px rgba(0,231,194,.2);transform:perspective(700px) rotateX(65deg)}
+.beam{position:absolute;top:-200px;bottom:-100px;width:3px;background:linear-gradient(transparent,rgba(0,231,194,.7),transparent);filter:blur(1px)}
+.logo{position:absolute;left:310px;top:370px;width:460px;height:460px;object-fit:contain;filter:drop-shadow(0 0 38px rgba(0,255,221,.8))}
+.brand{position:absolute;top:900px;width:100%;text-align:center;font-size:105px;font-weight:750;letter-spacing:-.055em}
+.tagline{position:absolute;top:1045px;width:100%;text-align:center;font-size:39px;letter-spacing:.2em}
+.fade{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none}
+</style></head><body>
+<div id="root" data-hf-id="hf-chatgpt-55" data-composition-id="main" data-start="0" data-duration="55" data-width="1080" data-height="1920">
+<section id="s1" class="scene clip" data-start="0" data-duration="5">
+ <div class="bg"></div><div class="gridglow"></div><div class="earth"></div><div class="sunrise"></div>
+ <div class="kicker" style="position:absolute;top:240px;width:100%;text-align:center">VISUAL STORYBOARD · 01</div>
+ <div class="question"><span>What if one question<br>could</span><br><span class="glow" style="color:var(--cyan)">change everything?</span></div>
+ <div id="s1line" style="position:absolute;top:760px;width:100%;text-align:center;font-size:34px;letter-spacing:.22em;color:#d8f7f1">A NEW WAY TO MOVE FORWARD</div>
+</section>
+<section id="s2" class="scene clip" data-start="5" data-duration="6">
+ <div class="bg"></div><div class="gridglow"></div>
+ <div class="phone" id="phone"><div class="screen"><div class="phone-top"><span>03:36</span><span>● ● ▰</span></div><div class="appname">ChatGPT</div>
+ <div class="menu"><i></i> Images</div><div class="menu"><i></i> Library</div><div class="menu"><i></i> Projects</div><div class="menu"><i></i> Scheduled</div><div class="menu"><i></i> Plugins</div><div class="menu"><i></i> Recent chats</div></div></div>
+ <div class="sidecopy">Not just<br>a chatbot.<br><span class="glow" style="color:var(--cyan)">A powerful assistant.</span></div>
+ <div class="kicker" style="position:absolute;top:150px;left:700px">MEET CHATGPT</div>
+</section>
+<section id="s3" class="scene clip" data-start="11" data-duration="5">
+ <div class="bg"></div><div class="gridglow"></div><div class="avatar">✦</div>
+ <div class="chatbubble" id="bubble">I want to launch a sustainable fashion brand. Help me develop the business concept and visual identity.</div>
+ <div class="thinking" id="thinking">Thinking<span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+ <div class="kicker" style="position:absolute;left:80px;top:220px">START WITH ONE QUESTION</div>
+</section>
+<section id="s4" class="scene clip" data-start="16" data-duration="3">
+ <div class="bg"></div><div class="gridglow"></div>
+ <div style="position:absolute;left:90px;top:570px;font-size:37px;color:#a5bcb6">Working through the details <span style="color:var(--cyan)">›</span></div>
+ <div id="processing" style="position:absolute;left:90px;top:720px;font-size:76px;font-weight:750">Thinking deeper<span style="color:var(--cyan)">...</span></div>
+ <div class="orbit" style="position:absolute;left:390px;top:980px;width:300px;height:300px;border:2px solid rgba(0,231,194,.3);border-radius:50%;box-shadow:0 0 70px rgba(0,231,194,.12)"></div>
+ <div class="orbit" style="position:absolute;left:455px;top:1045px;width:170px;height:170px;border:3px solid var(--cyan);border-radius:50%;border-left-color:transparent"></div>
+ <div style="position:absolute;left:518px;top:1105px;width:44px;height:44px;border-radius:50%;background:var(--cyan);box-shadow:0 0 55px var(--cyan)"></div>
+</section>
+<section id="s5" class="scene clip" data-start="19" data-duration="9">
+ <div class="bg"></div><div class="response" id="response">
+ <div class="kicker" style="margin-bottom:26px">YOUR IDEA, DEVELOPED</div>
+ <h2>Building Your Sustainable Fashion Brand</h2>
+ <p>A sustainable fashion brand is more than a trend—it's a movement. Here's a complete guide to help you turn your idea into a successful brand:</p>
+ <ol><li>Executive Summary</li><li>Brand Positioning</li><li>Target Audience</li><li>Product Strategy</li><li>Marketing Strategy</li><li>Operations</li><li>Revenue Model</li><li>Financial Considerations</li></ol>
+ <div class="toolbar"><span>▢</span><span>◖))</span><span>♡</span><span>↻</span><span>↗</span></div>
+ </div>
+</section>
+<section id="s6" class="scene clip" data-start="28" data-duration="8">
+ <div class="bg"></div><div class="kicker" style="position:absolute;top:145px;width:100%;text-align:center">FROM IDEA TO IDENTITY</div>
+ <div class="visualgrid">
+  <div class="visual fabric"><div class="rack"></div><div class="hanger"></div><div class="hanger"></div><div class="hanger"></div><div class="hanger"></div></div>
+  <div class="visual fabric"><div class="tag">✧<br>Sustainable<br>Fashion</div></div>
+  <div class="visual model"></div><div class="visual store"></div>
+ </div>
+ <div class="caption">From ideas to<br><span style="color:var(--cyan)">visual possibilities.</span></div>
+</section>
+<section id="s7" class="scene clip" data-start="36" data-duration="8">
+ <div class="bg"></div><div class="gridglow"></div>
+ <div class="worktabs" id="tabs"><span class="tab">▢　Chat</span><span class="tab active">▣　Work</span></div>
+ <div class="prompt" id="workprompt">Turn this strategy into a professional business plan with financial projections.</div>
+ <div style="position:absolute;left:70px;top:660px;font-size:34px;color:#c5d8d2" id="workstatus">Creating your business plan...</div>
+ <div class="docs" id="docs">
+  <div class="doc"><div style="font-size:18px;color:#49735d">✧</div><h3>Sustainable<br>Fashion Brand</h3><p>Business Plan</p><div style="height:210px;margin-top:65px;background:linear-gradient(140deg,transparent 55%,#587b50 56% 70%,transparent 71%)"></div></div>
+  <div class="doc"><h3>Market Analysis</h3><p>Audience, category trends, competitive landscape and positioning.</p><div class="chart"><b style="height:28%"></b><b style="height:42%"></b><b style="height:55%"></b><b style="height:72%"></b><b style="height:92%"></b></div><p>Growth opportunity</p></div>
+  <div class="doc"><h3>Financial Projections</h3><p>Revenue forecast and operating assumptions.</p><svg viewBox="0 0 250 220" style="width:100%;height:220px"><path d="M10 190 L55 155 L95 160 L140 105 L185 88 L235 20" fill="none" stroke="#168eaa" stroke-width="7"/><path d="M10 190 L55 155 L95 160 L140 105 L185 88 L235 20 L235 205 L10 205Z" fill="#168eaa" opacity=".12"/></svg><p>12-month forecast</p></div>
+ </div>
+</section>
+<section id="s8" class="scene clip" data-start="44" data-duration="11">
+ <div class="finalstage"></div><div class="gridglow"></div>
+ <div id="beams"></div><div class="platform"></div>
+ <img id="logo" class="logo" src="assets/chatgpt-logo.jpg" alt="ChatGPT logo">
+ <div class="brand" id="brand">ChatGPT</div><div class="tagline" id="tagline">More than a conversation.</div>
+ <div class="kicker" style="position:absolute;top:1640px;width:100%;text-align:center">ASK MORE. MAKE MORE. MOVE FORWARD.</div>
+</section>
+<div class="fade" id="fade"></div>
+</div>
+<script>
+window.__timelines=window.__timelines||{};
+const tl=gsap.timeline({paused:true});
+const enter=(s,t)=>tl.fromTo(s,{autoAlpha:0},{autoAlpha:1,duration:.55,ease:"power2.out"},t);
+const rise=(s,t,d=.65)=>tl.fromTo(s,{y:55,autoAlpha:0},{y:0,autoAlpha:1,duration:d,ease:"power3.out"},t);
+enter("#s1",0);rise("#s1 .question",.45,.9);rise("#s1line",2.6,.6);
+tl.fromTo(".earth",{y:120,scale:1.05},{y:0,scale:1,duration:5,ease:"none"},0);
+tl.fromTo(".sunrise",{scale:.5,autoAlpha:.3},{scale:1.4,autoAlpha:1,duration:3,ease:"power2.out"},1.4);
+tl.to(".gridglow",{x:100,y:-40,duration:5,ease:"none"},0);
+enter("#s2",5);tl.fromTo("#phone",{x:-180,rotation:-16,scale:.92},{x:0,rotation:-8,scale:1,duration:2.8,ease:"power3.out"},5.1);
+rise("#s2 .sidecopy",6.2,.8);rise("#s2 .kicker",5.5,.5);
+enter("#s3",11);rise("#s3 .kicker",11.25,.45);tl.fromTo("#bubble",{x:150,scale:.9,autoAlpha:0},{x:0,scale:1,autoAlpha:1,duration:.85,ease:"power3.out"},11.55);
+rise("#thinking",13.4,.55);tl.to("#s3 .dot",{y:-14,repeat:9,yoyo:true,stagger:.12,duration:.28,ease:"sine.inOut"},13.6);
+enter("#s4",16);rise("#s4>div:nth-of-type(1)",16.25,.4);rise("#processing",16.7,.55);
+tl.to(".orbit:nth-of-type(3)",{rotation:360,duration:2.5,ease:"none"},16.1);tl.to(".orbit:nth-of-type(4)",{rotation:-360,duration:2.1,ease:"none"},16.1);
+enter("#s5",19);tl.fromTo("#response",{y:80,scale:.97,autoAlpha:0},{y:0,scale:1,autoAlpha:1,duration:.8,ease:"power3.out"},19.15);
+tl.from("#response li",{x:-28,autoAlpha:0,stagger:.22,duration:.4,ease:"power2.out"},20.5);
+enter("#s6",28);tl.fromTo("#s6 .visual",{y:90,scale:.88,autoAlpha:0},{y:0,scale:1,autoAlpha:1,stagger:.22,duration:.85,ease:"power3.out"},28.3);
+rise("#s6 .caption",32.3,.75);tl.to("#s6 .visualgrid",{scale:1.035,duration:3.5,ease:"sine.inOut"},31);
+enter("#s7",36);rise("#tabs",36.25,.55);rise("#workprompt",37,.65);rise("#workstatus",38.1,.5);
+tl.fromTo("#docs .doc",{y:180,rotationY:12,autoAlpha:0},{y:0,rotationY:0,autoAlpha:1,stagger:.24,duration:1,ease:"power3.out"},39);
+tl.to("#docs",{y:-18,duration:3,ease:"sine.inOut"},41);
+enter("#s8",44);tl.fromTo("#beams",{autoAlpha:0},{autoAlpha:1,duration:.7},44.1);
+for(let i=0;i<14;i++){const el=document.createElement("i");el.className="beam";el.style.left=(45+i*72)+"px";el.style.opacity=(.12+(i%4)*.07).toString();document.querySelector("#beams").appendChild(el);tl.fromTo(el,{scaleY:.2},{scaleY:1,duration:1.4,ease:"power2.out"},44.15+(i%5)*.08)}
+tl.fromTo("#logo",{scale:.72,autoAlpha:0,rotation:-8},{scale:1,autoAlpha:1,rotation:0,duration:1.6,ease:"back.out(1.4)"},44.4);
+rise("#brand",46.2,.85);rise("#tagline",47.1,.75);
+tl.fromTo(".platform",{scale:.72,autoAlpha:0},{scale:1,autoAlpha:1,duration:1.5,ease:"power3.out"},45.1);
+tl.to("#fade",{autoAlpha:1,duration:.8,ease:"power2.in"},54.2);
+tl.to("#fade",{autoAlpha:0,duration:.45,ease:"power2.out"},54.75);
+window.__timelines["main"]=tl;tl.seek(0);
+</script></body></html>

@@ -1,0 +1,42 @@
+name: ChatGPT 55s vertical advert
+on:
+  push:
+    branches:
+      - chatgpt-more-than-conversation
+    paths:
+      - "aso-chatgpt-55/**"
+      - ".github/workflows/chatgpt-55-render.yml"
+permissions:
+  contents: read
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    defaults:
+      run:
+        working-directory: aso-chatgpt-55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+      - name: Check composition
+        run: npm run check
+      - name: Capture review frames
+        run: npx hyperframes@0.8.189 snapshot --at 2,8,13,17,23,32,41,49
+      - name: Render MP4
+        run: npm run render
+      - name: Upload MP4 and review frames
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chatgpt-more-than-conversation-1080x1920
+          path: |
+            aso-chatgpt-55/renders/**
+            aso-chatgpt-55/.hyperframes/artifacts/**
+          if-no-files-found: warn
+          retention-days: 7
